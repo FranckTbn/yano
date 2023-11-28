@@ -1,0 +1,727 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapitre 5 - La data visualisation avec Python (2ème partie) &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05_02_Data_visualisation_cartographie';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapitre 5 - La data visualisation avec Python (1ère partie)" href="05_03_Visualisations_interactives.html" />
+    <link rel="prev" title="Chapitre 5 - La data visualisation avec Python (1ère partie)" href="05_01_Data_visualisation_matplotlib_seaborn.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">My sample book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bienvenue sur le site de TRA BI NENE OTHNIEL
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter2.html">mes recherches et tout ce qui est utiles</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="02_python_from_scratch.html">Chapitre 2 - Les bases de Python / Python from scratch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_numpy_pandas_bases.html">Chapitre 3 - Python et les données (NumPy et Pandas)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01_recuperation_des_donnees.html">Chapitre 4 - La préparation des données et les premières statistiques (1ère partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_manipulation_description_des_donnees.html">Chapitre 4 - La préparation des données et les premières statistiques (2ème partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_01_Data_visualisation_matplotlib_seaborn.html">Chapitre 5 - La data visualisation avec Python (1ère partie)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapitre 5 - La data visualisation avec Python (2ème partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_03_Visualisations_interactives.html">Chapitre 5 - La data visualisation avec Python (1ère partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_01_Machine_learning_supervise.html">Chapitre 6 - Différentes utilisations dumachine learning avec Python (1ère partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Random%20Forest.html">librairies de base</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06_02_Machine_learning_non_supervise.html">Chapitre 6 - Différentes utilisations du machine learning avec Python (2ème partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_03_NLP.html">Chapitre 6 - Différentes utilisations du machine learning avec Python (3ème partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_04_Deep_Learning.html">Chapitre 6 - Différentes utilisations dumachine learning avec Python (4ème partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_01_Big_data_import.html">Chapitre 7 - Passage au big data (1ère partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_02_Spark.html">Chapitre 7 - Passage au big data (2ème partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CAA_test-checkpoint.html">1. Modelisation des rendements</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="FORMATION%20PYTHON-checkpoint.html">Introduction</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Introduction%20%C3%A0%20Scikit%20Learn-checkpoint.html">Introduction à Scikit Learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Python%20vs%20R-checkpoint.html">Python vs R : le duel</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F05_02_Data_visualisation_cartographie.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/05_02_Data_visualisation_cartographie.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapitre 5 - La data visualisation avec Python (2ème partie)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quelques-bases-de-cartographie">5.3 Quelques bases de cartographie</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-et-utilisation-de-cartopy">5.3.1 Installation et utilisation de Cartopy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-autres-outils">5.3.2 Les autres outils</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#folium">Folium</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapitre-5-la-data-visualisation-avec-python-2eme-partie">
+<h1>Chapitre 5 - La data visualisation avec Python (2ème partie)<a class="headerlink" href="#chapitre-5-la-data-visualisation-avec-python-2eme-partie" title="Permalink to this heading">#</a></h1>
+<section id="quelques-bases-de-cartographie">
+<h2>5.3 Quelques bases de cartographie<a class="headerlink" href="#quelques-bases-de-cartographie" title="Permalink to this heading">#</a></h2>
+<p>La cartographie est un domaine à part entière qui a son propre environnement de travail notamment avec un grand nombre de logiciels de SIG (système d’information géographique).</p>
+<p>Python vous permettra de travailler avec certains d’entre eux. Par exemple, de
+nombreux traitements avec le logiciel QGIS sont automatisables en Python.</p>
+<section id="installation-et-utilisation-de-cartopy">
+<h3>5.3.1 Installation et utilisation de Cartopy<a class="headerlink" href="#installation-et-utilisation-de-cartopy" title="Permalink to this heading">#</a></h3>
+<p>Cartopy n’est pas installé par défaut dans votre environnement Anaconda. Il va
+falloir l’installer en utilisant votre gestionnaire d’environnement.</p>
+<p>Une fois que nous avons installé Cartopy, nous allons pouvoir représenter des
+cartes.</p>
+<p>Le code suivant permet de représenter deux points sur le globe et de les lier en
+utilisant deux distances :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;cartopy&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on définit le fond de carte</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Mollweide</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">stock_img</span><span class="p">()</span>
+<span class="c1"># on définit les points à afficher</span>
+<span class="n">paris_lon</span><span class="p">,</span> <span class="n">paris_lat</span> <span class="o">=</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">48.8</span>
+<span class="n">sydney_lon</span><span class="p">,</span> <span class="n">sydney_lat</span> <span class="o">=</span> <span class="mf">151.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">33.9</span>
+<span class="c1"># on affiche le lien entre les deux villes en utilisant la métrique Geodetic</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">paris_lon</span><span class="p">,</span> <span class="n">sydney_lon</span><span class="p">],</span> <span class="p">[</span><span class="n">paris_lat</span><span class="p">,</span> <span class="n">sydney_lat</span><span class="p">],</span>
+<span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),)</span>
+<span class="c1"># on affiche le lien entre les deux villes en utilisant</span>
+<span class="c1"># la métrique PlateCarree</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">paris_lon</span><span class="p">,</span> <span class="n">sydney_lon</span><span class="p">],</span> <span class="p">[</span><span class="n">paris_lat</span><span class="p">,</span> <span class="n">sydney_lat</span><span class="p">],</span>
+<span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+<span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+<span class="p">)</span>
+<span class="c1"># on ajoute du texte</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">paris_lon</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="n">paris_lat</span> <span class="o">-</span> <span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;Paris&#39;</span><span class="p">,</span>
+<span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span>
+<span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">sydney_lon</span> <span class="o">+</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sydney_lat</span> <span class="o">-</span> <span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;Sydney&#39;</span><span class="p">,</span>
+<span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+<span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(154.2, -45.9, &#39;Sydney&#39;)
+</pre></div>
+</div>
+<img alt="_images/d4f5769970a8f22a8d35395d02e7abd507bc5f3e862880d9be7c1b0591014b93.png" src="_images/d4f5769970a8f22a8d35395d02e7abd507bc5f3e862880d9be7c1b0591014b93.png" />
+</div>
+</div>
+<p>Si on désire maintenant utiliser les données AirBnB de Paris, on peut combiner les deux packages que sont Matplotlib et Cartopy avec les données OpenStreetMap :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">from</span> <span class="nn">cartopy.io.img_tiles</span> <span class="kn">import</span> <span class="n">OSM</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on importe les données</span>
+<span class="n">listing</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/listing_extrait.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on utilise Open Street Map (OSM)</span>
+<span class="n">osm_tiles</span> <span class="o">=</span> <span class="n">OSM</span><span class="p">()</span>
+<span class="c1"># on crée une figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="c1"># on crée notre fond de carte en adaptant aux coordonnées de Paris</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">osm_tiles</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">48.8</span><span class="p">,</span> <span class="mf">48.91</span><span class="p">],</span>
+<span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">osm_tiles</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="c1"># on ajoute un nuage de points avec les données AirBnB</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">listing</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+           <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x1a7da4b2c10&gt;
+</pre></div>
+</div>
+<img alt="_images/4a5bd4db0d65b790a69670fd4f00b7f4ee4b2e65905f5d1158d718d31c1f84ec.png" src="_images/4a5bd4db0d65b790a69670fd4f00b7f4ee4b2e65905f5d1158d718d31c1f84ec.png" />
+</div>
+</div>
+<p>On peut aussi simplement le faire avec des données GoogleMap :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">from</span> <span class="nn">cartopy.io.img_tiles</span> <span class="kn">import</span> <span class="n">GoogleTiles</span>
+<span class="c1"># on crée la figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="c1"># on récupère les données Google Map</span>
+<span class="n">google_tiles</span> <span class="o">=</span> <span class="n">GoogleTiles</span><span class="p">()</span>
+<span class="c1"># on crée le graphique</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">google_tiles</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+<span class="c1"># on adapte les axes à la ville de Paris</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">((</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">48.8</span><span class="p">,</span> <span class="mf">48.93</span><span class="p">))</span>
+<span class="c1"># on ajoute l’image sur le graphique</span>
+<span class="n">zoom</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">google_tiles</span><span class="p">,</span> <span class="n">zoom</span> <span class="p">)</span>
+<span class="c1"># on ajoute les données</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">listing</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x1a7dccee700&gt;
+</pre></div>
+</div>
+<img alt="_images/65fb9b79e9bd51222d23cdc67c0996ac2b370606b3216703776c6e73b9ed6f91.png" src="_images/65fb9b79e9bd51222d23cdc67c0996ac2b370606b3216703776c6e73b9ed6f91.png" />
+</div>
+</div>
+</section>
+<section id="les-autres-outils">
+<h3>5.3.2 Les autres outils<a class="headerlink" href="#les-autres-outils" title="Permalink to this heading">#</a></h3>
+<section id="folium">
+<h4>Folium<a class="headerlink" href="#folium" title="Permalink to this heading">#</a></h4>
+<p>On commence par installer Folium dans notre environnement.</p>
+<p>On va utiliser le prix des logements, on va donc transformer cette colonne :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">listing</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">listing</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>\
+                               <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>On cherche à afficher les logements coûtant plus de 500 dollars la nuit.</p>
+<p>On peut ensuite ajouter le code :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">folium</span>
+<span class="c1"># création du plan et centrage sur Paris</span>
+<span class="n">map2</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">48.84</span><span class="p">,</span><span class="mf">2.35</span><span class="p">],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="c1"># création d’un DataFrame avec les logements à plus de 1000 euros la nuit</span>
+<span class="n">listing_chers</span> <span class="o">=</span> <span class="n">listing</span><span class="p">[</span><span class="n">listing</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">500</span><span class="p">]</span>\
+                 <span class="p">[[</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">,</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span>
+
+<span class="c1"># application d’une fonction sur les lignes du DataFrame </span>
+<span class="c1"># qui permet d’ajouter des marques sur le plan</span>
+<span class="n">listing_chers</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">ligne</span><span class="p">:</span><span class="n">folium</span><span class="o">.</span><span class="n">Marker</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">ligne</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">],</span>
+                                                         <span class="n">ligne</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">]])</span>\
+                    <span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">map2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># sauvegarde du plan en html</span>
+<span class="n">map2</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;map.html&quot;</span><span class="p">)</span>
+<span class="c1"># affichage dans le notebook</span>
+<span class="n">map2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe src="about:blank" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" data-html=PCFET0NUWVBFIGh0bWw+CjxoZWFkPiAgICAKICAgIDxtZXRhIGh0dHAtZXF1aXY9ImNvbnRlbnQtdHlwZSIgY29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PVVURi04IiAvPgogICAgCiAgICAgICAgPHNjcmlwdD4KICAgICAgICAgICAgTF9OT19UT1VDSCA9IGZhbHNlOwogICAgICAgICAgICBMX0RJU0FCTEVfM0QgPSBmYWxzZTsKICAgICAgICA8L3NjcmlwdD4KICAgIAogICAgPHNjcmlwdCBzcmM9Imh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9ucG0vbGVhZmxldEAxLjYuMC9kaXN0L2xlYWZsZXQuanMiPjwvc2NyaXB0PgogICAgPHNjcmlwdCBzcmM9Imh0dHBzOi8vY29kZS5qcXVlcnkuY29tL2pxdWVyeS0xLjEyLjQubWluLmpzIj48L3NjcmlwdD4KICAgIDxzY3JpcHQgc3JjPSJodHRwczovL21heGNkbi5ib290c3RyYXBjZG4uY29tL2Jvb3RzdHJhcC8zLjIuMC9qcy9ib290c3RyYXAubWluLmpzIj48L3NjcmlwdD4KICAgIDxzY3JpcHQgc3JjPSJodHRwczovL2NkbmpzLmNsb3VkZmxhcmUuY29tL2FqYXgvbGlicy9MZWFmbGV0LmF3ZXNvbWUtbWFya2Vycy8yLjAuMi9sZWFmbGV0LmF3ZXNvbWUtbWFya2Vycy5qcyI+PC9zY3JpcHQ+CiAgICA8bGluayByZWw9InN0eWxlc2hlZXQiIGhyZWY9Imh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9ucG0vbGVhZmxldEAxLjYuMC9kaXN0L2xlYWZsZXQuY3NzIi8+CiAgICA8bGluayByZWw9InN0eWxlc2hlZXQiIGhyZWY9Imh0dHBzOi8vbWF4Y2RuLmJvb3RzdHJhcGNkbi5jb20vYm9vdHN0cmFwLzMuMi4wL2Nzcy9ib290c3RyYXAubWluLmNzcyIvPgogICAgPGxpbmsgcmVsPSJzdHlsZXNoZWV0IiBocmVmPSJodHRwczovL21heGNkbi5ib290c3RyYXBjZG4uY29tL2Jvb3RzdHJhcC8zLjIuMC9jc3MvYm9vdHN0cmFwLXRoZW1lLm1pbi5jc3MiLz4KICAgIDxsaW5rIHJlbD0ic3R5bGVzaGVldCIgaHJlZj0iaHR0cHM6Ly9tYXhjZG4uYm9vdHN0cmFwY2RuLmNvbS9mb250LWF3ZXNvbWUvNC42LjMvY3NzL2ZvbnQtYXdlc29tZS5taW4uY3NzIi8+CiAgICA8bGluayByZWw9InN0eWxlc2hlZXQiIGhyZWY9Imh0dHBzOi8vY2RuanMuY2xvdWRmbGFyZS5jb20vYWpheC9saWJzL0xlYWZsZXQuYXdlc29tZS1tYXJrZXJzLzIuMC4yL2xlYWZsZXQuYXdlc29tZS1tYXJrZXJzLmNzcyIvPgogICAgPGxpbmsgcmVsPSJzdHlsZXNoZWV0IiBocmVmPSJodHRwczovL3Jhd2Nkbi5naXRoYWNrLmNvbS9weXRob24tdmlzdWFsaXphdGlvbi9mb2xpdW0vbWFzdGVyL2ZvbGl1bS90ZW1wbGF0ZXMvbGVhZmxldC5hd2Vzb21lLnJvdGF0ZS5jc3MiLz4KICAgIDxzdHlsZT5odG1sLCBib2R5IHt3aWR0aDogMTAwJTtoZWlnaHQ6IDEwMCU7bWFyZ2luOiAwO3BhZGRpbmc6IDA7fTwvc3R5bGU+CiAgICA8c3R5bGU+I21hcCB7cG9zaXRpb246YWJzb2x1dGU7dG9wOjA7Ym90dG9tOjA7cmlnaHQ6MDtsZWZ0OjA7fTwvc3R5bGU+CiAgICAKICAgICAgICAgICAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwKICAgICAgICAgICAgICAgIGluaXRpYWwtc2NhbGU9MS4wLCBtYXhpbXVtLXNjYWxlPTEuMCwgdXNlci1zY2FsYWJsZT1ubyIgLz4KICAgICAgICAgICAgPHN0eWxlPgogICAgICAgICAgICAgICAgI21hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSB7CiAgICAgICAgICAgICAgICAgICAgcG9zaXRpb246IHJlbGF0aXZlOwogICAgICAgICAgICAgICAgICAgIHdpZHRoOiAxMDAuMCU7CiAgICAgICAgICAgICAgICAgICAgaGVpZ2h0OiAxMDAuMCU7CiAgICAgICAgICAgICAgICAgICAgbGVmdDogMC4wJTsKICAgICAgICAgICAgICAgICAgICB0b3A6IDAuMCU7CiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIDwvc3R5bGU+CiAgICAgICAgCjwvaGVhZD4KPGJvZHk+ICAgIAogICAgCiAgICAgICAgICAgIDxkaXYgY2xhc3M9ImZvbGl1bS1tYXAiIGlkPSJtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkiID48L2Rpdj4KICAgICAgICAKPC9ib2R5Pgo8c2NyaXB0PiAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5ID0gTC5tYXAoCiAgICAgICAgICAgICAgICAibWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5IiwKICAgICAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgICAgICBjZW50ZXI6IFs0OC44NCwgMi4zNV0sCiAgICAgICAgICAgICAgICAgICAgY3JzOiBMLkNSUy5FUFNHMzg1NywKICAgICAgICAgICAgICAgICAgICB6b29tOiAxMiwKICAgICAgICAgICAgICAgICAgICB6b29tQ29udHJvbDogdHJ1ZSwKICAgICAgICAgICAgICAgICAgICBwcmVmZXJDYW52YXM6IGZhbHNlLAogICAgICAgICAgICAgICAgfQogICAgICAgICAgICApOwoKICAgICAgICAgICAgCgogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciB0aWxlX2xheWVyXzNmNTkxMTE3NzYxMjQ3MzU5M2JiZmNhMmIwMWU2ZjEwID0gTC50aWxlTGF5ZXIoCiAgICAgICAgICAgICAgICAiaHR0cHM6Ly97c30udGlsZS5vcGVuc3RyZWV0bWFwLm9yZy97en0ve3h9L3t5fS5wbmciLAogICAgICAgICAgICAgICAgeyJhdHRyaWJ1dGlvbiI6ICJEYXRhIGJ5IFx1MDAyNmNvcHk7IFx1MDAzY2EgaHJlZj1cImh0dHA6Ly9vcGVuc3RyZWV0bWFwLm9yZ1wiXHUwMDNlT3BlblN0cmVldE1hcFx1MDAzYy9hXHUwMDNlLCB1bmRlciBcdTAwM2NhIGhyZWY9XCJodHRwOi8vd3d3Lm9wZW5zdHJlZXRtYXAub3JnL2NvcHlyaWdodFwiXHUwMDNlT0RiTFx1MDAzYy9hXHUwMDNlLiIsICJkZXRlY3RSZXRpbmEiOiBmYWxzZSwgIm1heE5hdGl2ZVpvb20iOiAxOCwgIm1heFpvb20iOiAxOCwgIm1pblpvb20iOiAwLCAibm9XcmFwIjogZmFsc2UsICJvcGFjaXR5IjogMSwgInN1YmRvbWFpbnMiOiAiYWJjIiwgInRtcyI6IGZhbHNlfQogICAgICAgICAgICApLmFkZFRvKG1hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl9hODQ0ZjAzZDc5MjE0NDQzOGE5YTljYjcyNzhhNDQxZCA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzQ4Ljg4MjU3LCAyLjM4NzgyXSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyX2YxNzkyN2E1MzJhZTQyOTE5OGI4MDhlMDg3OWY4ZGVmID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODUxNzIsIDIuMzU1MDRdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfNjk5YjYxNWZlOTA2NDY0Njg2MzA4ZmJmYTBlYWM3YjkgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44Mzk3LCAyLjMwNDQyXSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyXzZhZGM4N2IwZDJiMDQyNGY4OTA0ZDUwNDQ2YTk3OWFlID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODg2MTYsIDIuMzIyMjNdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfNmQ3ZGMxNjJhMjMwNDkyOGFiZDQ0MWRjZDZiZjhmOTcgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44NzI1MiwgMi4zMjQzM10sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl9iZWQ4NDgwNzc2ODQ0ZThhYjY3NTRjOTQ2NjVhZTY4ZCA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzQ4Ljg2NTQ1LCAyLjI5OTE1XSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyXzZhNmQ3ZjA3ZGRiODQ1YTdhOTFhOTVkYTk4ZmM0OTkzID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODcyNDEsIDIuMzE0NjVdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfNGZkY2Y4YmMzYzAxNGU2MGFhNThjZDA5NWQ2NWZhNjQgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44NTk3LCAyLjI4ODJdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfY2YyNGI2YWJkMTFkNDIzZjhhODk2NjJiNTA3NjAzOTYgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44NjEzNDAwMDAwMDAwMSwgMi4zNTQzOV0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl9lNGQ3NzhkMjgxODE0OTFiYTk5ZWQ2Yzc2NmJmNjRkZiA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzQ4Ljg3OTU4LCAyLjMwMzgxXSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyXzU0MGNhN2Q5MmIxZjQyNDI5YTlhZDU4YjI0YjU4ZWQ0ID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODU1MDgsIDIuMzY2MzZdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfZmY5MDgzNGE5N2MxNDU4M2JiMWMxNTFmYmIxZTNmMGMgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44NjY2LCAyLjM0NTY0XSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyXzg3ZDIxMDRkMDg5OTRhM2E5NDliYTliMjFkYmYzZTdjID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODI5NTQsIDIuMzE5NzZdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfNmQ5MmM4MTMyMGY2NGQ3NGFkMWY1YjUyZDhiMjIwYTAgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44NjcyMiwgMi4yODAxNl0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl8zZjE4ZmY1ZDAxNTE0NmI3YWQyOTU3YTkzZjhlMWFiNyA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzQ4LjgyMjg5LCAyLjMyOTc4XSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyX2EwODVjMmQ0Mzc0YjQyZjI4MDViZDc1MTNiN2YzNTNkID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODUzNzUsIDIuMzUxNzFdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfNWRiN2EyNDY5NTAyNDE3YzhiYTFlMTEzOTFmOTQ3NWEgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44NjU0MiwgMi4zODI1OF0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl8zN2U1Y2JlYzM1NTk0MmE2YjMzYjVhZGUxOWNlYjNmZCA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzQ4Ljg1ODEyLCAyLjM3NzkyXSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyX2YyY2U2NDVkMzdkMzQ3OWY5OTliNDEyMjQ3ZWVlOGYzID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODg2NTkwMDAwMDAwMDEsIDIuMzQ2MjddLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfMzNhZjY1MDcwYTllNDJhMDg0MzAzY2NlN2YyZjc4ZWQgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44NTg4OCwgMi4zNDE2OF0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl8yNjhmNGM1N2Y1Yjg0OTY0ODQzYjI0ODkxMjg0YmEwZCA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzQ4Ljg1NTIyLCAyLjMyMTNdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfN2ZlNDg5NzQyOGYwNDNiMjg1N2ViMjliZmVlNTc2OTMgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44NTg4OCwgMi4zNTQ0NDAwMDAwMDAwMDAzXSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyXzIyZjA5OWNiMTE1MzRlYzRiYjk5MmU1N2ZjM2NiN2IxID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODQ0MjIsIDIuMzQyMzcwMDAwMDAwMDAwM10sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl8yMDdlOTVmMmJjY2M0YmMwODRmZGQ0N2M1ZTkzMjJlYiA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzQ4Ljg2ODQ4LCAyLjI4Njc5MDAwMDAwMDAwMDNdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfYjljZmQ5ODIwODEyNDZlMGFiMDJmZjFiMzdlN2I2MGYgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44NjYzOSwgMi4zNDQ5MV0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl9iNDY0N2U5Yjg5ZGQ0ZTg0YTA1MGZlODczOWNlZjcyZSA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzQ4Ljg2Mzc0LCAyLjM2NjU0XSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyXzRlM2EwMWRmYjhkMjQwNjBiYWE3NTIxYTViMTE3ZWQwID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODY3NDUsIDIuMzg4NTNdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfYjkzYjlmZjQ0YTViNGMwOGJiYmE5YjM4YjMyY2UwMDcgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44NjkxMiwgMi4zMDkwNl0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl84ZDQwMjE3NDAzOTU0YTI5ODBhM2VkOGQyZTRiOGVhZiA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzQ4Ljg5ODY5LCAyLjM0MjUyXSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyXzEyYTQ0YjI3MTQxZDRlNjk4ODFkNmM1ODA2NWVmZTZmID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODQ5NDgsIDIuMzcyNDZdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfMWFlNDg0NGRlM2VhNDg0Y2E5ZjhkM2Y5YzU3NThlNzggPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44NzQwMywgMi4yOTgxM10sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl8yNjg1NDE3ZTE5YmI0NzRiYmM4MTgxMTU3ZjYxNjUwNCA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzQ4Ljg0NTY2LCAyLjM3MzEyXSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyXzIyZGU0YWU5YjE3OTQxZTI4ZDYxMWM1YzEyMWMyMWE5ID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODQ3NzksIDIuMzY0MzQwMDAwMDAwMDAwM10sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl9lMjcwNDlkYzA1Njg0NWZkYjZjN2ZhYjhkNWU0NzQ3MiA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzQ4Ljg0NzkyLCAyLjMzMzAyXSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyX2E1ZjhlN2IzNTM5NTRiMWJiMGE4MDA0ODNkYjJiMWIzID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODcyMTksIDIuMjc4ODFdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfZDhmZjJjMjY2YWZkNDNlYjgyZDVkZWU5M2UyNGJlN2UgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44NzE5NCwgMi4zNzA3MV0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl85MjliMTZmNmNhMTM0OWIwODM3ZDk1ZDkzNDM4ZDQ2OCA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzQ4Ljg0NTAyLCAyLjM0MDg4XSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyXzBhMGFiNjkwMmNmYjRhYjQ5MzI0OWRmZjlhOWZiMTgxID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODY4NTcsIDIuMjk1NjldLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfODg3NTg2NGNkZDAzNDc4YmE0OWU5NTRkYWNkYjRkZTQgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44NjIxMSwgMi4yODMzOTAwMDAwMDAwMDAzXSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyX2QxNWZhOGJhOTM3OTRkOWNiYzlkMGNkYTZmOGYxNzllID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODQzNDksIDIuMzMyOTJdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfYzlkNWNjYWI1YzVkNDk4MWJlNTkwMTA5OGUwY2QyZTIgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44NjUzNSwgMi4yOTEwNV0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl9lMTQ4OWY2ZGY3ZTg0MmRlYjgzYzVmNDAzNWIzNzIxMyA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzQ4Ljg1Mzc4LCAyLjMzNDQ0MDAwMDAwMDAwMDNdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfNzE1ZDQ1NTU3OWUzNGE0ODgwN2JkNzdjYTdiNDc1MzUgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44NTc4LCAyLjMzMjk3XSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyXzQ3NGFlODdiM2Y2YzRlYTA5OWViNWY2YzQyNzU2ZDA4ID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODUzMDUsIDIuMzQxNjkwMDAwMDAwMDAwM10sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl83NDM5NDAyMjFkY2Q0NzM3YTc4MDg1NzE5MzFmMTllMCA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzQ4Ljg2NzI0LCAyLjMwNDA0XSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyX2M5MWNjZDRhZjgwMjQwMTc4YjQ5MDU5ZTg4ZTIwMmIyID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODc5MywgMi4zOTAzNF0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl8xY2NmMTMyNjQ1ZDg0YjFkYjViMTM0YWUyNmI2MjQwOCA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzQ4Ljg3MDA1LCAyLjI4NDk1XSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyX2RhNTk5NTM1MDJhNDQyNWU4ODVmYTBmN2NhZWM3NTA0ID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODM3NzkwMDAwMDAwMDEsIDIuMzAzNDldLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfOTUyMGQ3YzU0YmJmNDJkZmFiMDI3ODRiOGQzMTJmODIgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44NjY3MiwgMi40MDc2OF0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl9lMmJhZGIzOTA1MGU0MTNlOGY0M2RkMGFlNzY4YTU5NyA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzQ4Ljg2Nzk4LCAyLjMwMjI5XSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyXzQ5MDJiMDE4YjViMzQxMzQ5MWQ2OGRjMzM0ZjQyNTZlID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODU2ODEsIDIuMzE4NjVdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfNWE4ZDdjNGIzZTg4NDM0YjlhZjM3MjliMDYxOTEyMjEgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44NTE0NSwgMi4zMzY4OF0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl9mN2UyMjExMjRlNTk0NWE4YTgzYWU1YTQwM2Q0NmNlYSA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzQ4Ljg1NDg1LCAyLjM5MTAxXSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyX2RjNWJkODYwY2M5MjQ5NmU4OWNiZjBkMjcyYTMzYTljID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbNDguODU4MzIsIDIuMjYyNjFdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYTg5YWQ3YjZkNDRiNDQxMGFiZjE0YjNhODQ3YjA0NzkpOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfMmYxNzZhNzYyNWRjNDc2NzlkYzEzOWI5NzU3ZjZmOWMgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs0OC44NTA5OSwgMi4yNjg0NV0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hODlhZDdiNmQ0NGI0NDEwYWJmMTRiM2E4NDdiMDQ3OSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl9iN2U1NTRmYTQxYmY0NWE1ODVlZDM4MmViYzBmYTE1OSA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzQ4Ljg0ODg2LCAyLjM2ODI1XSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2E4OWFkN2I2ZDQ0YjQ0MTBhYmYxNGIzYTg0N2IwNDc5KTsKICAgICAgICAKPC9zY3JpcHQ+ onload="this.contentDocument.open();this.contentDocument.write(atob(this.getAttribute('data-html')));this.contentDocument.close();" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
+</div>
+<p>On peut bien sûr aller plus loin avec les différents outils de Python que nous avons déjà vu mais aussi avec d’autres outils comme notamment iPyLeaflet.</p>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05_01_Data_visualisation_matplotlib_seaborn.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapitre 5 - La data visualisation avec Python (1ère partie)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05_03_Visualisations_interactives.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapitre 5 - La data visualisation avec Python (1ère partie)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quelques-bases-de-cartographie">5.3 Quelques bases de cartographie</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-et-utilisation-de-cartopy">5.3.1 Installation et utilisation de Cartopy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-autres-outils">5.3.2 Les autres outils</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#folium">Folium</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

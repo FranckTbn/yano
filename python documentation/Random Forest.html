@@ -1,0 +1,3106 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>librairies de base &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python documentation/Random Forest';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">My sample book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Bienvenue sur le site de TRA BI NENE OTHNIEL
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter2.html">mes recherches et tout ce qui est utiles</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fpython documentation/Random Forest.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/python documentation/Random Forest.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>librairies de base</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">librairies de base</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#comment-eviter-loverfitting">Comment éviter l’overfitting ?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">Cross-validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retirer-des-features">Retirer des features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methodes-de-regularisations">Méthodes de régularisations</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#commencer-par-concevoir-des-modeles-simples">Commencer par concevoir des modèles simples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learly-stopping">L’early stopping</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#etre-dans-le-top-10-dune-competition-kaggle-facilement">Être dans le top 10% d’une compétition Kaggle facilement</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprendre-les-donnees">Comprendre les données</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#charge-donc-les-donnees-et-on-les-affiche">charge donc les données et on les affiche</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyser-les-donnees">Analyser les données</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#processing-des-donnees">Processing des données</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformation">Transformation</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#predire-avec-le-machine-learning">Prédire avec le Machine Learning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creer-un-modele">Créer un modèle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluer-le-modele">évaluer le modèle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ameliorer-le-modele">Améliorer le modèle</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#entrainer-des-modeles-avec-la-cross-validation">Entraîner des modèles avec la Cross Validation</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="librairies-de-base">
+<h1>librairies de base<a class="headerlink" href="#librairies-de-base" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span> <span class="c1"># afficher les données manquantes</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;train.csv&quot;</span><span class="p">)</span>
+<span class="n">train_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">train_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;train.csv&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">train_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\pandas\util\_decorators.py:211,</span> in <span class="ni">deprecate_kwarg.&lt;locals&gt;._deprecate_kwarg.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>         <span class="n">kwargs</span><span class="p">[</span><span class="n">new_arg_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_arg_value</span>
+<span class="ne">--&gt; </span><span class="mi">211</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\pandas\util\_decorators.py:331,</span> in <span class="ni">deprecate_nonkeyword_arguments.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">325</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">num_allow_args</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">326</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">327</span>         <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">_format_argument_list</span><span class="p">(</span><span class="n">allow_args</span><span class="p">)),</span>
+<span class="g g-Whitespace">    </span><span class="mi">328</span>         <span class="ne">FutureWarning</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">329</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">find_stack_level</span><span class="p">(),</span>
+<span class="g g-Whitespace">    </span><span class="mi">330</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">331</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\pandas\io\parsers\readers.py:950,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">935</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">936</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">937</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">946</span>     <span class="n">defaults</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;delimiter&quot;</span><span class="p">:</span> <span class="s2">&quot;,&quot;</span><span class="p">},</span>
+<span class="g g-Whitespace">    </span><span class="mi">947</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">948</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">950</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\pandas\io\parsers\readers.py:605,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">602</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">604</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">605</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">607</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">608</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\pandas\io\parsers\readers.py:1442,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1439</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1441</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1442</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\pandas\io\parsers\readers.py:1735,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1733</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1734</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1735</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1736</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1737</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1738</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1739</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1740</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1741</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1742</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1743</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1744</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1745</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1746</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\pandas\io\common.py:856,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">851</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">852</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">853</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">854</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">855</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">856</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">857</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">858</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">861</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">863</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">864</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">865</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;train.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;test.csv&quot;</span><span class="p">)</span>
+<span class="n">test_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>892</td>
+      <td>3</td>
+      <td>Kelly, Mr. James</td>
+      <td>male</td>
+      <td>34.5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>330911</td>
+      <td>7.8292</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>893</td>
+      <td>3</td>
+      <td>Wilkes, Mrs. James (Ellen Needs)</td>
+      <td>female</td>
+      <td>47.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>363272</td>
+      <td>7.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>894</td>
+      <td>2</td>
+      <td>Myles, Mr. Thomas Francis</td>
+      <td>male</td>
+      <td>62.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>240276</td>
+      <td>9.6875</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>895</td>
+      <td>3</td>
+      <td>Wirz, Mr. Albert</td>
+      <td>male</td>
+      <td>27.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>315154</td>
+      <td>8.6625</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>896</td>
+      <td>3</td>
+      <td>Hirvonen, Mrs. Alexander (Helga E Lindqvist)</td>
+      <td>female</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3101298</td>
+      <td>12.2875</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>La commande <code class="docutils literal notranslate"><span class="pre">.head()</span></code> permet d’avoir un aperçu des 5 premières lignes du tableau. Cela permet par exemple de vérifier que l’import de votre table c’est bien déroulé.</p>
+<p>Les lignes suivantes permettent d’afficher le pourcentage de femmes et d’hommes qui ont survécus. On peut voir grâce à ces résultats que le sexe de la personne est une caractéristique importante pour déterminer si une personne a survécu ou non.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">femme</span> <span class="o">=</span> <span class="n">train_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train_data</span><span class="o">.</span><span class="n">Sex</span> <span class="o">==</span> <span class="s1">&#39;female&#39;</span><span class="p">][</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span>
+<span class="n">ratio_femme</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">femme</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">femme</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">% d</span><span class="s1">e femmes qui ont survécus :&#39;</span><span class="p">,</span> <span class="n">ratio_femme</span><span class="p">)</span>
+
+<span class="n">homme</span> <span class="o">=</span> <span class="n">train_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train_data</span><span class="o">.</span><span class="n">Sex</span> <span class="o">==</span> <span class="s1">&#39;male&#39;</span><span class="p">][</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span>
+<span class="n">ratio_homme</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">homme</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">homme</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">% d</span><span class="s1">e femmes qui ont survécus :&#39;</span><span class="p">,</span> <span class="n">ratio_homme</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>% de femmes qui ont survécus : 0.7420382165605095
+% de femmes qui ont survécus : 0.18890814558058924
+</pre></div>
+</div>
+</div>
+</div>
+<p>La commande <code class="docutils literal notranslate"><span class="pre">sum(femme)</span></code> calcule le nombre de femmes qui ont survécus (le nombre de 1 dans le tableau), <code class="docutils literal notranslate"><span class="pre">len(femme)</span></code> est le nombre total de femme. D’où le calcul pour la ratio</p>
+<p>En data science les données parfaites n’existent pas. Vous avez toujours du bruit et des imprécisions. Un modèle fait de l’overfitting lorsqu’il commence à apprendre ce bruit. Il en résulte un modèle biaisé qui est impossible à généraliser</p>
+<hr class="docutils" />
+<hr class="docutils" />
+</section>
+<section id="comment-eviter-loverfitting">
+<h1>Comment éviter l’overfitting ?<a class="headerlink" href="#comment-eviter-loverfitting" title="Permalink to this heading">#</a></h1>
+<section id="cross-validation">
+<h2>Cross-validation<a class="headerlink" href="#cross-validation" title="Permalink to this heading">#</a></h2>
+<p>Une des méthodes les plus efficaces pour éviter l’overfitting est la <strong>cross validation</strong> (<strong>validation croisée</strong> en français).</p>
+<p>Contrairement à la validation classique, ou l’on divise les données en deux, en cross validation on divise les données d’entraînements en plusieurs groupes. L’idée est ensuite d’entraîner le modèle sur tous les groupes sauf un. Si on a k groupes, on entraînera le modèle k fois avec à chaque fois un nouveau groupe de test. Cette technique de validation croisée est appelée <strong>k-fold</strong>.</p>
+<p><img alt="Capture%20d'%C3%A9cran%202023-11-27%20104003.png" src="python documentation/attachment:Capture%20d'%C3%A9cran%202023-11-27%20104003.png" /></p>
+<p>Bon j’avoue je vous vends du rêve avec la validation croisée 🙂</p>
+<p>k-fold est surtout utilisée pour évaluer les performances d’un modèles. Cette technique permet de sélectionner les bons modèles de machine learning. Lorsqu’il s’agit d’éviter l’overfitting, cette méthode interviendra surtout pour le détecter plus efficacement.</p>
+</section>
+<section id="retirer-des-features">
+<h2>Retirer des features<a class="headerlink" href="#retirer-des-features" title="Permalink to this heading">#</a></h2>
+<p>Une des techniques pour améliorer les performances d’un modèle de machine learning est de sélectionner correctement les features (les variables que l’on considère pour l’entraînement du modèle).</p>
+<p>L’idée est de retirer toutes les features qui n’apportent rien. Si deux variables sont corrélées par exemple, mieux vaut en retirer une. Si une variable a une variance trop faible, elle n’impacte pas le phénomène étudié mais peut fausser les résultats.</p>
+<p>De cette façon on simplifie au maximum nos données, on améliore les performances du modèle et on réduit au passage les risques d’overfitting.</p>
+<p><img alt="Capture%20d'%C3%A9cran%202023-11-27%20104817.png" src="python documentation/attachment:Capture%20d'%C3%A9cran%202023-11-27%20104817.png" /></p>
+<p>Une des façons de faire ça est d’entraîner le modèle plusieurs fois. A chaque fois on retire une des features et on étudie l’impact sur l’entraînement du modèle. Cette technique ne peut être utilisée que sur des données avec un nombre de features plutôt faible.</p>
+</section>
+<section id="methodes-de-regularisations">
+<h2>Méthodes de régularisations<a class="headerlink" href="#methodes-de-regularisations" title="Permalink to this heading">#</a></h2>
+<p>Les méthodes de régularisations sont des techniques qui permettent de réduire la complexité globale d’un modèle de machine learning. Elles permettent de réduire la variance et ainsi réduisent les risques d’overfitting.</p>
+<p>Voyez cette exemple pour une régression logistique. On voit qu’avant régularisation le modèle faisait de l’overfitting. La régularisation résout le problème dans ce cas.</p>
+<p><img alt="Capture%20d'%C3%A9cran%202023-11-27%20105158.png" src="python documentation/attachment:Capture%20d'%C3%A9cran%202023-11-27%20105158.png" /></p>
+<p>Les méthodes de régularisations permettent de réduire considérablement la variance du modèle sans que le biais n’augmente beaucoup. Nous reparlerons du dilemme <strong>biais/variance</strong> dans la dernière partie.</p>
+<p>De nombreuses techniques de régularisations existent :</p>
+<ul class="simple">
+<li><p>Régularisation L1</p></li>
+<li><p>Ridge</p></li>
+<li><p>Régularisation L2</p></li>
+<li><p>Lasso</p></li>
+</ul>
+</section>
+</section>
+<section id="commencer-par-concevoir-des-modeles-simples">
+<h1>Commencer par concevoir des modèles simples<a class="headerlink" href="#commencer-par-concevoir-des-modeles-simples" title="Permalink to this heading">#</a></h1>
+<p>Plus votre modèle est simple, plus vous éviterez l’overfitting. La majorité des applications peuvent être résolues de façon satisfaisante avec des modèles simples.</p>
+<p>C’est d’ailleurs un conseil que je vous donne, commencez toujours par construire des modèles simples. Il est inutile d’entraîner un réseau de neurones à plusieurs couches, lorsqu’un modèle statistique simple donne de bons résultats.</p>
+<section id="learly-stopping">
+<h2>L’early stopping<a class="headerlink" href="#learly-stopping" title="Permalink to this heading">#</a></h2>
+<p>L’early stopping est une technique très intuitive. Elle consiste simplement à arrêter l’entraînement avant que le modèle ne commence à overfitter.</p>
+<p>L’early stopping permet aussi de détecter lorsque le modèle utilisé n’est pas adaptée, si on voit que le modèle commence à overfitter alors que les performances sont trop faibles, c’est qu’on doit changer de méthode.</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<p>À présent, nous devons construire le modèle à proprement parler. Nous allons utiliser un algorithme de type <strong>random forest</strong>. L’image ci-dessous permet de comprendre le fonctionnement de l’algorithme :</p>
+<p><img alt="Capture%20d'%C3%A9cran%202023-11-27%20110200.png" src="python documentation/attachment:Capture%20d'%C3%A9cran%202023-11-27%20110200.png" /></p>
+<p>Les arbres représentés, sont ce que l’on appelle des <strong>arbres binaires de décisions</strong>. À chaque nœud de l’arbre on doit aller à droite ou à gauche suivant les caractéristiques de l’individu en question. Sur cette image, uniquement 3 arbres sont représentés, dans notre code nous allons le faire pour 100 arbres.</p>
+<p>On récupère les résultats pour chaque arbre (Survived=1 ou Survived=0) puis on fait notre prédiction de façon <strong>démocratique</strong> (vote majoritaire) pour chacune des deux options. Si plus de 51 arbres sur les 100 au total prédisent Survived, notre prédiction sera de dire que le passager a survécu.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">RandomForestClassifier</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on class RandomForestClassifier in module sklearn.ensemble._forest:
+
+class RandomForestClassifier(ForestClassifier)
+ |  RandomForestClassifier(n_estimators=100, *, criterion=&#39;gini&#39;, max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=&#39;sqrt&#39;, max_leaf_nodes=None, min_impurity_decrease=0.0, bootstrap=True, oob_score=False, n_jobs=None, random_state=None, verbose=0, warm_start=False, class_weight=None, ccp_alpha=0.0, max_samples=None)
+ |  
+ |  A random forest classifier.
+ |  
+ |  A random forest is a meta estimator that fits a number of decision tree
+ |  classifiers on various sub-samples of the dataset and uses averaging to
+ |  improve the predictive accuracy and control over-fitting.
+ |  The sub-sample size is controlled with the `max_samples` parameter if
+ |  `bootstrap=True` (default), otherwise the whole dataset is used to build
+ |  each tree.
+ |  
+ |  Read more in the :ref:`User Guide &lt;forest&gt;`.
+ |  
+ |  Parameters
+ |  ----------
+ |  n_estimators : int, default=100
+ |      The number of trees in the forest.
+ |  
+ |      .. versionchanged:: 0.22
+ |         The default value of ``n_estimators`` changed from 10 to 100
+ |         in 0.22.
+ |  
+ |  criterion : {&quot;gini&quot;, &quot;entropy&quot;, &quot;log_loss&quot;}, default=&quot;gini&quot;
+ |      The function to measure the quality of a split. Supported criteria are
+ |      &quot;gini&quot; for the Gini impurity and &quot;log_loss&quot; and &quot;entropy&quot; both for the
+ |      Shannon information gain, see :ref:`tree_mathematical_formulation`.
+ |      Note: This parameter is tree-specific.
+ |  
+ |  max_depth : int, default=None
+ |      The maximum depth of the tree. If None, then nodes are expanded until
+ |      all leaves are pure or until all leaves contain less than
+ |      min_samples_split samples.
+ |  
+ |  min_samples_split : int or float, default=2
+ |      The minimum number of samples required to split an internal node:
+ |  
+ |      - If int, then consider `min_samples_split` as the minimum number.
+ |      - If float, then `min_samples_split` is a fraction and
+ |        `ceil(min_samples_split * n_samples)` are the minimum
+ |        number of samples for each split.
+ |  
+ |      .. versionchanged:: 0.18
+ |         Added float values for fractions.
+ |  
+ |  min_samples_leaf : int or float, default=1
+ |      The minimum number of samples required to be at a leaf node.
+ |      A split point at any depth will only be considered if it leaves at
+ |      least ``min_samples_leaf`` training samples in each of the left and
+ |      right branches.  This may have the effect of smoothing the model,
+ |      especially in regression.
+ |  
+ |      - If int, then consider `min_samples_leaf` as the minimum number.
+ |      - If float, then `min_samples_leaf` is a fraction and
+ |        `ceil(min_samples_leaf * n_samples)` are the minimum
+ |        number of samples for each node.
+ |  
+ |      .. versionchanged:: 0.18
+ |         Added float values for fractions.
+ |  
+ |  min_weight_fraction_leaf : float, default=0.0
+ |      The minimum weighted fraction of the sum total of weights (of all
+ |      the input samples) required to be at a leaf node. Samples have
+ |      equal weight when sample_weight is not provided.
+ |  
+ |  max_features : {&quot;sqrt&quot;, &quot;log2&quot;, None}, int or float, default=&quot;sqrt&quot;
+ |      The number of features to consider when looking for the best split:
+ |  
+ |      - If int, then consider `max_features` features at each split.
+ |      - If float, then `max_features` is a fraction and
+ |        `max(1, int(max_features * n_features_in_))` features are considered at each
+ |        split.
+ |      - If &quot;auto&quot;, then `max_features=sqrt(n_features)`.
+ |      - If &quot;sqrt&quot;, then `max_features=sqrt(n_features)`.
+ |      - If &quot;log2&quot;, then `max_features=log2(n_features)`.
+ |      - If None, then `max_features=n_features`.
+ |  
+ |      .. versionchanged:: 1.1
+ |          The default of `max_features` changed from `&quot;auto&quot;` to `&quot;sqrt&quot;`.
+ |  
+ |      .. deprecated:: 1.1
+ |          The `&quot;auto&quot;` option was deprecated in 1.1 and will be removed
+ |          in 1.3.
+ |  
+ |      Note: the search for a split does not stop until at least one
+ |      valid partition of the node samples is found, even if it requires to
+ |      effectively inspect more than ``max_features`` features.
+ |  
+ |  max_leaf_nodes : int, default=None
+ |      Grow trees with ``max_leaf_nodes`` in best-first fashion.
+ |      Best nodes are defined as relative reduction in impurity.
+ |      If None then unlimited number of leaf nodes.
+ |  
+ |  min_impurity_decrease : float, default=0.0
+ |      A node will be split if this split induces a decrease of the impurity
+ |      greater than or equal to this value.
+ |  
+ |      The weighted impurity decrease equation is the following::
+ |  
+ |          N_t / N * (impurity - N_t_R / N_t * right_impurity
+ |                              - N_t_L / N_t * left_impurity)
+ |  
+ |      where ``N`` is the total number of samples, ``N_t`` is the number of
+ |      samples at the current node, ``N_t_L`` is the number of samples in the
+ |      left child, and ``N_t_R`` is the number of samples in the right child.
+ |  
+ |      ``N``, ``N_t``, ``N_t_R`` and ``N_t_L`` all refer to the weighted sum,
+ |      if ``sample_weight`` is passed.
+ |  
+ |      .. versionadded:: 0.19
+ |  
+ |  bootstrap : bool, default=True
+ |      Whether bootstrap samples are used when building trees. If False, the
+ |      whole dataset is used to build each tree.
+ |  
+ |  oob_score : bool, default=False
+ |      Whether to use out-of-bag samples to estimate the generalization score.
+ |      Only available if bootstrap=True.
+ |  
+ |  n_jobs : int, default=None
+ |      The number of jobs to run in parallel. :meth:`fit`, :meth:`predict`,
+ |      :meth:`decision_path` and :meth:`apply` are all parallelized over the
+ |      trees. ``None`` means 1 unless in a :obj:`joblib.parallel_backend`
+ |      context. ``-1`` means using all processors. See :term:`Glossary
+ |      &lt;n_jobs&gt;` for more details.
+ |  
+ |  random_state : int, RandomState instance or None, default=None
+ |      Controls both the randomness of the bootstrapping of the samples used
+ |      when building trees (if ``bootstrap=True``) and the sampling of the
+ |      features to consider when looking for the best split at each node
+ |      (if ``max_features &lt; n_features``).
+ |      See :term:`Glossary &lt;random_state&gt;` for details.
+ |  
+ |  verbose : int, default=0
+ |      Controls the verbosity when fitting and predicting.
+ |  
+ |  warm_start : bool, default=False
+ |      When set to ``True``, reuse the solution of the previous call to fit
+ |      and add more estimators to the ensemble, otherwise, just fit a whole
+ |      new forest. See :term:`Glossary &lt;warm_start&gt;` and
+ |      :ref:`gradient_boosting_warm_start` for details.
+ |  
+ |  class_weight : {&quot;balanced&quot;, &quot;balanced_subsample&quot;}, dict or list of dicts,             default=None
+ |      Weights associated with classes in the form ``{class_label: weight}``.
+ |      If not given, all classes are supposed to have weight one. For
+ |      multi-output problems, a list of dicts can be provided in the same
+ |      order as the columns of y.
+ |  
+ |      Note that for multioutput (including multilabel) weights should be
+ |      defined for each class of every column in its own dict. For example,
+ |      for four-class multilabel classification weights should be
+ |      [{0: 1, 1: 1}, {0: 1, 1: 5}, {0: 1, 1: 1}, {0: 1, 1: 1}] instead of
+ |      [{1:1}, {2:5}, {3:1}, {4:1}].
+ |  
+ |      The &quot;balanced&quot; mode uses the values of y to automatically adjust
+ |      weights inversely proportional to class frequencies in the input data
+ |      as ``n_samples / (n_classes * np.bincount(y))``
+ |  
+ |      The &quot;balanced_subsample&quot; mode is the same as &quot;balanced&quot; except that
+ |      weights are computed based on the bootstrap sample for every tree
+ |      grown.
+ |  
+ |      For multi-output, the weights of each column of y will be multiplied.
+ |  
+ |      Note that these weights will be multiplied with sample_weight (passed
+ |      through the fit method) if sample_weight is specified.
+ |  
+ |  ccp_alpha : non-negative float, default=0.0
+ |      Complexity parameter used for Minimal Cost-Complexity Pruning. The
+ |      subtree with the largest cost complexity that is smaller than
+ |      ``ccp_alpha`` will be chosen. By default, no pruning is performed. See
+ |      :ref:`minimal_cost_complexity_pruning` for details.
+ |  
+ |      .. versionadded:: 0.22
+ |  
+ |  max_samples : int or float, default=None
+ |      If bootstrap is True, the number of samples to draw from X
+ |      to train each base estimator.
+ |  
+ |      - If None (default), then draw `X.shape[0]` samples.
+ |      - If int, then draw `max_samples` samples.
+ |      - If float, then draw `max_samples * X.shape[0]` samples. Thus,
+ |        `max_samples` should be in the interval `(0.0, 1.0]`.
+ |  
+ |      .. versionadded:: 0.22
+ |  
+ |  Attributes
+ |  ----------
+ |  estimator_ : :class:`~sklearn.tree.DecisionTreeClassifier`
+ |      The child estimator template used to create the collection of fitted
+ |      sub-estimators.
+ |  
+ |      .. versionadded:: 1.2
+ |         `base_estimator_` was renamed to `estimator_`.
+ |  
+ |  base_estimator_ : DecisionTreeClassifier
+ |      The child estimator template used to create the collection of fitted
+ |      sub-estimators.
+ |  
+ |      .. deprecated:: 1.2
+ |          `base_estimator_` is deprecated and will be removed in 1.4.
+ |          Use `estimator_` instead.
+ |  
+ |  estimators_ : list of DecisionTreeClassifier
+ |      The collection of fitted sub-estimators.
+ |  
+ |  classes_ : ndarray of shape (n_classes,) or a list of such arrays
+ |      The classes labels (single output problem), or a list of arrays of
+ |      class labels (multi-output problem).
+ |  
+ |  n_classes_ : int or list
+ |      The number of classes (single output problem), or a list containing the
+ |      number of classes for each output (multi-output problem).
+ |  
+ |  n_features_in_ : int
+ |      Number of features seen during :term:`fit`.
+ |  
+ |      .. versionadded:: 0.24
+ |  
+ |  feature_names_in_ : ndarray of shape (`n_features_in_`,)
+ |      Names of features seen during :term:`fit`. Defined only when `X`
+ |      has feature names that are all strings.
+ |  
+ |      .. versionadded:: 1.0
+ |  
+ |  n_outputs_ : int
+ |      The number of outputs when ``fit`` is performed.
+ |  
+ |  feature_importances_ : ndarray of shape (n_features,)
+ |      The impurity-based feature importances.
+ |      The higher, the more important the feature.
+ |      The importance of a feature is computed as the (normalized)
+ |      total reduction of the criterion brought by that feature.  It is also
+ |      known as the Gini importance.
+ |  
+ |      Warning: impurity-based feature importances can be misleading for
+ |      high cardinality features (many unique values). See
+ |      :func:`sklearn.inspection.permutation_importance` as an alternative.
+ |  
+ |  oob_score_ : float
+ |      Score of the training dataset obtained using an out-of-bag estimate.
+ |      This attribute exists only when ``oob_score`` is True.
+ |  
+ |  oob_decision_function_ : ndarray of shape (n_samples, n_classes) or             (n_samples, n_classes, n_outputs)
+ |      Decision function computed with out-of-bag estimate on the training
+ |      set. If n_estimators is small it might be possible that a data point
+ |      was never left out during the bootstrap. In this case,
+ |      `oob_decision_function_` might contain NaN. This attribute exists
+ |      only when ``oob_score`` is True.
+ |  
+ |  See Also
+ |  --------
+ |  sklearn.tree.DecisionTreeClassifier : A decision tree classifier.
+ |  sklearn.ensemble.ExtraTreesClassifier : Ensemble of extremely randomized
+ |      tree classifiers.
+ |  
+ |  Notes
+ |  -----
+ |  The default values for the parameters controlling the size of the trees
+ |  (e.g. ``max_depth``, ``min_samples_leaf``, etc.) lead to fully grown and
+ |  unpruned trees which can potentially be very large on some data sets. To
+ |  reduce memory consumption, the complexity and size of the trees should be
+ |  controlled by setting those parameter values.
+ |  
+ |  The features are always randomly permuted at each split. Therefore,
+ |  the best found split may vary, even with the same training data,
+ |  ``max_features=n_features`` and ``bootstrap=False``, if the improvement
+ |  of the criterion is identical for several splits enumerated during the
+ |  search of the best split. To obtain a deterministic behaviour during
+ |  fitting, ``random_state`` has to be fixed.
+ |  
+ |  References
+ |  ----------
+ |  .. [1] L. Breiman, &quot;Random Forests&quot;, Machine Learning, 45(1), 5-32, 2001.
+ |  
+ |  Examples
+ |  --------
+ |  &gt;&gt;&gt; from sklearn.ensemble import RandomForestClassifier
+ |  &gt;&gt;&gt; from sklearn.datasets import make_classification
+ |  &gt;&gt;&gt; X, y = make_classification(n_samples=1000, n_features=4,
+ |  ...                            n_informative=2, n_redundant=0,
+ |  ...                            random_state=0, shuffle=False)
+ |  &gt;&gt;&gt; clf = RandomForestClassifier(max_depth=2, random_state=0)
+ |  &gt;&gt;&gt; clf.fit(X, y)
+ |  RandomForestClassifier(...)
+ |  &gt;&gt;&gt; print(clf.predict([[0, 0, 0, 0]]))
+ |  [1]
+ |  
+ |  Method resolution order:
+ |      RandomForestClassifier
+ |      ForestClassifier
+ |      sklearn.base.ClassifierMixin
+ |      BaseForest
+ |      sklearn.base.MultiOutputMixin
+ |      sklearn.ensemble._base.BaseEnsemble
+ |      sklearn.base.MetaEstimatorMixin
+ |      sklearn.base.BaseEstimator
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, n_estimators=100, *, criterion=&#39;gini&#39;, max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=&#39;sqrt&#39;, max_leaf_nodes=None, min_impurity_decrease=0.0, bootstrap=True, oob_score=False, n_jobs=None, random_state=None, verbose=0, warm_start=False, class_weight=None, ccp_alpha=0.0, max_samples=None)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |  
+ |  __abstractmethods__ = frozenset()
+ |  
+ |  __annotations__ = {&#39;_parameter_constraints&#39;: &lt;class &#39;dict&#39;&gt;}
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from ForestClassifier:
+ |  
+ |  predict(self, X)
+ |      Predict class for X.
+ |      
+ |      The predicted class of an input sample is a vote by the trees in
+ |      the forest, weighted by their probability estimates. That is,
+ |      the predicted class is the one with highest mean probability
+ |      estimate across the trees.
+ |      
+ |      Parameters
+ |      ----------
+ |      X : {array-like, sparse matrix} of shape (n_samples, n_features)
+ |          The input samples. Internally, its dtype will be converted to
+ |          ``dtype=np.float32``. If a sparse matrix is provided, it will be
+ |          converted into a sparse ``csr_matrix``.
+ |      
+ |      Returns
+ |      -------
+ |      y : ndarray of shape (n_samples,) or (n_samples, n_outputs)
+ |          The predicted classes.
+ |  
+ |  predict_log_proba(self, X)
+ |      Predict class log-probabilities for X.
+ |      
+ |      The predicted class log-probabilities of an input sample is computed as
+ |      the log of the mean predicted class probabilities of the trees in the
+ |      forest.
+ |      
+ |      Parameters
+ |      ----------
+ |      X : {array-like, sparse matrix} of shape (n_samples, n_features)
+ |          The input samples. Internally, its dtype will be converted to
+ |          ``dtype=np.float32``. If a sparse matrix is provided, it will be
+ |          converted into a sparse ``csr_matrix``.
+ |      
+ |      Returns
+ |      -------
+ |      p : ndarray of shape (n_samples, n_classes), or a list of such arrays
+ |          The class probabilities of the input samples. The order of the
+ |          classes corresponds to that in the attribute :term:`classes_`.
+ |  
+ |  predict_proba(self, X)
+ |      Predict class probabilities for X.
+ |      
+ |      The predicted class probabilities of an input sample are computed as
+ |      the mean predicted class probabilities of the trees in the forest.
+ |      The class probability of a single tree is the fraction of samples of
+ |      the same class in a leaf.
+ |      
+ |      Parameters
+ |      ----------
+ |      X : {array-like, sparse matrix} of shape (n_samples, n_features)
+ |          The input samples. Internally, its dtype will be converted to
+ |          ``dtype=np.float32``. If a sparse matrix is provided, it will be
+ |          converted into a sparse ``csr_matrix``.
+ |      
+ |      Returns
+ |      -------
+ |      p : ndarray of shape (n_samples, n_classes), or a list of such arrays
+ |          The class probabilities of the input samples. The order of the
+ |          classes corresponds to that in the attribute :term:`classes_`.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from sklearn.base.ClassifierMixin:
+ |  
+ |  score(self, X, y, sample_weight=None)
+ |      Return the mean accuracy on the given test data and labels.
+ |      
+ |      In multi-label classification, this is the subset accuracy
+ |      which is a harsh metric since you require for each sample that
+ |      each label set be correctly predicted.
+ |      
+ |      Parameters
+ |      ----------
+ |      X : array-like of shape (n_samples, n_features)
+ |          Test samples.
+ |      
+ |      y : array-like of shape (n_samples,) or (n_samples, n_outputs)
+ |          True labels for `X`.
+ |      
+ |      sample_weight : array-like of shape (n_samples,), default=None
+ |          Sample weights.
+ |      
+ |      Returns
+ |      -------
+ |      score : float
+ |          Mean accuracy of ``self.predict(X)`` wrt. `y`.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from sklearn.base.ClassifierMixin:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from BaseForest:
+ |  
+ |  apply(self, X)
+ |      Apply trees in the forest to X, return leaf indices.
+ |      
+ |      Parameters
+ |      ----------
+ |      X : {array-like, sparse matrix} of shape (n_samples, n_features)
+ |          The input samples. Internally, its dtype will be converted to
+ |          ``dtype=np.float32``. If a sparse matrix is provided, it will be
+ |          converted into a sparse ``csr_matrix``.
+ |      
+ |      Returns
+ |      -------
+ |      X_leaves : ndarray of shape (n_samples, n_estimators)
+ |          For each datapoint x in X and for each tree in the forest,
+ |          return the index of the leaf x ends up in.
+ |  
+ |  decision_path(self, X)
+ |      Return the decision path in the forest.
+ |      
+ |      .. versionadded:: 0.18
+ |      
+ |      Parameters
+ |      ----------
+ |      X : {array-like, sparse matrix} of shape (n_samples, n_features)
+ |          The input samples. Internally, its dtype will be converted to
+ |          ``dtype=np.float32``. If a sparse matrix is provided, it will be
+ |          converted into a sparse ``csr_matrix``.
+ |      
+ |      Returns
+ |      -------
+ |      indicator : sparse matrix of shape (n_samples, n_nodes)
+ |          Return a node indicator matrix where non zero elements indicates
+ |          that the samples goes through the nodes. The matrix is of CSR
+ |          format.
+ |      
+ |      n_nodes_ptr : ndarray of shape (n_estimators + 1,)
+ |          The columns from indicator[n_nodes_ptr[i]:n_nodes_ptr[i+1]]
+ |          gives the indicator value for the i-th estimator.
+ |  
+ |  fit(self, X, y, sample_weight=None)
+ |      Build a forest of trees from the training set (X, y).
+ |      
+ |      Parameters
+ |      ----------
+ |      X : {array-like, sparse matrix} of shape (n_samples, n_features)
+ |          The training input samples. Internally, its dtype will be converted
+ |          to ``dtype=np.float32``. If a sparse matrix is provided, it will be
+ |          converted into a sparse ``csc_matrix``.
+ |      
+ |      y : array-like of shape (n_samples,) or (n_samples, n_outputs)
+ |          The target values (class labels in classification, real numbers in
+ |          regression).
+ |      
+ |      sample_weight : array-like of shape (n_samples,), default=None
+ |          Sample weights. If None, then samples are equally weighted. Splits
+ |          that would create child nodes with net zero or negative weight are
+ |          ignored while searching for a split in each node. In the case of
+ |          classification, splits are also ignored if they would result in any
+ |          single class carrying a negative weight in either child node.
+ |      
+ |      Returns
+ |      -------
+ |      self : object
+ |          Fitted estimator.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Readonly properties inherited from BaseForest:
+ |  
+ |  feature_importances_
+ |      The impurity-based feature importances.
+ |      
+ |      The higher, the more important the feature.
+ |      The importance of a feature is computed as the (normalized)
+ |      total reduction of the criterion brought by that feature.  It is also
+ |      known as the Gini importance.
+ |      
+ |      Warning: impurity-based feature importances can be misleading for
+ |      high cardinality features (many unique values). See
+ |      :func:`sklearn.inspection.permutation_importance` as an alternative.
+ |      
+ |      Returns
+ |      -------
+ |      feature_importances_ : ndarray of shape (n_features,)
+ |          The values of this array sum to 1, unless all trees are single node
+ |          trees consisting of only the root node, in which case it will be an
+ |          array of zeros.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from sklearn.ensemble._base.BaseEnsemble:
+ |  
+ |  __getitem__(self, index)
+ |      Return the index&#39;th estimator in the ensemble.
+ |  
+ |  __iter__(self)
+ |      Return iterator over estimators in the ensemble.
+ |  
+ |  __len__(self)
+ |      Return the number of estimators in the ensemble.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Readonly properties inherited from sklearn.ensemble._base.BaseEnsemble:
+ |  
+ |  base_estimator_
+ |      Estimator used to grow the ensemble.
+ |  
+ |  estimator_
+ |      Estimator used to grow the ensemble.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from sklearn.base.BaseEstimator:
+ |  
+ |  __getstate__(self)
+ |  
+ |  __repr__(self, N_CHAR_MAX=700)
+ |      Return repr(self).
+ |  
+ |  __setstate__(self, state)
+ |  
+ |  get_params(self, deep=True)
+ |      Get parameters for this estimator.
+ |      
+ |      Parameters
+ |      ----------
+ |      deep : bool, default=True
+ |          If True, will return the parameters for this estimator and
+ |          contained subobjects that are estimators.
+ |      
+ |      Returns
+ |      -------
+ |      params : dict
+ |          Parameter names mapped to their values.
+ |  
+ |  set_params(self, **params)
+ |      Set the parameters of this estimator.
+ |      
+ |      The method works on simple estimators as well as on nested objects
+ |      (such as :class:`~sklearn.pipeline.Pipeline`). The latter have
+ |      parameters of the form ``&lt;component&gt;__&lt;parameter&gt;`` so that it&#39;s
+ |      possible to update each component of a nested object.
+ |      
+ |      Parameters
+ |      ----------
+ |      **params : dict
+ |          Estimator parameters.
+ |      
+ |      Returns
+ |      -------
+ |      self : estimator instance
+ |          Estimator instance.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span>
+
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">,</span><span class="s1">&#39;Sex&#39;</span><span class="p">,</span><span class="s1">&#39;SibSp&#39;</span><span class="p">,</span><span class="s1">&#39;Parch&#39;</span><span class="p">]</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">test_data</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>      <span class="n">random_state</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;PassengerId&#39;</span> <span class="p">:</span> <span class="n">test_data</span><span class="o">.</span><span class="n">PassengerId</span><span class="p">,</span> <span class="s1">&#39;Survived&#39;</span><span class="p">:</span> <span class="n">predictions</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   PassengerId  Survived
+0          892         0
+1          893         1
+2          894         0
+3          895         0
+4          896         1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dans <code class="docutils literal notranslate"><span class="pre">model</span></code>, on crée 100 arbres. Leur profondeur maximale est de 5 puisque l’on considère 4 features.</p>
+<p>C’est ensuite dans <code class="docutils literal notranslate"><span class="pre">model.fit()</span></code> que tous se joue. C’est là que notre modèle paramètre l’arbre pour que les résultats collent du mieux possible avec nos données d’entrainement.</p>
+<p><strong>Random forest est un algorithme avec une forte interprétabilité</strong></p>
+<p>Un des grands défis du machine learning ces dernières années est l’explicabilité (ou interprétabilité) des modèles.</p>
+<p>On a d’ailleurs un dilemme entre efficacité et explicabilité des modèles. Souvent les modèles les plus efficaces, comme les réseaux de neurones avec le deep learning, sont les moins explicables.</p>
+<p>Random Forest est une solution plus que crédible pour ce dilemme. Son efficacité est assez bonne et on a des techniques pour interpréter les résultats. On peut par exemple déterminer quelles sont les features qui ont été déterminantes pour l’obtention d’une prédiction. Random forest offre une meilleur transparence sur l’utilisation faites des données d’entrainement.</p>
+<p>Finalement, random forest présente l’avantage d’utiliser plus intelligemment l’ensemble de ses données initiales, afin de limiter ses erreurs. Toutefois, l’algorithme ne pourra jamais être à 100% fiable (il faudrait disposer d’une infinité d’arbres) et perd de la simplicité de notre arbre de décision seul.</p>
+<p>Malgré tout, cela reste l’un des classifieurs les plus efficaces et les plus utilisés de nos jours (en témoigne son utilisation pour la classification d’images de la Kinect ou son utilisation dans le tutoriel Kaggle pour prédire qui sont les survivants du naufrage du Titanic, par exemple).</p>
+</section>
+</section>
+<section id="etre-dans-le-top-10-dune-competition-kaggle-facilement">
+<h1>Être dans le top 10% d’une compétition Kaggle facilement<a class="headerlink" href="#etre-dans-le-top-10-dune-competition-kaggle-facilement" title="Permalink to this heading">#</a></h1>
+<section id="comprendre-les-donnees">
+<h2>Comprendre les données<a class="headerlink" href="#comprendre-les-donnees" title="Permalink to this heading">#</a></h2>
+<section id="charge-donc-les-donnees-et-on-les-affiche">
+<h3>charge donc les données et on les affiche<a class="headerlink" href="#charge-donc-les-donnees-et-on-les-affiche" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;train.csv&quot;</span><span class="p">)</span>
+<span class="n">train_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;test.csv&quot;</span><span class="p">)</span>
+<span class="n">test_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>892</td>
+      <td>3</td>
+      <td>Kelly, Mr. James</td>
+      <td>male</td>
+      <td>34.5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>330911</td>
+      <td>7.8292</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>893</td>
+      <td>3</td>
+      <td>Wilkes, Mrs. James (Ellen Needs)</td>
+      <td>female</td>
+      <td>47.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>363272</td>
+      <td>7.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>894</td>
+      <td>2</td>
+      <td>Myles, Mr. Thomas Francis</td>
+      <td>male</td>
+      <td>62.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>240276</td>
+      <td>9.6875</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>895</td>
+      <td>3</td>
+      <td>Wirz, Mr. Albert</td>
+      <td>male</td>
+      <td>27.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>315154</td>
+      <td>8.6625</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>896</td>
+      <td>3</td>
+      <td>Hirvonen, Mrs. Alexander (Helga E Lindqvist)</td>
+      <td>female</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3101298</td>
+      <td>12.2875</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="analyser-les-donnees">
+<h3>Analyser les données<a class="headerlink" href="#analyser-les-donnees" title="Permalink to this heading">#</a></h3>
+<p>Dans un premier temps, on regarde la <strong>structure de nos données</strong> :</p>
+<ul class="simple">
+<li><p><strong>PassengerId</strong>, le numéro du passager</p></li>
+<li><p><strong>Survived</strong>, si 1 le passager a survécu, 0 sinon (ce sont les données que nous devons prédire)</p></li>
+<li><p><strong>Pclass</strong>, la classe du passager 1 étant la meilleur, 3 la moins bonne</p></li>
+<li><p><strong>Name</strong>, le nom du passager</p></li>
+<li><p><strong>Sex</strong>, le sexe de l’individu</p></li>
+<li><p><strong>Age</strong>, l’âge du passager</p></li>
+<li><p><strong>SibSp</strong>, nombre de frère et sœur du passager à bord du Titanic</p></li>
+<li><p><strong>Parch</strong>, nombre de parents du passager à bord du Titanic</p></li>
+<li><p><strong>Ticket</strong>, le numéro du Ticket</p></li>
+<li><p><strong>Fare</strong>, prix du Ticket</p></li>
+<li><p><strong>Cabin</strong>, le numéro de cabine</p></li>
+<li><p><strong>Embarked</strong>, port d’embarcation C pour Cherbourg, Q pour Queenstown, S pour Southampton</p></li>
+</ul>
+<p>pour plus de commodités, on sépare la <strong>colonne à prédire Survived</strong> des autres colonnes de note dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_targets</span> <span class="o">=</span> <span class="n">train_data</span><span class="p">[[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]]</span>
+<span class="n">train_data</span> <span class="o">=</span> <span class="n">train_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Survived&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Avant d’effectuer le preprocessing <strong>on rassemble les données d’entraînement et de test</strong> dans un même dataset pour que la <strong>transformation</strong> s’applique sur toute nos données.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="processing-des-donnees">
+<h1>Processing des données<a class="headerlink" href="#processing-des-donnees" title="Permalink to this heading">#</a></h1>
+<section id="transformation">
+<h2>Transformation<a class="headerlink" href="#transformation" title="Permalink to this heading">#</a></h2>
+<p>Vient l’étape <strong>la plus importante</strong> du Machine Learning : <strong>le preprocessing</strong>.</p>
+<p>Le <strong>preprocessing</strong> consiste à <strong>transformer les données</strong> pour que <strong>le modèle de Machine Learning</strong> puisse les ingurgiter, <strong>les comprendre</strong>.</p>
+<p>Ici quelques données nous <strong>posent problèmes</strong>, ce sont les <strong>données catégorielles</strong> (par opposition aux données numériques).</p>
+<p>Par exemple la colonne <strong>Embarked</strong>. Elle n’a pas de données chiffrées. Au contraire, elle possède <strong>des catégories</strong> :</p>
+<ul class="simple">
+<li><p>Cherbourg</p></li>
+<li><p>Queenstown</p></li>
+<li><p>Southampton</p></li>
+</ul>
+<p>Il faut <strong>transformer ces données en chiffres</strong> pour que le modèle de Machine Learning puissent les comprendre, <strong>les interpréter</strong>.</p>
+<p>Pour cela on utilise le <strong>One-Hot Encoding</strong>.</p>
+<hr class="docutils" />
+<p>Le <strong>One-Hot Encoding</strong> est à la fois la <strong>méthode la plus connu</strong>, la plus <strong>simple à réaliser</strong>, et celle qui m’a permis d’avoir la <strong>meilleure précision</strong> dans la plupart de <strong>mes travaux personnels en NLP</strong>.</p>
+<p>Le <strong>One-Hot</strong> consite à créer un dictionnaire avec toutes les <strong>modalités</strong>.</p>
+<p>Ce dictionnaire est en fait un tableau où chaque colonne représente <strong>une modalité</strong> et chaque ligne représente une phrase.</p>
+<p>Si tel modalité correspond à tel observation, on met une valeur de 1 dans l’élément du tableau, sinon on met une valeur de 0.</p>
+<hr class="docutils" />
+<p>La librairie pandas nous offre une manière simple et rapide d’effectuer le One-Hot Encoding : la fonction <code class="docutils literal notranslate"><span class="pre">get_dummies()</span></code>.</p>
+<p>Elle <strong>transforme une colonne</strong> d’un dataframe en <strong>plusieurs colonnes One-Hot encoded</strong>.</p>
+<p>Par exemple, avec la colonne <strong>Embarked</strong>, on a <strong>trois catégories</strong>. Eh bien <code class="docutils literal notranslate"><span class="pre">get_dummies()</span></code> va créer trois colonnes qui représenteront chacune une catégorie.</p>
+<p>On aura donc une colonne pour <strong>Cherbourg</strong>, une pour <strong>Queenstown</strong> et une autre pour <strong>Southampton</strong>.</p>
+<p>Si un <strong>passager</strong> a embarqué à <strong>Cherbourg un 1</strong> sera inscrit dans cette colonne et un <strong>0 dans les autres</strong>. Cela pour chaque passager selon le port embarqué.</p>
+<p>Concrétement, voilà ce que ça donne :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Embarked&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>C</th>
+      <th>Q</th>
+      <th>S</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Cela veut dire que le passager numéro 0 à embarquer à Southampton, le numéro 1 à Cherbourg le numéro 2 à Southampton etc.</p>
+<p>On va appliquer ce One-Hot Encoding sur les colonnes que l’on estime importante pour déterminer si une personne à survécu ou non.</p>
+<p>On choisit ici :</p>
+<ul class="simple">
+<li><p><strong>Embarked</strong></p></li>
+<li><p><strong>Sex</strong></p></li>
+<li><p><strong>Cabin</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Embarked&quot;</span><span class="p">,</span> <span class="s2">&quot;Sex&quot;</span><span class="p">,</span> <span class="s2">&quot;Cabin&quot;</span><span class="p">]</span>
+<span class="n">new_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
+<span class="n">new_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Embarked_C</th>
+      <th>Embarked_Q</th>
+      <th>Embarked_S</th>
+      <th>Sex_female</th>
+      <th>Sex_male</th>
+      <th>Cabin_A10</th>
+      <th>Cabin_A11</th>
+      <th>Cabin_A14</th>
+      <th>Cabin_A16</th>
+      <th>Cabin_A18</th>
+      <th>...</th>
+      <th>Cabin_F E57</th>
+      <th>Cabin_F E69</th>
+      <th>Cabin_F G63</th>
+      <th>Cabin_F G73</th>
+      <th>Cabin_F2</th>
+      <th>Cabin_F33</th>
+      <th>Cabin_F38</th>
+      <th>Cabin_F4</th>
+      <th>Cabin_G6</th>
+      <th>Cabin_T</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 191 columns</p>
+</div></div></div>
+</div>
+<p>En plus de ces données catégorielles processées, on ajoute les données chiffrées importantes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">new_data</span><span class="p">,</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;SibSp&#39;</span><span class="p">,</span> <span class="s1">&#39;Parch&#39;</span><span class="p">]]],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Embarked_C</th>
+      <th>Embarked_Q</th>
+      <th>Embarked_S</th>
+      <th>Sex_female</th>
+      <th>Sex_male</th>
+      <th>Cabin_A10</th>
+      <th>Cabin_A11</th>
+      <th>Cabin_A14</th>
+      <th>Cabin_A16</th>
+      <th>Cabin_A18</th>
+      <th>...</th>
+      <th>Cabin_F2</th>
+      <th>Cabin_F33</th>
+      <th>Cabin_F38</th>
+      <th>Cabin_F4</th>
+      <th>Cabin_G6</th>
+      <th>Cabin_T</th>
+      <th>Pclass</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 195 columns</p>
+</div></div></div>
+</div>
+<p>Il y a aussi d’autres types de donnés qui sont ni <strong>chiffrées</strong>, ni <strong>catégoriques</strong>. Par exemple la colonne <strong>Ticket</strong> est une <strong>chaîne de caractère</strong> indiquant le <strong>numéro de ticket</strong> du passager.</p>
+<p>Pour le coup, c’est typiquement une donnée qui ne nous indiquera pas si le passager survivra ou non. Au contraire, le numéro de ticket agit plutôt <strong>comme PassengerId</strong>, un numéro qui permet de <strong>différencier un passager d’un autre</strong>.</p>
+<p>Pas besoin dans ce cas de le prendre en compte.</p>
+<p>Une <strong>vérification intéressante</strong> néanmoins est de voir si notre dataset est <strong>totalement rempli</strong>, s’il n’y a <strong>pas de valeur manquante</strong>.</p>
+<p>On peut utiliser les librairies <em>matplotlib</em> et <em>seaborn</em> pour cela.</p>
+<p>Elles permettent de nous *<em>afficher</em> joliement où se trouvent nos <strong>données manquantes</strong> (les lignes jaunes).</p>
+<p>Dans notre cas, elles sont au niveau de la colonne <strong>Age</strong> et <strong>Cabin</strong>. Par ailleurs, il y a beaucoup de données manquantes dans cette dernière.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">(),</span><span class="n">cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span><span class="n">yticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Missing value in the dataset&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bca6232a83b82f5e7c59e623f0b2301de940c66f65a34df192686b27afd16995.png" src="../_images/bca6232a83b82f5e7c59e623f0b2301de940c66f65a34df192686b27afd16995.png" />
+</div>
+</div>
+<p>On utilise alors la fonction <em>fillna(0)</em> qui <strong>remplace</strong> tous les <strong>NaN par 0</strong>. Cela permettra ainsi à notre modèle de Machine Learning de <strong>comprendre que ces valeurs sont nulles</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_data</span> <span class="o">=</span> <span class="n">new_data</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">new_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Embarked_C</th>
+      <th>Embarked_Q</th>
+      <th>Embarked_S</th>
+      <th>Sex_female</th>
+      <th>Sex_male</th>
+      <th>Cabin_A10</th>
+      <th>Cabin_A11</th>
+      <th>Cabin_A14</th>
+      <th>Cabin_A16</th>
+      <th>Cabin_A18</th>
+      <th>...</th>
+      <th>Cabin_F2</th>
+      <th>Cabin_F33</th>
+      <th>Cabin_F38</th>
+      <th>Cabin_F4</th>
+      <th>Cabin_G6</th>
+      <th>Cabin_T</th>
+      <th>Pclass</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 195 columns</p>
+</div></div></div>
+</div>
+<p>Il est temps de <strong>séparer à nouveau</strong> ces datasets pour utiliser le <strong>premier pour l’entraînement</strong> du modèle et le <strong>deuxième pour la prédiction</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">new_data</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">train_data</span><span class="p">)]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">new_data</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">train_data</span><span class="p">):]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>y_train</strong> contenant la <strong>colonne a prédire</strong>, <strong>Survived</strong>, <strong>sous forme d’array</strong> et non de Dataframe. y_train doit être sous cette forme pour <strong>effectuer du Machine Learning</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span> <span class="o">=</span> <span class="n">train_targets</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="predire-avec-le-machine-learning">
+<h1>Prédire avec le Machine Learning<a class="headerlink" href="#predire-avec-le-machine-learning" title="Permalink to this heading">#</a></h1>
+<section id="creer-un-modele">
+<h2>Créer un modèle<a class="headerlink" href="#creer-un-modele" title="Permalink to this heading">#</a></h2>
+<p>Pour ce jeux de données nous allons utilisé une Forêt <strong>d’Arbres de Décision</strong> aussi appelé <strong>Random Forest</strong>.</p>
+<p>On utilise ici la <strong>librairie</strong> <em>sklearn</em> pour initialiser un <strong>Random Forest</strong>.</p>
+<p>La fonction <em>RandomForestClassifier()</em> a trois paramètres principaux :</p>
+<ul class="simple">
+<li><p><strong>n_estimators</strong>, le nombre d’Arbres de Décision</p></li>
+<li><p><strong>max_depth</strong>, la profondeur maximale d’un arbre (None si on ne veut pas de limite prédéfinie)</p></li>
+<li><p><strong>random_state</strong>, permet de contrôler l’aspect aléatoire du Random Forest (la séparation du jeu de données pour l’entraînement des Arbres de Décision)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>on <strong>entraîne notre modèle</strong> de Random Forest à <strong>prédire les données y_train</strong> en fonction des données x_train.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-4 {color: black;background-color: white;}#sk-container-id-4 pre{padding: 0;}#sk-container-id-4 div.sk-toggleable {background-color: white;}#sk-container-id-4 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-4 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-4 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-4 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-4 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-4 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-4 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-4 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-4 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-4 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-4 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-4 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-4 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-4 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-4 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-4 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-4 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-4 div.sk-item {position: relative;z-index: 1;}#sk-container-id-4 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-4 div.sk-item::before, #sk-container-id-4 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-4 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-4 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-4 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-4 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-4 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-4 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-4 div.sk-label-container {text-align: center;}#sk-container-id-4 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-4 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-4" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>RandomForestClassifier(max_depth=3, random_state=3)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" checked><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestClassifier</label><div class="sk-toggleable__content"><pre>RandomForestClassifier(max_depth=3, random_state=3)</pre></div></div></div></div></div></div></div>
+</div>
+</section>
+<section id="evaluer-le-modele">
+<h2>évaluer le modèle<a class="headerlink" href="#evaluer-le-modele" title="Permalink to this heading">#</a></h2>
+<p>On <strong>évalue la précision</strong> de notre modèle avec la <strong>validation croisée</strong> qui sépare notre jeu de données en <strong>K sous-ensemble</strong>, K sous-groupe. Le modèle s’entraîne sur K-1 sous-ensemble et <strong>évalue sa précision sur le Kème</strong>.</p>
+<p>Pour cela, on utilise la fonction <em>cross_val_score()</em> de <em>sklearn</em> où il faut indiquer le modèle à évaluer, les données et cv le nombre de sous-ensemble.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="kn">from</span> <span class="nn">statistics</span> <span class="kn">import</span> <span class="n">mean</span>
+
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">scores</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.72067039, 0.79775281, 0.82022472, 0.78651685, 0.8258427 ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7902014939426276
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ameliorer-le-modele">
+<h2>Améliorer le modèle<a class="headerlink" href="#ameliorer-le-modele" title="Permalink to this heading">#</a></h2>
+<p>La deuxième <strong>étape la plus importante</strong> du Machine Learning est <strong>l’amélioration du modèle</strong>.</p>
+<p>Une fois qu’on a <strong>réussi</strong> à faire une prédiction, à trouver un <strong>modèle statistique</strong> pour interpréter nos données, on doit <strong>l’optimiser</strong>.</p>
+<p>Pour cela, il n’y a qu’<strong>une seule méthode</strong> : la pratique. <strong>On ne l’entendra jamais assez</strong> mais le Machine Learning <strong>c’est avant tout de la pratique</strong>.</p>
+<p><strong>Tester différentes approches</strong>, retirer certaines données, en ajouter d’autres, <strong>expérimenter différentes combinaisons</strong>, <strong>changer les paramètres</strong> du modèle de Machine Learning, voir même <strong>changer de modèle</strong> de Machine Learning.</p>
+<p>Bref ! On l’aura compris.. il faut explorer par nous même tous ces facteurs pour trouver la configuration qui convient le mieux à nos données.</p>
+<p>La configuration actuelle finalement m’a permis d’avoir une précision de 0.79186 et d’être dans le top 9% !</p>
+<p>On peut encore faire mieux ! Explorez, expérimentez et testez par vous-même pour trouver la meilleure solution !</p>
+<p>Une fois qu’on a testé <strong>plusieurs approches</strong> et que <strong>le modèle nous satisfait</strong> on peut l’utiliser sur les données à prédire <strong>X_test</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>On transforme cette prédiction en <strong>DataFrame</strong> :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;PassengerId&#39;</span><span class="p">:</span> <span class="n">test_data</span><span class="o">.</span><span class="n">PassengerId</span><span class="p">,</span> <span class="s1">&#39;Survived&#39;</span><span class="p">:</span> <span class="n">predictions</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">output</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;my_submission.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="entrainer-des-modeles-avec-la-cross-validation">
+<h1>Entraîner des modèles avec la Cross Validation<a class="headerlink" href="#entrainer-des-modeles-avec-la-cross-validation" title="Permalink to this heading">#</a></h1>
+<p>La Cross Validation est un moyen d’assurer que notre modèle de Machine Learning est au maximum de ses capacités.</p>
+<p>Il y a seulement 4 étapes pour réaliser une Cross Validation :</p>
+<p>créer 5 sous-groupes de notre dataset
+entraîner un modèle sur 4 sous-groupes
+évaluer le modèle sur le dernier sous-groupes
+répéter les étapes 2 et 3 pour que tous les sous-groupes soient évalués
+Ici, la Cross Validation nous donnera, en bout de chaîne, 5 modèle de Machine Learning différent.</p>
+<p>Cette multiplicité de modèle va nous permettre d’avoir une diversité dans les prédictions finales.</p>
+<p>En fait, la Cross Validation permet d’avoir l’avis de 5 experts (5 modèle) au lieu d’un seul.</p>
+<p>Tout d’abord je vous propose de diviser notre dataset en deux :</p>
+<ul class="simple">
+<li><p>Les données pour la Cross Validation, qu’on appellera <code class="docutils literal notranslate"><span class="pre">train_test</span></code></p></li>
+<li><p>Les données pour tester les modèles finaux, qu’on appellera <code class="docutils literal notranslate"><span class="pre">gtest</span></code> pour global test</p></li>
+</ul>
+<p>Pour que ces sous-groupes aient tous une distribution équitable, on mélange tout d’abord le dataset grâce à la fonction <code class="docutils literal notranslate"><span class="pre">sample(frac=1)</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">train_data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>133</td>
+      <td>3</td>
+      <td>Robins, Mrs. Alexander A (Grace Charity Laury)</td>
+      <td>female</td>
+      <td>47.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5. 3337</td>
+      <td>14.5000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>682</td>
+      <td>1</td>
+      <td>Hassab, Mr. Hammad</td>
+      <td>male</td>
+      <td>27.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>PC 17572</td>
+      <td>76.7292</td>
+      <td>D49</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>554</td>
+      <td>3</td>
+      <td>Leeni, Mr. Fahim ("Philip Zenni")</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2620</td>
+      <td>7.2250</td>
+      <td>NaN</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>543</td>
+      <td>3</td>
+      <td>Andersson, Miss. Sigrid Elisabeth</td>
+      <td>female</td>
+      <td>11.0</td>
+      <td>4</td>
+      <td>2</td>
+      <td>347082</td>
+      <td>31.2750</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>241</td>
+      <td>3</td>
+      <td>Zabour, Miss. Thamine</td>
+      <td>female</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2665</td>
+      <td>14.4542</td>
+      <td>NaN</td>
+      <td>C</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">reset_index(drop=True)</span></code> permet de réinitialiser l’index de chaque ligne après le mélange.</p>
+<p>Ensuite, on prépare nos features (X) et label (Y) pour la Cross Validation :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">X_train</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y_train</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
+
+<span class="n">decisionTree</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">decisionTree</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pour cette évaluation on a choisis de faire une Cross Validation sur 10 sous-groupes en indiquant cv=10.</p>
+<p>Cela nous permet d’entraîner 10 modèles différents de Decision Tree.</p>
+<p>On affiche le résultat de ces 10 modèles :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.73333333, 0.75280899, 0.76404494, 0.82022472, 0.79775281,
+       0.79775281, 0.82022472, 0.7752809 , 0.85393258, 0.78651685])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7901872659176029
+</pre></div>
+</div>
+</div>
+</div>
+<p>Remarque : Nous n’avons pas besoin de données train et test. Effectivement dans la Cross Validation, chaque sous-groupe est utilisé une fois pour le test et N-1 fois pour l’entraînement. Il n’est donc pas nécessaire d’indiquer le train et le test car tous les sous-groupes passent par ces étapes.</p>
+<p>Pour séparer notre dataset on utilise la fonction <code class="docutils literal notranslate"><span class="pre">train_test_split</span> </code>(<code class="docutils literal notranslate"><span class="pre">gtest</span></code>sera composé de 10% de notre dataset) :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_train_test</span><span class="p">,</span> <span class="n">X_gtest</span><span class="p">,</span> <span class="n">y_train_test</span><span class="p">,</span> <span class="n">y_gtest</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>On peut initialiser notre classificateur :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
+
+<span class="n">decisionTree</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Et maintenant on peut implémenter la VRAIE Cross Validation.</p>
+<p>Pour cela, c’est simple, on utilise la fonction cross_validate.</p>
+<p>Cette fonction retourne plusieurs informations:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fit_time</span></code> – la durée d’entraînement pour les N modèles</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_score</span></code> – la précision des N modèles</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">score_time</span></code> – la durée de scoring pour les N modèles</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">estimator</span></code> (lorsque <code class="docutils literal notranslate"><span class="pre">return_estimator=True</span></code>) – les N modèles entraînés</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_validate</span>
+
+<span class="n">cv_results</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">decisionTree</span><span class="p">,</span> <span class="n">X_train_test</span><span class="p">,</span> <span class="n">y_train_test</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">return_estimator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cv_results</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.72839506, 0.825     , 0.8125    , 0.7375    , 0.8       ,
+       0.8125    , 0.7       , 0.8375    , 0.8125    , 0.775     ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cv_results</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7840895061728396
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pour mesurer notre Cross Validation, on va parcourir chacun de nos modèles (stockés dans la variable cv_results[‘estimator’]) et calculer le score pour X_gtest et y_gtest :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gtest_score</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cv_results</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">])):</span>
+  <span class="n">val_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cv_results</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_gtest</span><span class="p">,</span> <span class="n">y_gtest</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">148</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">gtest_score</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cv_results</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">])):</span>
+<span class="ne">----&gt; </span><span class="mi">3</span>   <span class="n">val_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cv_results</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_gtest</span><span class="p">,</span> <span class="n">y_gtest</span><span class="p">))</span>
+
+<span class="ne">NameError</span>: name &#39;val_score&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">gtest_score</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">gtest_score</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ZeroDivisionError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">124</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">sum</span><span class="p">(</span><span class="n">gtest_score</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">gtest_score</span><span class="p">)</span>
+
+<span class="ne">ZeroDivisionError</span>: division by zero
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">output_notebook</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">clear_output</span>
+<span class="n">output_notebook</span><span class="p">()</span>
+ 
+<span class="sd">&quot;&quot;&quot;Load Iris dataset and transform the pandas DataFrame&quot;&quot;&quot;</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]],</span>
+                     <span class="n">columns</span><span class="o">=</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;feature_names&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">])</span>
+ 
+<span class="sd">&quot;&quot;&quot;Define callback function for the UI&quot;&quot;&quot;</span>
+<span class="k">def</span> <span class="nf">var_dropdown</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This function is executed when a dropdown value is changed.</span>
+<span class="sd">    It creates a new figure according to the new dropdown values.&quot;&quot;&quot;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span>
+    <span class="n">x_dropdown</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+    <span class="n">y_dropdown</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+    <span class="n">data</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span>
+     
+    <span class="k">for</span> <span class="n">species</span><span class="p">,</span> <span class="n">checkbox</span> <span class="ow">in</span> <span class="n">species_checkboxes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">check</span> <span class="o">=</span> <span class="n">checkbox</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">fig</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">select_one</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">species</span><span class="p">})</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="n">check</span>
+     
+    <span class="k">with</span> <span class="n">output_figure</span><span class="p">:</span>
+        <span class="n">clear_output</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">show</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">fig</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">p</span>
+     
+    <span class="k">return</span> <span class="n">x</span>
+ 
+<span class="k">def</span> <span class="nf">f_species_checkbox</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This function is executed when a checkbox is clicked.</span>
+<span class="sd">    It directly changes the visibility of the current figure.&quot;&quot;&quot;</span>
+    <span class="n">fig</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">select_one</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">q</span><span class="p">})</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="k">with</span> <span class="n">output_figure</span><span class="p">:</span>
+        <span class="n">clear_output</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">show</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">x</span>
+ 
+<span class="k">def</span> <span class="nf">create_figure</span><span class="p">(</span><span class="n">x_var</span><span class="p">,</span> <span class="n">y_var</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This is a helper function that creates a new figure and </span>
+<span class="sd">    plots values from all three species. x_var and y_var control</span>
+<span class="sd">    the features on each axis.&quot;&quot;&quot;</span>
+    <span class="n">species_colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;coral&#39;</span><span class="p">,</span> <span class="s1">&#39;deepskyblue&#39;</span><span class="p">,</span> <span class="s1">&#39;darkblue&#39;</span><span class="p">]</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+               <span class="n">x_axis_label</span><span class="o">=</span><span class="n">x_var</span><span class="p">,</span>
+               <span class="n">y_axis_label</span><span class="o">=</span><span class="n">y_var</span><span class="p">)</span>
+    <span class="n">species_nr</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">species</span> <span class="ow">in</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;target_names&#39;</span><span class="p">]:</span>
+        <span class="n">curr_dtps</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">species_nr</span>
+        <span class="n">circle</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">x_var</span><span class="p">][</span><span class="n">curr_dtps</span><span class="p">],</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">y_var</span><span class="p">][</span><span class="n">curr_dtps</span><span class="p">],</span>
+            <span class="n">line_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">species_colors</span><span class="p">[</span><span class="n">species_nr</span><span class="p">],</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">species</span>
+            <span class="p">)</span>
+        <span class="n">species_nr</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">p</span>
+ 
+<span class="c1"># The output widget is where we direct our figures</span>
+<span class="n">output_figure</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
+ 
+<span class="c1"># Create the default figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Storing the figure in a singular list is a bit of a </span>
+          <span class="c1"># hack. We need it to properly mutate the current</span>
+          <span class="c1"># figure in our callbacks.</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">create_figure</span><span class="p">(</span>
+    <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;feature_names&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;feature_names&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">data</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">output_figure</span><span class="p">:</span>
+    <span class="n">show</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+ 
+<span class="c1"># Checkboxes to select visible species.</span>
+<span class="n">species_checkboxes</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">species</span> <span class="ow">in</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;target_names&#39;</span><span class="p">]:</span>
+    <span class="n">curr_cb</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">interactive</span><span class="p">(</span><span class="n">f_species_checkbox</span><span class="p">,</span>
+                                  <span class="n">x</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                  <span class="n">q</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">fixed</span><span class="p">(</span><span class="n">species</span><span class="p">))</span>
+    <span class="n">curr_cb</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">species</span>
+    <span class="n">species_checkboxes</span><span class="p">[</span><span class="n">species</span><span class="p">]</span> <span class="o">=</span> <span class="n">curr_cb</span>
+     
+<span class="sd">&quot;&quot;&quot;Create the widgets in the menu&quot;&quot;&quot;</span>
+<span class="c1"># Dropdown menu for x-axis feature.</span>
+<span class="n">x_dropdown</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">interactive</span><span class="p">(</span><span class="n">var_dropdown</span><span class="p">,</span>
+                                 <span class="n">x</span><span class="o">=</span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;feature_names&#39;</span><span class="p">]);</span>
+<span class="n">x_dropdown</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;x-axis&#39;</span>
+<span class="n">x_dropdown</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;feature_names&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+ 
+<span class="c1"># Dropdown menu for y-axis feature.</span>
+<span class="n">y_dropdown</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">interactive</span><span class="p">(</span><span class="n">var_dropdown</span><span class="p">,</span>
+                                 <span class="n">x</span><span class="o">=</span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;feature_names&#39;</span><span class="p">]);</span>
+<span class="n">y_dropdown</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;y-axis&#39;</span>
+<span class="n">y_dropdown</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;feature_names&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+ 
+ 
+ 
+<span class="c1"># This creates the menu </span>
+<span class="n">menu</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">x_dropdown</span><span class="p">,</span>
+                   <span class="n">y_dropdown</span><span class="p">,</span>
+                   <span class="o">*</span><span class="n">species_checkboxes</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
+ 
+<span class="sd">&quot;&quot;&quot;Create the full app with menu and output&quot;&quot;&quot;</span>
+<span class="c1"># The Layout adds some styling to our app.</span>
+<span class="c1"># You can add Layout to any widget.</span>
+<span class="n">app_layout</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s1">&#39;flex&#39;</span><span class="p">,</span>
+                <span class="n">flex_flow</span><span class="o">=</span><span class="s1">&#39;row nowrap&#39;</span><span class="p">,</span>
+                <span class="n">align_items</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                <span class="n">border</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
+                <span class="n">width</span><span class="o">=</span><span class="s1">&#39;100%&#39;</span><span class="p">,</span>
+                <span class="n">margin</span><span class="o">=</span><span class="s1">&#39;5px 5px 5px 5px&#39;</span><span class="p">)</span>
+ 
+<span class="c1"># The final app is just a box</span>
+<span class="n">app</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">Box</span><span class="p">([</span><span class="n">menu</span><span class="p">,</span> <span class="n">output_figure</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="n">app_layout</span><span class="p">)</span>
+ 
+<span class="c1"># Display the app</span>
+<span class="n">display</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class="bk-root">
+        <a href="https://bokeh.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
+        <span id="1002">Loading BokehJS ...</span>
+    </div>
+</div><script type="application/javascript">(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  const force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+const JS_MIME_TYPE = 'application/javascript';
+  const HTML_MIME_TYPE = 'text/html';
+  const EXEC_MIME_TYPE = 'application/vnd.bokehjs_exec.v0+json';
+  const CLASS_NAME = 'output_bokeh rendered_html';
+
+  /**
+   * Render data to the DOM node
+   */
+  function render(props, node) {
+    const script = document.createElement("script");
+    node.appendChild(script);
+  }
+
+  /**
+   * Handle when an output is cleared or removed
+   */
+  function handleClearOutput(event, handle) {
+    const cell = handle.cell;
+
+    const id = cell.output_area._bokeh_element_id;
+    const server_id = cell.output_area._bokeh_server_id;
+    // Clean up Bokeh references
+    if (id != null && id in Bokeh.index) {
+      Bokeh.index[id].model.document.clear();
+      delete Bokeh.index[id];
+    }
+
+    if (server_id !== undefined) {
+      // Clean up Bokeh references
+      const cmd_clean = "from bokeh.io.state import curstate; print(curstate().uuid_to_server['" + server_id + "'].get_sessions()[0].document.roots[0]._id)";
+      cell.notebook.kernel.execute(cmd_clean, {
+        iopub: {
+          output: function(msg) {
+            const id = msg.content.text.trim();
+            if (id in Bokeh.index) {
+              Bokeh.index[id].model.document.clear();
+              delete Bokeh.index[id];
+            }
+          }
+        }
+      });
+      // Destroy server and session
+      const cmd_destroy = "import bokeh.io.notebook as ion; ion.destroy_server('" + server_id + "')";
+      cell.notebook.kernel.execute(cmd_destroy);
+    }
+  }
+
+  /**
+   * Handle when a new output is added
+   */
+  function handleAddOutput(event, handle) {
+    const output_area = handle.output_area;
+    const output = handle.output;
+
+    // limit handleAddOutput to display_data with EXEC_MIME_TYPE content only
+    if ((output.output_type != "display_data") || (!Object.prototype.hasOwnProperty.call(output.data, EXEC_MIME_TYPE))) {
+      return
+    }
+
+    const toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+
+    if (output.metadata[EXEC_MIME_TYPE]["id"] !== undefined) {
+      toinsert[toinsert.length - 1].firstChild.textContent = output.data[JS_MIME_TYPE];
+      // store reference to embed id on output_area
+      output_area._bokeh_element_id = output.metadata[EXEC_MIME_TYPE]["id"];
+    }
+    if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+      const bk_div = document.createElement("div");
+      bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+      const script_attrs = bk_div.children[0].attributes;
+      for (let i = 0; i < script_attrs.length; i++) {
+        toinsert[toinsert.length - 1].firstChild.setAttribute(script_attrs[i].name, script_attrs[i].value);
+        toinsert[toinsert.length - 1].firstChild.textContent = bk_div.children[0].textContent
+      }
+      // store reference to server id on output_area
+      output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+    }
+  }
+
+  function register_renderer(events, OutputArea) {
+
+    function append_mime(data, metadata, element) {
+      // create a DOM node to render to
+      const toinsert = this.create_output_subarea(
+        metadata,
+        CLASS_NAME,
+        EXEC_MIME_TYPE
+      );
+      this.keyboard_manager.register_events(toinsert);
+      // Render to node
+      const props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+      render(props, toinsert[toinsert.length - 1]);
+      element.append(toinsert);
+      return toinsert
+    }
+
+    /* Handle when an output is cleared or removed */
+    events.on('clear_output.CodeCell', handleClearOutput);
+    events.on('delete.Cell', handleClearOutput);
+
+    /* Handle when a new output is added */
+    events.on('output_added.OutputArea', handleAddOutput);
+
+    /**
+     * Register the mime type and append_mime function with output_area
+     */
+    OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+      /* Is output safe? */
+      safe: true,
+      /* Index of renderer in `output_area.display_order` */
+      index: 0
+    });
+  }
+
+  // register the mime type if in Jupyter Notebook environment and previously unregistered
+  if (root.Jupyter !== undefined) {
+    const events = require('base/js/events');
+    const OutputArea = require('notebook/js/outputarea').OutputArea;
+
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  }
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  const NB_LOAD_WARNING = {'data': {'text/html':
+     "<div style='background-color: #fdd'>\n"+
+     "<p>\n"+
+     "BokehJS does not appear to have successfully loaded. If loading BokehJS from CDN, this \n"+
+     "may be due to a slow or bad network connection. Possible fixes:\n"+
+     "</p>\n"+
+     "<ul>\n"+
+     "<li>re-rerun `output_notebook()` to attempt to load from CDN again, or</li>\n"+
+     "<li>use INLINE resources instead, as so:</li>\n"+
+     "</ul>\n"+
+     "<code>\n"+
+     "from bokeh.resources import INLINE\n"+
+     "output_notebook(resources=INLINE)\n"+
+     "</code>\n"+
+     "</div>"}};
+
+  function display_loaded() {
+    const el = document.getElementById("1002");
+    if (el != null) {
+      el.textContent = "BokehJS is loading...";
+    }
+    if (root.Bokeh !== undefined) {
+      if (el != null) {
+        el.textContent = "BokehJS " + root.Bokeh.version + " successfully loaded.";
+      }
+    } else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(display_loaded, 100)
+    }
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error(url) {
+      console.error("failed to load " + url);
+    }
+
+    for (let i = 0; i < css_urls.length; i++) {
+      const url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error.bind(null, url);
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    for (let i = 0; i < js_urls.length; i++) {
+      const url = js_urls[i];
+      const element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error.bind(null, url);
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  const js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.4.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-2.4.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.4.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.4.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-mathjax-2.4.3.min.js"];
+  const css_urls = [];
+
+  const inline_js = [    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+function(Bokeh) {
+    }
+  ];
+
+  function run_inline_js() {
+    if (root.Bokeh !== undefined || force === true) {
+          for (let i = 0; i < inline_js.length; i++) {
+      inline_js[i].call(root, root.Bokeh);
+    }
+if (force === true) {
+        display_loaded();
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    } else if (force !== true) {
+      const cell = $(document.getElementById("1002")).parents('.cell').data().cell;
+      cell.output_area.append_execute_result(NB_LOAD_WARNING)
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "df3f53c4de1f4b819a46be4917989b87", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">Layout</span><span class="p">,</span> <span class="n">Button</span><span class="p">,</span> <span class="n">Box</span><span class="p">,</span> <span class="n">FloatText</span><span class="p">,</span> <span class="n">Textarea</span><span class="p">,</span> <span class="n">Dropdown</span><span class="p">,</span> <span class="n">Label</span><span class="p">,</span> <span class="n">IntSlider</span>
+
+<span class="n">form_item_layout</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span>
+    <span class="n">display</span><span class="o">=</span><span class="s1">&#39;flex&#39;</span><span class="p">,</span>
+    <span class="n">flex_flow</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span>
+    <span class="n">justify_content</span><span class="o">=</span><span class="s1">&#39;space-between&#39;</span>
+<span class="p">)</span>
+
+<span class="n">form_items</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Box</span><span class="p">([</span><span class="n">Label</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;Age of the captain&#39;</span><span class="p">),</span> <span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">60</span><span class="p">)],</span> <span class="n">layout</span><span class="o">=</span><span class="n">form_item_layout</span><span class="p">),</span>
+    <span class="n">Box</span><span class="p">([</span><span class="n">Label</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;Egg style&#39;</span><span class="p">),</span> 
+         <span class="n">Dropdown</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Scrambled&#39;</span><span class="p">,</span> <span class="s1">&#39;Sunny side up&#39;</span><span class="p">,</span> <span class="s1">&#39;Over easy&#39;</span><span class="p">])],</span> <span class="n">layout</span><span class="o">=</span><span class="n">form_item_layout</span><span class="p">),</span>
+    <span class="n">Box</span><span class="p">([</span><span class="n">Label</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;Ship size&#39;</span><span class="p">),</span> 
+         <span class="n">FloatText</span><span class="p">()],</span> <span class="n">layout</span><span class="o">=</span><span class="n">form_item_layout</span><span class="p">),</span>
+    <span class="n">Box</span><span class="p">([</span><span class="n">Label</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;Information&#39;</span><span class="p">),</span> 
+         <span class="n">Textarea</span><span class="p">()],</span> <span class="n">layout</span><span class="o">=</span><span class="n">form_item_layout</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">form</span> <span class="o">=</span> <span class="n">Box</span><span class="p">(</span><span class="n">form_items</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span>
+    <span class="n">display</span><span class="o">=</span><span class="s1">&#39;flex&#39;</span><span class="p">,</span>
+    <span class="n">flex_flow</span><span class="o">=</span><span class="s1">&#39;column&#39;</span><span class="p">,</span>
+    <span class="n">border</span><span class="o">=</span><span class="s1">&#39;solid 2px&#39;</span><span class="p">,</span>
+    <span class="n">align_items</span><span class="o">=</span><span class="s1">&#39;stretch&#39;</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="s1">&#39;50%&#39;</span>
+<span class="p">))</span>
+<span class="n">form</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "c2f836165d124824bf98fbf18ec623fb", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./python documentation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">librairies de base</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#comment-eviter-loverfitting">Comment éviter l’overfitting ?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">Cross-validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retirer-des-features">Retirer des features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methodes-de-regularisations">Méthodes de régularisations</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#commencer-par-concevoir-des-modeles-simples">Commencer par concevoir des modèles simples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learly-stopping">L’early stopping</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#etre-dans-le-top-10-dune-competition-kaggle-facilement">Être dans le top 10% d’une compétition Kaggle facilement</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprendre-les-donnees">Comprendre les données</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#charge-donc-les-donnees-et-on-les-affiche">charge donc les données et on les affiche</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyser-les-donnees">Analyser les données</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#processing-des-donnees">Processing des données</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformation">Transformation</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#predire-avec-le-machine-learning">Prédire avec le Machine Learning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creer-un-modele">Créer un modèle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluer-le-modele">évaluer le modèle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ameliorer-le-modele">Améliorer le modèle</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#entrainer-des-modeles-avec-la-cross-validation">Entraîner des modèles avec la Cross Validation</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

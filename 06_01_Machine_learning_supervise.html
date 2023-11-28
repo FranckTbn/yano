@@ -1,0 +1,2059 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapitre 6 - Différentes utilisations dumachine learning avec Python (1ère partie) &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '06_01_Machine_learning_supervise';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="librairies de base" href="Random%20Forest.html" />
+    <link rel="prev" title="Chapitre 5 - La data visualisation avec Python (1ère partie)" href="05_03_Visualisations_interactives.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">My sample book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bienvenue sur le site de TRA BI NENE OTHNIEL
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter2.html">mes recherches et tout ce qui est utiles</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="02_python_from_scratch.html">Chapitre 2 - Les bases de Python / Python from scratch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_numpy_pandas_bases.html">Chapitre 3 - Python et les données (NumPy et Pandas)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01_recuperation_des_donnees.html">Chapitre 4 - La préparation des données et les premières statistiques (1ère partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_manipulation_description_des_donnees.html">Chapitre 4 - La préparation des données et les premières statistiques (2ème partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_01_Data_visualisation_matplotlib_seaborn.html">Chapitre 5 - La data visualisation avec Python (1ère partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_02_Data_visualisation_cartographie.html">Chapitre 5 - La data visualisation avec Python (2ème partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_03_Visualisations_interactives.html">Chapitre 5 - La data visualisation avec Python (1ère partie)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapitre 6 - Différentes utilisations dumachine learning avec Python (1ère partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Random%20Forest.html">librairies de base</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06_02_Machine_learning_non_supervise.html">Chapitre 6 - Différentes utilisations du machine learning avec Python (2ème partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_03_NLP.html">Chapitre 6 - Différentes utilisations du machine learning avec Python (3ème partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_04_Deep_Learning.html">Chapitre 6 - Différentes utilisations dumachine learning avec Python (4ème partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_01_Big_data_import.html">Chapitre 7 - Passage au big data (1ère partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_02_Spark.html">Chapitre 7 - Passage au big data (2ème partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CAA_test-checkpoint.html">1. Modelisation des rendements</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="FORMATION%20PYTHON-checkpoint.html">Introduction</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Introduction%20%C3%A0%20Scikit%20Learn-checkpoint.html">Introduction à Scikit Learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Python%20vs%20R-checkpoint.html">Python vs R : le duel</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F06_01_Machine_learning_supervise.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/06_01_Machine_learning_supervise.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapitre 6 - Différentes utilisations dumachine learning avec Python (1ère partie)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lapprentissage-supervise-avec-scikit-learn">6. 4 L’apprentissage supervisé avec Scikit-Learn</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-donnees-et-leur-transformation">6.4.1 Les données et leur transformation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-preparation-des-donnees">La préparation des données</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#predire-lattrition-des-clients">Prédire l’attrition des clients</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#les-donnees-desequilibrees">Les données déséquilibrées</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-choix-et-lajustement-de-lalgorithme">6.4.2 Le choix et l’ajustement de l’algorithme</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cas-dun-modele-de-regression">Cas d’un modèle de régression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-indicateurs-pour-valider-un-modele">6.4.3 Les indicateurs pour valider un modèle</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#le-pourcentage-de-bien-classes">Le pourcentage de bien classés</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-matrice-de-confusion">La matrice de confusion</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#le-rappel-recall-la-precision-et-le-f1-score">Le rappel (recall), la précision et le f1-score</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-courbe-roc">La courbe ROC</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#laire-sous-la-courbe-roc">L’aire sous la courbe ROC</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-validation-croisee">La validation croisée</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-validation-dans-le-cas-continu">La validation dans le cas continu</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lajustement-des-hyperparametres-dun-modele">6.4.4 L’ajustement des hyperparamètres d’un modèle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-construction-dun-pipeline-de-traitement">6.4.5 La construction d’un pipeline de traitement</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#trouver-la-meilleure-combinaison-dhyperparametres-dans-un-pipeline">Trouver la meilleure combinaison d’hyperparamètres dans un pipeline</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#passer-en-production-votre-modele-dapprentissage-supervise">6.4.6 Passer en production votre modèle d’apprentissage supervisé</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#persistance-de-modele-avec-scikit-learn">Persistance de modèle avec Scikit-Learn</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapitre-6-differentes-utilisations-dumachine-learning-avec-python-1ere-partie">
+<h1>Chapitre 6 - Différentes utilisations dumachine learning avec Python (1ère partie)<a class="headerlink" href="#chapitre-6-differentes-utilisations-dumachine-learning-avec-python-1ere-partie" title="Permalink to this heading">#</a></h1>
+<section id="lapprentissage-supervise-avec-scikit-learn">
+<h2>6. 4 L’apprentissage supervisé avec Scikit-Learn<a class="headerlink" href="#lapprentissage-supervise-avec-scikit-learn" title="Permalink to this heading">#</a></h2>
+<p>Les méthodes d’apprentissage supervisé sont les méthodes actuellement les plus
+utilisées en data science. Il s’agit d’essayer de prédire une variable cible et d’utiliser
+différentes méthodes pour arriver à cette fin.
+Nous allons illustrer ces méthodes de traitement de données avec du code et des
+cas pratiques.</p>
+<section id="les-donnees-et-leur-transformation">
+<h3>6.4.1 Les données et leur transformation<a class="headerlink" href="#les-donnees-et-leur-transformation" title="Permalink to this heading">#</a></h3>
+<p>Ce jeu de données est décrit en détail au début du chapitre 4. Pour rappel, il est composé de 3333 individus et de 18 variables. Il est stocké dans un fichier csv, nommé telecom.csv, accessible dans le répertoire Data. On le récupère en utilisant Pandas :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">churn</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/telecom.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">churn</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/telecom.csv&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\pandas\util\_decorators.py:211,</span> in <span class="ni">deprecate_kwarg.&lt;locals&gt;._deprecate_kwarg.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>         <span class="n">kwargs</span><span class="p">[</span><span class="n">new_arg_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_arg_value</span>
+<span class="ne">--&gt; </span><span class="mi">211</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\pandas\util\_decorators.py:331,</span> in <span class="ni">deprecate_nonkeyword_arguments.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">325</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">num_allow_args</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">326</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">327</span>         <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">_format_argument_list</span><span class="p">(</span><span class="n">allow_args</span><span class="p">)),</span>
+<span class="g g-Whitespace">    </span><span class="mi">328</span>         <span class="ne">FutureWarning</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">329</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">find_stack_level</span><span class="p">(),</span>
+<span class="g g-Whitespace">    </span><span class="mi">330</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">331</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\pandas\io\parsers\readers.py:950,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">935</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">936</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">937</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">946</span>     <span class="n">defaults</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;delimiter&quot;</span><span class="p">:</span> <span class="s2">&quot;,&quot;</span><span class="p">},</span>
+<span class="g g-Whitespace">    </span><span class="mi">947</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">948</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">950</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\pandas\io\parsers\readers.py:605,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">602</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">604</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">605</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">607</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">608</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\pandas\io\parsers\readers.py:1442,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1439</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1441</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1442</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\pandas\io\parsers\readers.py:1735,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1733</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1734</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1735</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1736</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1737</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1738</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1739</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1740</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1741</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1742</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1743</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1744</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1745</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1746</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\pandas\io\common.py:856,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">851</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">852</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">853</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">854</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">855</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">856</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">857</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">858</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">861</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">863</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">864</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">865</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../data/telecom.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ce jeu de données n’a pas de données manquantes et nous allons devoir effectuer
+quelques transformations pour l’adapter à nos traitements. Nous voyons par exemple qu’il est composé de trois colonnes object.</p>
+<p>Nous pouvons afficher les statistiques descriptives pour les colonnes object :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">churn</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s2">&quot;object&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>unique</th>
+      <th>top</th>
+      <th>freq</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>State</th>
+      <td>3333</td>
+      <td>51</td>
+      <td>WV</td>
+      <td>106</td>
+    </tr>
+    <tr>
+      <th>Phone</th>
+      <td>3333</td>
+      <td>3333</td>
+      <td>336-9053</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Int'l Plan</th>
+      <td>3333</td>
+      <td>2</td>
+      <td>no</td>
+      <td>3010</td>
+    </tr>
+    <tr>
+      <th>VMail Plan</th>
+      <td>3333</td>
+      <td>2</td>
+      <td>no</td>
+      <td>2411</td>
+    </tr>
+    <tr>
+      <th>Churn?</th>
+      <td>3333</td>
+      <td>2</td>
+      <td>False.</td>
+      <td>2850</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>On voit que les données sont toutes binaires.</p>
+<p>Pour les variables binaires, il nous suffit de les recoder avec Scikit-Learn pour obtenir des données exploitables. Par
+ailleurs, il existe une autre variable qualitative dans notre jeu de données, Area Code,
+qui est numérique mais avec trois modalités :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">churn</span><span class="p">[</span><span class="s2">&quot;Area Code&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>415    1655
+510     840
+408     838
+Name: Area Code, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<section id="la-preparation-des-donnees">
+<h4>La préparation des données<a class="headerlink" href="#la-preparation-des-donnees" title="Permalink to this heading">#</a></h4>
+<p>Nous allons utiliser le processus de traitement classique pour transformer nos
+données avec Scikit-Learn. Dans ce cas, nous n’avons pas de données manquantes,
+nous travaillons donc sur la transformation des variables qualitatives.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>LabelEncoder va nous permettre de transformer les valeurs textuelles en entiers.
+Nous pouvons utiliser pour chaque variable qualitative :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">churn</span><span class="p">[</span><span class="s2">&quot;Churn?&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">churn</span><span class="p">[</span><span class="s2">&quot;Churn?&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dict_label_encode</span><span class="o">=</span><span class="p">{}</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">churn</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">churn</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="n">dict_label_encode</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">=</span><span class="n">LabelEncoder</span><span class="p">()</span>
+        <span class="n">churn</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">=</span><span class="n">dict_label_encode</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">churn</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nous utilisons la classe OneHotEncoder afin de transformer la colonne Area Code
+en trois colonnes binaires (le chapitre 4 détaille le fonctionnement de cet outil) :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on définit l’objet</span>
+<span class="n">encoder_area</span><span class="o">=</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">categories</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+
+<span class="c1"># on crée un array dans lequel on stocke le résultat</span>
+<span class="n">area</span><span class="o">=</span><span class="n">encoder_area</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">churn</span><span class="p">[</span><span class="s2">&quot;Area Code&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># on définit un DataFrame nettoyé qui consiste en la concaténation du</span>
+<span class="c1"># DataFrame initial et des nouvelles colonnes</span>
+<span class="n">churn_clean</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">churn</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">area</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="n">encoder_area</span><span class="o">.</span><span class="n">categories_</span><span class="p">,</span>
+                                           <span class="n">index</span><span class="o">=</span><span class="n">churn</span><span class="o">.</span><span class="n">index</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># on supprime la colonne initiale</span>
+<span class="n">churn_clean</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Area Code&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">churn_clean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Account Length</th>
+      <th>Phone</th>
+      <th>Int'l Plan</th>
+      <th>VMail Plan</th>
+      <th>VMail Message</th>
+      <th>Day Mins</th>
+      <th>Day Calls</th>
+      <th>Day Charge</th>
+      <th>Eve Mins</th>
+      <th>...</th>
+      <th>Night Calls</th>
+      <th>Night Charge</th>
+      <th>Intl Mins</th>
+      <th>Intl Calls</th>
+      <th>Intl Charge</th>
+      <th>CustServ Calls</th>
+      <th>Churn?</th>
+      <th>(408,)</th>
+      <th>(415,)</th>
+      <th>(510,)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>16</td>
+      <td>128</td>
+      <td>1926</td>
+      <td>0</td>
+      <td>1</td>
+      <td>25</td>
+      <td>265.1</td>
+      <td>110</td>
+      <td>45.07</td>
+      <td>197.4</td>
+      <td>...</td>
+      <td>91</td>
+      <td>11.01</td>
+      <td>10.0</td>
+      <td>3</td>
+      <td>2.70</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>35</td>
+      <td>107</td>
+      <td>1575</td>
+      <td>0</td>
+      <td>1</td>
+      <td>26</td>
+      <td>161.6</td>
+      <td>123</td>
+      <td>27.47</td>
+      <td>195.5</td>
+      <td>...</td>
+      <td>103</td>
+      <td>11.45</td>
+      <td>13.7</td>
+      <td>3</td>
+      <td>3.70</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>31</td>
+      <td>137</td>
+      <td>1117</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>243.4</td>
+      <td>114</td>
+      <td>41.38</td>
+      <td>121.2</td>
+      <td>...</td>
+      <td>104</td>
+      <td>7.32</td>
+      <td>12.2</td>
+      <td>5</td>
+      <td>3.29</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>35</td>
+      <td>84</td>
+      <td>1707</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>299.4</td>
+      <td>71</td>
+      <td>50.90</td>
+      <td>61.9</td>
+      <td>...</td>
+      <td>89</td>
+      <td>8.86</td>
+      <td>6.6</td>
+      <td>7</td>
+      <td>1.78</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>36</td>
+      <td>75</td>
+      <td>110</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>166.7</td>
+      <td>113</td>
+      <td>28.34</td>
+      <td>148.3</td>
+      <td>...</td>
+      <td>121</td>
+      <td>8.41</td>
+      <td>10.1</td>
+      <td>3</td>
+      <td>2.73</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>3328</th>
+      <td>3</td>
+      <td>192</td>
+      <td>3057</td>
+      <td>0</td>
+      <td>1</td>
+      <td>36</td>
+      <td>156.2</td>
+      <td>77</td>
+      <td>26.55</td>
+      <td>215.5</td>
+      <td>...</td>
+      <td>83</td>
+      <td>12.56</td>
+      <td>9.9</td>
+      <td>6</td>
+      <td>2.67</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3329</th>
+      <td>49</td>
+      <td>68</td>
+      <td>1528</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>231.1</td>
+      <td>57</td>
+      <td>39.29</td>
+      <td>153.4</td>
+      <td>...</td>
+      <td>123</td>
+      <td>8.61</td>
+      <td>9.6</td>
+      <td>4</td>
+      <td>2.59</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3330</th>
+      <td>39</td>
+      <td>28</td>
+      <td>42</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>180.8</td>
+      <td>109</td>
+      <td>30.74</td>
+      <td>288.8</td>
+      <td>...</td>
+      <td>91</td>
+      <td>8.64</td>
+      <td>14.1</td>
+      <td>6</td>
+      <td>3.81</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3331</th>
+      <td>6</td>
+      <td>184</td>
+      <td>1331</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>213.8</td>
+      <td>105</td>
+      <td>36.35</td>
+      <td>159.6</td>
+      <td>...</td>
+      <td>137</td>
+      <td>6.26</td>
+      <td>5.0</td>
+      <td>10</td>
+      <td>1.35</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3332</th>
+      <td>42</td>
+      <td>74</td>
+      <td>2559</td>
+      <td>0</td>
+      <td>1</td>
+      <td>25</td>
+      <td>234.4</td>
+      <td>113</td>
+      <td>39.85</td>
+      <td>265.9</td>
+      <td>...</td>
+      <td>77</td>
+      <td>10.86</td>
+      <td>13.7</td>
+      <td>4</td>
+      <td>3.70</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3333 rows × 23 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># nous stockons d&#39;abord le nom des colonnes quantitatives</span>
+<span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;VMail Message&#39;</span><span class="p">,</span><span class="s1">&#39;Day Mins&#39;</span><span class="p">,</span> 
+                    <span class="s1">&#39;Day Calls&#39;</span><span class="p">,</span> <span class="s1">&#39;Day Charge&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;Eve Mins&#39;</span><span class="p">,</span> <span class="s1">&#39;Eve Calls&#39;</span><span class="p">,</span> 
+                    <span class="s1">&#39;Eve Charge&#39;</span><span class="p">,</span> <span class="s1">&#39;Night Mins&#39;</span><span class="p">,</span> 
+                    <span class="s1">&#39;Night Calls&#39;</span><span class="p">,</span><span class="s1">&#39;Night Charge&#39;</span><span class="p">,</span> 
+                    <span class="s1">&#39;Intl Mins&#39;</span><span class="p">,</span> <span class="s1">&#39;Intl Calls&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;Intl Charge&#39;</span><span class="p">,</span><span class="s1">&#39;CustServ Calls&#39;</span><span class="p">]</span>
+<span class="c1"># nous appliquons à ces colonnes une transformation</span>
+<span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+
+<span class="c1"># nous stockons d&#39;abord le nom des colonnes qualitatives</span>
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Area Code&#39;</span><span class="p">,</span> 
+                        <span class="s2">&quot;Int&#39;l Plan&quot;</span><span class="p">,</span>
+                        <span class="s1">&#39;VMail Plan&#39;</span><span class="p">]</span>
+<span class="c1"># nous appliquons à ces colonnes une OneHot</span>
+<span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span>
+                                        <span class="n">categories</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+
+<span class="c1"># on combine toutes ces informations dans un objet de la</span>
+<span class="c1"># classe ColumnTransformer</span>
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">)]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on applique les transformations sur toutes les colonnes</span>
+<span class="n">churn_clean</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">churn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="predire-lattrition-des-clients">
+<h4>Prédire l’attrition des clients<a class="headerlink" href="#predire-lattrition-des-clients" title="Permalink to this heading">#</a></h4>
+<p>Lorsqu’on veut prédire une variable binaire, on devra avoir une colonne du type
+binaire. On préfère généralement un codage 0/1 afin de garder un type entier simple à gérer.</p>
+<p>Les variables explicatives x auront été préparées de manière intelligente afin de bien appliquer nos modèles.</p>
+<p>On crée donc x et y :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">churn_clean</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">churn</span><span class="p">[</span><span class="s2">&quot;Churn?&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Churn!&quot;</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;../data/x_telecom.csv&quot;</span><span class="p">)</span>
+<span class="n">y</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;../data/y_telecom.csv&quot;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pour la séparation, on utilise la fonction train_test_split() de Scikit-Learn.</p>
+<p>Cette fonction permet de créer automatiquement autant de structures que nécessaire
+à partir de nos données.</p>
+<p>Elle utilise une randomisation des individus et ensuite une séparation en fonction d’un paramètre du type test_size :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on importe la fonction</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># dans ce cas on a :</span>
+<span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dans certains cas, il peut arriver qu’il y ait une forte disparité de distribution des
+modalités entre les proportions d’acceptation et de refus. On peut vouloir faire en
+sorte que les répartitions des modalités de y soient égales dans les différents échantillons,
+on pourra alors utiliser une stratification. On va utiliser une stratification en
+prenant y comme base pour effectuer la stratification :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> 
+                                                    <span class="n">y</span><span class="p">,</span> 
+                                                    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                                                    <span class="n">stratify</span> <span class="o">=</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">y</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.855086
+1    0.144914
+Name: Churn!, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ainsi les deux échantillons _train et _test ont la même distribution</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_test</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.855
+1    0.145
+Name: Churn!, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.855122
+1    0.144878
+Name: Churn!, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="les-donnees-desequilibrees">
+<h4>Les données déséquilibrées<a class="headerlink" href="#les-donnees-desequilibrees" title="Permalink to this heading">#</a></h4>
+<p>Ce problème se pose souvent lorsque vous cherchez à identifier des évènements
+rares, notamment la recherche de fraudes. Dans ce cas, la variable cible y a souvent
+moins de 1 % d’une des deux modalités.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imblearn.under_sampling</span> <span class="kn">import</span> <span class="n">NearMiss</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ss_echant</span> <span class="o">=</span> <span class="n">NearMiss</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on applique la méthode fit_resample() sur nos données</span>
+<span class="n">x_sous</span><span class="p">,</span> <span class="n">y_sous</span><span class="o">=</span> <span class="n">ss_echant</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="c1"># on le transforme en Series pour avoir un affichage psl uagréable</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_sous</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    338
+1    338
+Name: Churn!, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>On voit donc que le nombre de 1 (classe minoritaire) n’a pas changé.
+Cette étape permet d’obtenir des données x construites de manière à bien différencier
+les individus.
+Pour le sur-échantillonnage, l’algorithme SMOTE (Synthetic Minority Oversampling
+Technique) fait référence. Cet algorithme va permettre de créer des individus proches
+de ceux de la classe minoritaire afin de sur-représenter cette classe :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imblearn.over_sampling</span> <span class="kn">import</span> <span class="n">SMOTE</span>
+<span class="n">sur_echant</span><span class="o">=</span><span class="n">SMOTE</span><span class="p">()</span>
+<span class="c1"># on applique la méthode fit_resample() sur nos données</span>
+<span class="n">x_sur</span><span class="p">,</span> <span class="n">y_sur</span><span class="o">=</span> <span class="n">sur_echant</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="c1"># on le transforme en Series pour avoir un affichage psl uagréable</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_sur</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    1995
+1    1995
+Name: Churn!, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>On voit ici que le nombre d’individus de la classe majoritaire reste le même.
+Ce package propose aussi une approche intermédiaire qui va combiner du souséchantillonnage
+et du sur-échantillonnage, et qui s’adapte bien, soit lorsque le jeu
+de données global est très grand, soit quand la classe sous-représentée a très peu
+d’occurrences. On utilise une combinaison de SMOTE et de plus proches voisins :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imblearn.combine</span> <span class="kn">import</span> <span class="n">SMOTEENN</span>
+<span class="n">comb_echant</span><span class="o">=</span><span class="n">SMOTEENN</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on applique la méthode fit_resample() sur nos données</span>
+<span class="n">x_comb</span><span class="p">,</span> <span class="n">y_comb</span><span class="o">=</span> <span class="n">comb_echant</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="c1"># on le transforme en Series pour avoir un affichage plus agréable</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_comb</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1    1948
+0    1457
+Name: Churn!, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>On voit qu’on arrive à un jeu de données intermédiaire.
+L’approche à privilégier dépendra de vos données. Dans le cadre de notre exemple,
+nous allons garder la répartition actuelle afin d’illustrer la suite.
+Nous avons donc quatre jeux de données prêts à être utilisés pour nos traitements.
+L’étape suivante est le choix de l’algorithme de machine learning.</p>
+</section>
+</section>
+<section id="le-choix-et-lajustement-de-lalgorithme">
+<h3>6.4.2 Le choix et l’ajustement de l’algorithme<a class="headerlink" href="#le-choix-et-lajustement-de-lalgorithme" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ensuite, on crée un objet à partir de la classe du modèle en lui fournissant les
+hyperparamètres dont il a besoin :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">modele_rf</span><span class="o">=</span><span class="n">RandomForestClassifier</span><span class="p">()</span>
+<span class="n">modele_knn</span><span class="o">=</span><span class="n">KNeighborsClassifier</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dans ce cas, on prend les hyperparamètres par défaut.</p>
+<p>On peut ensuite ajuster notre modèle en utilisant les données :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">modele_rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">modele_knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KNeighborsClassifier()
+</pre></div>
+</div>
+</div>
+</div>
+<p>Une fois qu’on a estimé les paramètres du modèle, on va pouvoir extraire des
+informations. De nouveaux attributs de chaque classe apparaissent, ils se terminent par le symbole underscore _ :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">modele_rf</span><span class="o">.</span><span class="n">feature_importances_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.0218883 , 0.14222995, 0.03506224, 0.1269868 , 0.06923958,
+       0.02859489, 0.06435809, 0.04011863, 0.03276831, 0.04129982,
+       0.04468157, 0.05540306, 0.04779843, 0.12747883, 0.00592123,
+       0.00545068, 0.00422476, 0.04066414, 0.04026268, 0.01130867,
+       0.01425934])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ce qui va nous intéresse avant tout, c’est de prédire avec notre modèle. Pour cela nous allons utiliser la méthode .predict() :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_predict_rf</span> <span class="o">=</span> <span class="n">modele_rf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="n">y_predict_knn</span> <span class="o">=</span> <span class="n">modele_knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>On obtient ainsi une valeur prédite pour les éléments de notre échantillon de
+validation.</p>
+</section>
+<section id="cas-dun-modele-de-regression">
+<h3>Cas d’un modèle de régression<a class="headerlink" href="#cas-dun-modele-de-regression" title="Permalink to this heading">#</a></h3>
+<p>Sur les données des territoires d’Ile-de-France, nous désirons prédire le salaire
+médian des communes en fonction des autres variables des données.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/base-comparateur-de-territoires.csv&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="c1"># on prépare les données</span>
+<span class="n">y_quanti</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;MED14&quot;</span><span class="p">]</span>
+<span class="n">x_quanti</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;CODGEO&quot;</span><span class="p">,</span><span class="s2">&quot;REG&quot;</span><span class="p">,</span><span class="s2">&quot;DEP&quot;</span><span class="p">,</span><span class="s2">&quot;MED14&quot;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on sépare les échantillons apprentissage</span>
+<span class="n">x_train_cont</span><span class="p">,</span> <span class="n">x_test_cont</span><span class="p">,</span> <span class="n">y_train_cont</span><span class="p">,</span> <span class="n">y_test_cont</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x_quanti</span><span class="p">,</span>
+                                                                        <span class="n">y_quanti</span><span class="p">,</span>
+                                                                        <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># on utilise un modèle de régression de Ridge</span>
+<span class="n">modele_ridge</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">()</span>
+
+<span class="c1"># on ajuste le modèle aux données</span>
+<span class="n">modele_ridge</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train_cont</span><span class="p">,</span> <span class="n">y_train_cont</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ridge()
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on peut afficher les coefficients du modèle :</span>
+<span class="n">modele_ridge</span><span class="o">.</span><span class="n">coef_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.22024018e+00, -1.33753108e-01, -1.25511395e+01,  4.44707439e-01,
+        4.88665104e+00,  1.43860806e-01, -1.61499627e+00, -2.21443471e+01,
+        1.88500689e-01,  1.43860692e-01, -5.68490140e-01,  6.12777676e-01,
+       -1.14791105e-01, -7.41136339e-01,  5.25055299e+02,  1.95154920e+02,
+        1.15873964e+00, -1.08811946e+00, -6.78021452e-02, -1.47003706e+00,
+       -2.28846847e-01, -1.72772808e-01,  3.00268872e-01, -4.76805125e+00,
+        5.20580393e+00, -3.26798445e+00,  5.21589426e-02,  2.71342813e+00,
+        3.07835358e+00, -2.50799948e+00, -4.02936990e+00])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on prédit grâce à ce modèle</span>
+<span class="n">y_predict_cont</span><span class="o">=</span><span class="n">modele_ridge</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test_cont</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="les-indicateurs-pour-valider-un-modele">
+<h3>6.4.3 Les indicateurs pour valider un modèle<a class="headerlink" href="#les-indicateurs-pour-valider-un-modele" title="Permalink to this heading">#</a></h3>
+<p>La partie validation d’un modèle d’apprentissage supervisé est extrêmement
+importante. L’objectif d’un modèle d’apprentissage supervisé est de prédire une
+valeur la plus proche possible de la réalité. Nous différencions trois types d’indices
+en fonction du type de variable cible. Tous les indicateurs de qualité du modèle sont
+stockés dans le module <em>metrics</em> de Scikit-Learn.</p>
+<section id="le-pourcentage-de-bien-classes">
+<h4>Le pourcentage de bien classés<a class="headerlink" href="#le-pourcentage-de-bien-classes" title="Permalink to this heading">#</a></h4>
+<p>Il s’agit de l’indicateur le plus connu. On le nomme accuracy. Il est calculé à partir du rapport entre le nombre d’individus bien classés et le nombre total d’individus dans l’échantillon.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="n">accuracy_modele_rf</span><span class="o">=</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_predict_rf</span><span class="p">)</span>
+<span class="n">accuracy_modele_knn</span><span class="o">=</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_predict_knn</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pourcentage de bien classés pour le modèle RF :&quot;</span><span class="p">,</span><span class="n">accuracy_modele_rf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pourcentage de bien classés pour le modèle kNN :&quot;</span><span class="p">,</span><span class="n">accuracy_modele_knn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pourcentage de bien classés pour le modèle RF : 0.956
+Pourcentage de bien classés pour le modèle kNN : 0.897
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="la-matrice-de-confusion">
+<h4>La matrice de confusion<a class="headerlink" href="#la-matrice-de-confusion" title="Permalink to this heading">#</a></h4>
+<p>Il s’agit d’un autre indicateur important pour juger de la qualité d’un modèle, il n’est pas défini par une seule valeur mais par une matrice dans laquelle on peut lire le croisement entre les valeurs observées et les valeurs prédites à partir du modèle.</p>
+<p>Pour calculer cette matrice, on pourra utiliser :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="n">confusion_matrix_rf</span><span class="o">=</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_predict_rf</span><span class="p">)</span>
+<span class="n">confusion_matrix_knn</span><span class="o">=</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_predict_knn</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matrice de confusion pour le modèle RF :&quot;</span><span class="p">,</span>
+<span class="n">confusion_matrix_rf</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matrice de confusion pour le modèle kNN :&quot;</span><span class="p">,</span>
+<span class="n">confusion_matrix_knn</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matrice de confusion pour le modèle RF :
+[[850   5]
+ [ 39 106]]
+Matrice de confusion pour le modèle kNN :
+[[849   6]
+ [ 97  48]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="le-rappel-recall-la-precision-et-le-f1-score">
+<h4>Le rappel (recall), la précision et le f1-score<a class="headerlink" href="#le-rappel-recall-la-precision-et-le-f1-score" title="Permalink to this heading">#</a></h4>
+<p>Scikit-Learn possède des fonctions pour chacun de ces indicateurs, mais il peut
+être intéressant d’utiliser une autre fonction qui les affiche pour chaque classe :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rapport pour le modèle RF :&quot;</span><span class="p">,</span>
+      <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_predict_rf</span><span class="p">)</span> <span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rapport pour le modèle kNN :&quot;</span><span class="p">,</span>
+      <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_predict_rf</span><span class="p">)</span> <span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rapport pour le modèle RF :
+              precision    recall  f1-score   support
+
+           0       0.96      0.99      0.97       855
+           1       0.95      0.73      0.83       145
+
+    accuracy                           0.96      1000
+   macro avg       0.96      0.86      0.90      1000
+weighted avg       0.96      0.96      0.95      1000
+
+Rapport pour le modèle kNN :
+              precision    recall  f1-score   support
+
+           0       0.96      0.99      0.97       855
+           1       0.95      0.73      0.83       145
+
+    accuracy                           0.96      1000
+   macro avg       0.96      0.86      0.90      1000
+weighted avg       0.96      0.96      0.95      1000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="la-courbe-roc">
+<h4>La courbe ROC<a class="headerlink" href="#la-courbe-roc" title="Permalink to this heading">#</a></h4>
+<p>Nous avons vu que lorsque les classes sont fortement déséquilibrées, la matrice
+de confusion est parfois dure à interpréter. La courbe ROC (Receiver Operating
+Characteristic) est là pour combler ce défaut. Elle est en fait la proportion de vrais positifs en fonction de la proportion de faux positifs.</p>
+<p>Il s’agit en fait de représenter le rappel (recall) en fonction de (1- spécificité) sur une courbe en faisant varier le seuil de classification (c’est-à-dire le point à partir duquel une observation est considérée comme positive).</p>
+<p>La courbe ROC s’obtient avec Scikit-Learn et Matplotlib :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span>
+
+<span class="c1"># on extrait les probabilités d&#39;appartenance</span>
+<span class="n">proba_rf</span><span class="o">=</span> <span class="n">modele_rf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">x_test</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">proba_knn</span><span class="o">=</span><span class="n">modele_knn</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">x_test</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># cas du modèle RF</span>
+<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">proba_rf</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span><span class="n">tpr</span><span class="p">,</span><span class="s2">&quot;b-.&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;RF&quot;</span><span class="p">)</span>
+
+<span class="c1"># cas du modèle kNN</span>
+<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">proba_knn</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span><span class="n">tpr</span><span class="p">,</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;kNN&quot;</span><span class="p">)</span>
+
+<span class="c1"># modèle aléatoire</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="s2">&quot;r-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;aléatoire&quot;</span><span class="p">,</span> <span class="p">)</span>
+
+<span class="c1"># modèle parfait</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;b--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;parfait&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1a6e8828850&gt;
+</pre></div>
+</div>
+<img alt="_images/a72faddf5f6f18ee3d8b889220e3095ef460052566ac9fe19e7bd67055b6cb78.png" src="_images/a72faddf5f6f18ee3d8b889220e3095ef460052566ac9fe19e7bd67055b6cb78.png" />
+</div>
+</div>
+</section>
+<section id="laire-sous-la-courbe-roc">
+<h4>L’aire sous la courbe ROC<a class="headerlink" href="#laire-sous-la-courbe-roc" title="Permalink to this heading">#</a></h4>
+<p>La courbe ROC est un indicateur important mais on préfère souvent une valeur plutôt
+qu’une courbe afin de comparer nos modèles. Pour cela, on utilise l’aire sous la courbe
+ROC (AUC). Cette aire est calculée directement à partir de la courbe ROC. Ainsi, un
+modèle aléatoire aura une AUC de 0.5 et un modèle parfait aura une AUC de 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span>
+<span class="n">auc_modele_rf</span><span class="o">=</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">modele_rf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">x_test</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">auc_modele_knn</span><span class="o">=</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">modele_knn</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">x_test</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Aire sous la courbe ROC pour le modèle RF :&quot;</span> <span class="p">,</span><span class="n">auc_modele_rf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Aire sous la courbe ROC pour le modèle kNN :&quot;</span> <span class="p">,</span><span class="n">auc_modele_knn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Aire sous la courbe ROC pour le modèle RF : 0.9050655374067351
+Aire sous la courbe ROC pour le modèle kNN : 0.8177576124218593
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="la-validation-croisee">
+<h4>La validation croisée<a class="headerlink" href="#la-validation-croisee" title="Permalink to this heading">#</a></h4>
+<p>Jusqu’ici nous avons utilisé des indicateurs basés sur une seule occurrence de test. Ceci veut dire qu’on ne teste notre modèle que sur un seul échantillon.</p>
+<p>Une approche alternative souvent utilisée est la validation croisée. Celle-ci est en fait basée sur la répétition de l’estimation et de la validation sur des données différentes.</p>
+<p>Pour obtenir ce cv-score, on utilise :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+
+<span class="n">scores_rf</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">modele_rf</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">)</span>
+<span class="n">scores_knn</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">modele_knn</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AUC pour RF : </span><span class="si">%.2f</span><span class="s2"> (+/- </span><span class="si">%.2f</span><span class="s2">)&quot;</span><span class="o">%</span> <span class="p">(</span><span class="n">scores_rf</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">scores_knn</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AUC pour kNN : </span><span class="si">%.2f</span><span class="s2"> (+/- </span><span class="si">%.2f</span><span class="s2">)&quot;</span><span class="o">%</span> <span class="p">(</span><span class="n">scores_knn</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="n">scores_knn</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AUC pour RF : 0.92 (+/- 0.06)
+AUC pour kNN : 0.80 (+/- 0.06)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="la-validation-dans-le-cas-continu">
+<h4>La validation dans le cas continu<a class="headerlink" href="#la-validation-dans-le-cas-continu" title="Permalink to this heading">#</a></h4>
+<p>Il s’agit du cas où on essaye de prédire une variable quantitative. Dans ce cas, on ne peut pas utiliser les indicateurs précédents</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">explained_variance_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">median_absolute_error</span>
+
+<span class="c1"># le R², à la différence des autres scores, est généralmeent</span>
+<span class="c1"># calculé sur l’échantillon d’apprentissage</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;R2 :&quot;</span><span class="p">,</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_train_cont</span><span class="p">,</span><span class="n">modele_ridge</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_train_cont</span><span class="p">)))</span>
+
+<span class="c1"># les autres indicateurs sont basés sur l’échantillon de validation</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MCE :&quot;</span><span class="p">,</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test_cont</span><span class="p">,</span><span class="n">y_predict_cont</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMCE :&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test_cont</span><span class="p">,</span><span class="n">y_predict_cont</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MAE :&quot;</span><span class="p">,</span><span class="n">median_absolute_error</span><span class="p">(</span><span class="n">y_test_cont</span><span class="p">,</span><span class="n">y_predict_cont</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 : 0.897661338203234
+MCE : 4759310.518611897
+RMCE : 2181.5844055667194
+MAE : 1165.8621325833774
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="lajustement-des-hyperparametres-dun-modele">
+<h3>6.4.4 L’ajustement des hyperparamètres d’un modèle<a class="headerlink" href="#lajustement-des-hyperparametres-dun-modele" title="Permalink to this heading">#</a></h3>
+<p>L’une des tâches du data scientist est de trouver le meilleur modèle possible. La
+plupart des modèles de machine learning ont des hyperparamètres. Il s’agit de paramètres
+du modèle qui sont définis en amont de l’ajustement.</p>
+<p>Scikit-Learn propose une classe GridSearchCV permettant d’implémenter cette
+recherche d’hyperparamètres :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>On va donc devoir définir les hyperparamètres que l’on souhaite tester. Pour cela,
+on utilisera un dictionnaire d’hyperparamètres, par exemple :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dico_param</span><span class="o">=</span> <span class="p">{</span><span class="s2">&quot;max_depth&quot;</span><span class="p">:[</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="s2">&quot;n_estimators&quot;</span><span class="p">:[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>On va encore utiliser l’accuracy pour valider notre modèle. Finalement, nous allons
+utiliser une validation croisée à cinq groupes pour valider les résultats.
+Le nouvel objet est le suivant :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recherche_hyper</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">RandomForestClassifier</span><span class="p">(),</span> 
+                               <span class="n">dico_param</span><span class="p">,</span> 
+                               <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Une fois qu’on a créé cet objet, on peut lui joindre les données afin d’estimer les
+meilleurs paramètres du modèle.</p>
+<p>Cette étape peut être très longue.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recherche_hyper</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV(cv=5, estimator=RandomForestClassifier(),
+             param_grid={&#39;max_depth&#39;: [3, 5, 7, 10],
+                         &#39;n_estimators&#39;: [10, 20, 50, 100]},
+             scoring=&#39;accuracy&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si nous revenons à notre exemple de données des télécommunications avec nos
+deux estimateurs par forêt aléatoire et par plus proches voisins. Nous allons faire
+varier les hyperparamètres de ces deux modèles pour trouver la meilleure combinaison
+en termes d’aire sous la courbe ROC :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+
+<span class="c1"># construction des dictionnaires d’hyperparamètres</span>
+<span class="n">dico_param_rf</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;n_estimators&quot;</span><span class="p">:[</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">1000</span><span class="p">],</span><span class="s2">&quot;max_depth&quot;</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">]}</span>
+<span class="n">dico_param_knn</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;n_neighbors&quot;</span><span class="p">:[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">],</span><span class="s2">&quot;weights&quot;</span><span class="p">:[</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span><span class="s1">&#39;distance&#39;</span><span class="p">]}</span>
+
+<span class="n">modele_grid_rf</span><span class="o">=</span><span class="n">GridSearchCV</span><span class="p">(</span><span class="n">modele_rf</span><span class="p">,</span><span class="n">dico_param_rf</span><span class="p">,</span>
+                            <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;roc_auc&quot;</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">modele_grid_knn</span><span class="o">=</span><span class="n">GridSearchCV</span><span class="p">(</span><span class="n">modele_knn</span><span class="p">,</span> <span class="n">dico_param_knn</span><span class="p">,</span>
+                             <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;roc_auc&quot;</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># estimation des paramètres et des meilleurs modèles</span>
+<span class="n">modele_grid_rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV(cv=5, estimator=RandomForestClassifier(),
+             param_grid={&#39;max_depth&#39;: [5, 7, 9],
+                         &#39;n_estimators&#39;: [10, 100, 1000]},
+             scoring=&#39;roc_auc&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># estimation des paramètres et des meilleurs modèles</span>
+<span class="n">modele_grid_knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV(cv=5, estimator=KNeighborsClassifier(),
+             param_grid={&#39;n_neighbors&#39;: [2, 5, 10, 50],
+                         &#39;weights&#39;: [&#39;uniform&#39;, &#39;distance&#39;]},
+             scoring=&#39;roc_auc&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># affichage des AUC pour la combinaison obtenant</span>
+<span class="c1"># les meilleurs résultats</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Meilleurs paramètres RF:&quot;</span><span class="p">,</span> <span class="n">modele_grid_rf</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AUC - RF:&quot;</span><span class="p">,</span> <span class="n">modele_grid_rf</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Meilleurs paramètres kNN:&quot;</span><span class="p">,</span> <span class="n">modele_grid_knn</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AUC - kNN:&quot;</span><span class="p">,</span> <span class="n">modele_grid_knn</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Meilleurs paramètres RF: {&#39;max_depth&#39;: 7, &#39;n_estimators&#39;: 100}
+AUC - RF: 0.917874471076726
+Meilleurs paramètres kNN: {&#39;n_neighbors&#39;: 50, &#39;weights&#39;: &#39;distance&#39;}
+AUC - kNN: 0.8724467005969709
+</pre></div>
+</div>
+</div>
+</div>
+<p>On voit que malgré ce travail, les forêts aléatoires sont toujours plus efficaces que
+les plus proches voisins.
+Si le nombre d’hyperparamètres devient trop grand, on utilise alors une recherche
+aléatoire parmi les combinaisons avec la classe RandomSearchCV.</p>
+</section>
+<section id="la-construction-dun-pipeline-de-traitement">
+<h3>6.4.5 La construction d’un pipeline de traitement<a class="headerlink" href="#la-construction-dun-pipeline-de-traitement" title="Permalink to this heading">#</a></h3>
+<p>Bien souvent vous allez être amené à enchaîner des traitements sur des données.
+On peut bien sûr développer son code de manière à suivre les étapes une à une mais il est souvent plus intéressant de créer des suites de traitements automatisées avec Scikit-Learn.</p>
+<p>Ces suites de traitements sont appelées pipeline. Ils simplifieront votre code et permettront de passer en production simplement.</p>
+<p>Ainsi, on va pouvoir faire une analyse en composantes principales suivies d’un
+algorithme de plus proches voisins directement dans un pipeline :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">acp</span><span class="o">=</span><span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">knn</span><span class="o">=</span><span class="n">KNeighborsClassifier</span><span class="p">()</span>
+<span class="n">pipe</span><span class="o">=</span><span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;acp&quot;</span><span class="p">,</span><span class="n">acp</span><span class="p">),(</span><span class="s2">&quot;knn&quot;</span><span class="p">,</span><span class="n">knn</span><span class="p">)])</span>
+<span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pipeline(steps=[(&#39;acp&#39;, PCA(n_components=8)), (&#39;knn&#39;, KNeighborsClassifier())])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">pipe</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">x_test</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7985037305908449
+</pre></div>
+</div>
+</div>
+</div>
+<p>On a ainsi enchaîné deux traitements. Si on cherche des sorties liées à chacune
+des étapes, on pourra le faire simplement. Par exemple, si l’objectif est d’extraire la part de variances expliquées par les composantes de l’analyse en composantes principales, on fera :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;acp&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">explained_variance_ratio_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.13577256, 0.13244717, 0.13073064, 0.12871214, 0.0919471 ,
+       0.06873833, 0.06623341, 0.06543127])
+</pre></div>
+</div>
+</div>
+</div>
+<section id="trouver-la-meilleure-combinaison-dhyperparametres-dans-un-pipeline">
+<h4>Trouver la meilleure combinaison d’hyperparamètres dans un pipeline<a class="headerlink" href="#trouver-la-meilleure-combinaison-dhyperparametres-dans-un-pipeline" title="Permalink to this heading">#</a></h4>
+<p>Essayons de trouver la meilleure combinaison d’hyperparamètres dans un pipeline.
+Dans le cadre de cet exemple, nous utiliserons les SVM (support vector machines,
+également appelés séparateurs à vaste marge ou machines à vecteurs de support).
+Ce sont des méthodes assez complexes dans leur principe mais simples dans leur
+mise en oeuvre.</p>
+<p>Les hyperparamètres d’un modèle de SVM sont assez nombreux. Les plus importants
+étant le noyau choisi (linéaire, polynomial, sigmoïd, RBF…), les paramètres de
+ces noyaux (le degré pour le cas polynomiale, gamma…) et le C pour la marge floue.</p>
+<p>Dans notre exemple, on utilisera la fonction make_pipeline qui est équivalente
+à la classe précédente avec quelques simplifications :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+
+<span class="c1"># construction du pipeline basé sur deux approches</span>
+<span class="n">mon_pipe</span><span class="o">=</span><span class="n">make_pipeline</span><span class="p">(</span><span class="n">PCA</span><span class="p">(),</span> <span class="n">SVC</span><span class="p">(</span><span class="n">probability</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+<span class="c1"># construction du dictionnaire des paramètres</span>
+<span class="c1"># (attention utilisation de __)</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">pca__n_components</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+                  <span class="n">svc__C</span><span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
+                  <span class="n">svc__kernel</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">,</span> <span class="s1">&#39;rbf&#39;</span><span class="p">],</span>
+                  <span class="n">svc__gamma</span><span class="o">=</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">])</span>
+
+<span class="c1"># on construit l’objet GridSearch et on estime les hyper-paramètres</span>
+<span class="c1"># par validation croisée</span>
+<span class="n">grid_search_mon_pipe</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">mon_pipe</span><span class="p">,</span> <span class="n">param_grid</span> <span class="o">=</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">scoring</span> <span class="o">=</span> <span class="s2">&quot;roc_auc&quot;</span><span class="p">,</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search_mon_pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV(cv=4,
+             estimator=Pipeline(steps=[(&#39;pca&#39;, PCA()),
+                                       (&#39;svc&#39;, SVC(probability=True))]),
+             param_grid={&#39;pca__n_components&#39;: [5, 10, 21],
+                         &#39;svc__C&#39;: [1, 10, 100, 1000],
+                         &#39;svc__gamma&#39;: [0.001, 0.0001],
+                         &#39;svc__kernel&#39;: [&#39;sigmoid&#39;, &#39;rbf&#39;]},
+             scoring=&#39;roc_auc&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># la meilleure combinaisons de paramètres est :</span>
+<span class="n">grid_search_mon_pipe</span><span class="o">.</span><span class="n">best_params_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;pca__n_components&#39;: 21,
+ &#39;svc__C&#39;: 1000,
+ &#39;svc__gamma&#39;: 0.001,
+ &#39;svc__kernel&#39;: &#39;rbf&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Les meilleurs hyperparamètres obtenus en utilisant l’aire sous la courbe ROC sont
+la combinaison C = 10, gamma = 0.0001, un noyau RBF pour les SVM et dix composantes
+pour notre analyse en composantes principales.</p>
+<p>Dans ce code, on définit les hyperparamètres associés à une méthode du pipeline
+avec un double underscore : __.</p>
+<p>L’utilisation des pipelines de Scikit-Learn va devenir rapidement une étape cruciale
+de vos développements en Python.</p>
+</section>
+</section>
+<section id="passer-en-production-votre-modele-dapprentissage-supervise">
+<h3>6.4.6 Passer en production votre modèle d’apprentissage supervisé<a class="headerlink" href="#passer-en-production-votre-modele-dapprentissage-supervise" title="Permalink to this heading">#</a></h3>
+<section id="persistance-de-modele-avec-scikit-learn">
+<h4>Persistance de modèle avec Scikit-Learn<a class="headerlink" href="#persistance-de-modele-avec-scikit-learn" title="Permalink to this heading">#</a></h4>
+<p>Python possède plusieurs outils pour la persistance d’objets, c’est-à-dire pour stocker
+des objets dans des fichiers. Les objets de Scikit-Learn sont aussi dans cette
+situation. On utilise un format pickle qui aura l’extension .pkl.</p>
+<p>Par exemple, si nous voulons sauvegarder le dernier pipeline de traitement, nous
+allons utiliser :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">joblib</span>
+<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">grid_search_mon_pipe</span><span class="p">,</span> <span class="s1">&#39;../data/modele_grid_pipe.pkl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;../data/modele_grid_pipe.pkl&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Une fois ce modèle stocké, on peut très bien le réutiliser dans un autre cadre. Si
+nous créons un nouveau notebook, nous allons utiliser :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">joblib</span>
+<span class="n">grid_search_mon_pipe</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;../data/modele_grid_pipe.pkl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>On peut ensuite appliquer le modèle avec tous les paramètres qui ont été appris :</p>
+<p>L’utilisation d’un fichier Pickle dans un notebook est une technique assez simple et courante.</p>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05_03_Visualisations_interactives.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapitre 5 - La data visualisation avec Python (1ère partie)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Random%20Forest.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">librairies de base</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lapprentissage-supervise-avec-scikit-learn">6. 4 L’apprentissage supervisé avec Scikit-Learn</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-donnees-et-leur-transformation">6.4.1 Les données et leur transformation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-preparation-des-donnees">La préparation des données</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#predire-lattrition-des-clients">Prédire l’attrition des clients</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#les-donnees-desequilibrees">Les données déséquilibrées</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-choix-et-lajustement-de-lalgorithme">6.4.2 Le choix et l’ajustement de l’algorithme</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cas-dun-modele-de-regression">Cas d’un modèle de régression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-indicateurs-pour-valider-un-modele">6.4.3 Les indicateurs pour valider un modèle</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#le-pourcentage-de-bien-classes">Le pourcentage de bien classés</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-matrice-de-confusion">La matrice de confusion</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#le-rappel-recall-la-precision-et-le-f1-score">Le rappel (recall), la précision et le f1-score</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-courbe-roc">La courbe ROC</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#laire-sous-la-courbe-roc">L’aire sous la courbe ROC</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-validation-croisee">La validation croisée</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-validation-dans-le-cas-continu">La validation dans le cas continu</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lajustement-des-hyperparametres-dun-modele">6.4.4 L’ajustement des hyperparamètres d’un modèle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-construction-dun-pipeline-de-traitement">6.4.5 La construction d’un pipeline de traitement</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#trouver-la-meilleure-combinaison-dhyperparametres-dans-un-pipeline">Trouver la meilleure combinaison d’hyperparamètres dans un pipeline</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#passer-en-production-votre-modele-dapprentissage-supervise">6.4.6 Passer en production votre modèle d’apprentissage supervisé</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#persistance-de-modele-avec-scikit-learn">Persistance de modèle avec Scikit-Learn</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

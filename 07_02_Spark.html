@@ -1,0 +1,888 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapitre 7 - Passage au big data (2ème partie) &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '07_02_Spark';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Modelisation des rendements" href="CAA_test-checkpoint.html" />
+    <link rel="prev" title="Chapitre 7 - Passage au big data (1ère partie)" href="07_01_Big_data_import.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">My sample book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bienvenue sur le site de TRA BI NENE OTHNIEL
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter2.html">mes recherches et tout ce qui est utiles</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="02_python_from_scratch.html">Chapitre 2 - Les bases de Python / Python from scratch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_numpy_pandas_bases.html">Chapitre 3 - Python et les données (NumPy et Pandas)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01_recuperation_des_donnees.html">Chapitre 4 - La préparation des données et les premières statistiques (1ère partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02_manipulation_description_des_donnees.html">Chapitre 4 - La préparation des données et les premières statistiques (2ème partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_01_Data_visualisation_matplotlib_seaborn.html">Chapitre 5 - La data visualisation avec Python (1ère partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_02_Data_visualisation_cartographie.html">Chapitre 5 - La data visualisation avec Python (2ème partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_03_Visualisations_interactives.html">Chapitre 5 - La data visualisation avec Python (1ère partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_01_Machine_learning_supervise.html">Chapitre 6 - Différentes utilisations dumachine learning avec Python (1ère partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Random%20Forest.html">librairies de base</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06_02_Machine_learning_non_supervise.html">Chapitre 6 - Différentes utilisations du machine learning avec Python (2ème partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_03_NLP.html">Chapitre 6 - Différentes utilisations du machine learning avec Python (3ème partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_04_Deep_Learning.html">Chapitre 6 - Différentes utilisations dumachine learning avec Python (4ème partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_01_Big_data_import.html">Chapitre 7 - Passage au big data (1ère partie)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapitre 7 - Passage au big data (2ème partie)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CAA_test-checkpoint.html">1. Modelisation des rendements</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="FORMATION%20PYTHON-checkpoint.html">Introduction</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Introduction%20%C3%A0%20Scikit%20Learn-checkpoint.html">Introduction à Scikit Learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Python%20vs%20R-checkpoint.html">Python vs R : le duel</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F07_02_Spark.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/07_02_Spark.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapitre 7 - Passage au big data (2ème partie)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-dataframe-de-spark-sql">7.4.3 Le DataFrame de Spark SQL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-votre-session-spark">Lancer votre session Spark</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-des-donnees-json-parquet-csv-hive">Lecture des données (json, parquet, csv, hive)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manipuler-des-dataframes">Manipuler des DataFrames</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afficher-des-statistiques-descriptives">Afficher des statistiques descriptives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terminer-votre-session-spark">Terminer votre session Spark</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-machine-learning-avec-spark">7.4.4 Le machine learning avec Spark</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation-des-donnees">Préparation des données</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creation-du-modele-et-du-pipeline">Création du modèle et du pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajustement-et-validation-du-modele">Ajustement et validation du modèle</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapitre-7-passage-au-big-data-2eme-partie">
+<h1>Chapitre 7 - Passage au big data (2ème partie)<a class="headerlink" href="#chapitre-7-passage-au-big-data-2eme-partie" title="Permalink to this heading">#</a></h1>
+<p><strong>Dans le cadre de ce Notebook, nous allons parler de l’environnement Apache Spark. Ce notebook n’est donc pas applicable dans votre environnement “classique”.</strong></p>
+<p><strong>Pour que le code foctionnne, il vous faut un environnement Spark correctement installé.</strong></p>
+<p><strong>N’essayez pas de faire fonctionner les cellules si votre environnemnt n’est pas correctement paramétré. Les cellules de code ont été passées au format RawNBConvert afin de ne pas rendre le Notebook inutilisable</strong></p>
+<p>Apache Spark est un projet de la fondation Apache (actuellement dans sa version 3).</p>
+<p>Il a pour objectif de pallier les lacunes de Hadoop quant au traitement nécessitant de nombreux allers-retours.</p>
+<p>Si, malgré tous vos efforts, vous n’avez pas réussi à extraire des données de
+manière qu’elles tiennent dans votre mémoire RAM, le recours à une autre solution deviendra indispensable. Cette solution est Apache Spark.</p>
+<p>Cet environnement, développé à Berkeley, est un système de traitement distribué
+sur les noeuds d’une infrastructure big data.</p>
+<p>Si vous voulez tester Spark, je vous conseille d’essayer la version gratuite de Databricks qui est simple d’accèes :</p>
+<p><a class="reference external" href="https://databricks.com/signup#signup/community">https://databricks.com/signup#signup/community</a></p>
+<section id="le-dataframe-de-spark-sql">
+<h2>7.4.3 Le DataFrame de Spark SQL<a class="headerlink" href="#le-dataframe-de-spark-sql" title="Permalink to this heading">#</a></h2>
+<p>Nous allons nous concentrer sur Spark SQL. Ceci nous permettra d’introduire un objet : le DataFrame de Spark. Il s’agit d’un objet proche du RDD, mais qui permet de stocker de manière distribuée des données structurées, là où les RDD nous permettent de stocker des données non structurées.</p>
+<p>Il se rapproche très fortement du DataFrame de Pandas.</p>
+<section id="lancer-votre-session-spark">
+<h3>Lancer votre session Spark<a class="headerlink" href="#lancer-votre-session-spark" title="Permalink to this heading">#</a></h3>
+<p>Commençons par lancer une session Spark en utilisant dans un premier temps le
+package findspark et la classe SparkSession de pyspark.sql :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on importe findspark</span>
+<span class="kn">import</span> <span class="nn">findspark</span>
+<span class="c1"># on initialise findspark pour identifier nos chemins Spark</span>
+<span class="n">findspark</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="c1"># on importe SparkSession</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+<span class="c1"># on crée une session Spark</span>
+<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
+         <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;Exemples avec Python et Spark SQL&quot;</span><span class="p">)</span> \
+         <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># on importe findspark</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">findspark</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># on initialise findspark pour identifier nos chemins Spark</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">findspark</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;findspark&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lecture-des-donnees-json-parquet-csv-hive">
+<h3>Lecture des données (json, parquet, csv, hive)<a class="headerlink" href="#lecture-des-donnees-json-parquet-csv-hive" title="Permalink to this heading">#</a></h3>
+<p>Spark vous permet de lire de nombreux types de données, que ce soit des données csv ou SQL classiques ou des données issues d’environnements big data. En voici quelques exemples :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># lecture d’un fichier json</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="s2">&quot;data.json&quot;</span><span class="p">)</span>
+<span class="c1"># lecture d’un fichier parquet</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;data.parquet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Spark permet aussi d’utiliser des données issues de fichiers csv :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_idf</span><span class="o">=</span><span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;header&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>\
+              <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;delimiter&quot;</span><span class="p">,</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>\
+              <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;inferSchema&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>
+              <span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;../Data/base-comparateur-de-territoires.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Un autre format important dans le cadre du big data est le format Hive. Pour se
+connecter à une base Hive et soumettre du code SQL, on utilisera :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+<span class="c1"># on crée une session avec accès à Hive</span>
+<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span>\
+        <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.sql.warehouse.dir&quot;</span><span class="p">,</span> <span class="n">warehouse_location</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">enableHiveSupport</span><span class="p">()</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+
+<span class="c1"># on peut afficher une base</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s1">&#39;show databases&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># on peut créer une base</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s1">&#39;create database base1&#39;</span><span class="p">)</span>
+
+<span class="c1"># on peut faire des requêtes en SQL</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;select * from table1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>On peut aussi transformer un DataFrame Pandas en DataFrame Spark en utilisant :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spark_df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">pandas_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="manipuler-des-dataframes">
+<h3>Manipuler des DataFrames<a class="headerlink" href="#manipuler-des-dataframes" title="Permalink to this heading">#</a></h3>
+<p>Il est très simple de manipuler des DataFrames de différentes manières. Spark part du principe que les calculs ne sont pas effectués chaque fois que vous soumettez du code.</p>
+<p>Ils le sont lorsque vous demandez explicitement à Spark de faire les calculs ou
+d’afficher les résultats. Ces opérations de calcul ou d’affichage sont appliquées avec les méthodes .collect() ou .show().</p>
+<p>Nous allons manipuler les données sur les communes d’Île-de-France. Nous
+voulons extraire des informations de ces données sur les communes de la région
+Île-de-France.</p>
+<p>Les codes ci-dessous nous
+permettent d’effectuer la plupart des manipulations dont nous avons besoin :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on récupère les données d’Ile-de-France</span>
+<span class="c1"># on a des titres dans la première ligne</span>
+<span class="c1"># le séparateur est le;</span>
+<span class="c1"># on demande à Spark d’inférer les types</span>
+<span class="n">data_idf</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;header&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>\
+           <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;delimiter&quot;</span><span class="p">,</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>\
+           <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;inferSchema&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>\
+           <span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;../data/base-comparateur-de-territoires.csv&quot;</span><span class="p">)</span>
+<span class="c1"># on peut afficher les 8 premiers noms de colonnes :</span>
+<span class="n">data_idf</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on sélectionne une colonne et on affiche le résultat</span>
+<span class="n">data_idf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;LIBGEO&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Les opérations ci-dessus sont stockées en mémoire et ne renvoient rien. C’est
+uniquement lorsqu’on ajoute show() ou collect() que les opérations sont
+effectuées.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on peut filtrer les observations</span>
+<span class="n">data_reduced</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">data_reduced</span><span class="p">[</span><span class="s1">&#39;startswith(LIBGEO, Paris)&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nous avons sélectionné uniquement les observations commençant par « Paris »,
+on obtient donc les 20 arrondissements et leurs populations.</p>
+<p>On peut alors sauver ces données sous forme de fichiers parquet ou json :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_reduced</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;P14_POP&quot;</span><span class="p">,</span><span class="s2">&quot; LIBGEO&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;resultat.parquet&quot;</span><span class="p">)</span>
+<span class="n">data_reduced</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;P14_POP&quot;</span><span class="p">,</span><span class="s2">&quot;LIBGEO&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;resultat.json&quot;</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="afficher-des-statistiques-descriptives">
+<h3>Afficher des statistiques descriptives<a class="headerlink" href="#afficher-des-statistiques-descriptives" title="Permalink to this heading">#</a></h3>
+<p>Spark permet aussi de calculer des statistiques sur les données en utilisant, par
+exemple, une opération groupby :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on utilise un groupBy par département et</span>
+<span class="c1"># on affiche le salaire médian moyen</span>
+<span class="n">salaire_med_moy</span> <span class="o">=</span> <span class="n">data_idf</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">&quot;DEP&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">&quot;MED14&quot;</span> <span class="p">:</span><span class="s2">&quot;mean&quot;</span><span class="p">})</span>
+<span class="n">salaire_med_moy</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on peut transformer le résultat en format Pandas</span>
+<span class="n">salaire_med_moy_pandas</span> <span class="o">=</span> <span class="n">salaire_med_moy</span><span class="o">.</span><span class="n">toPandas</span><span class="p">()</span>
+<span class="c1"># on aura les sorties de Pandas</span>
+<span class="n">salaire_med_moy_pandas</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>De nombreuses opérations proches de celles de Pandas sont disponibles avec
+Spark.</p>
+</section>
+<section id="terminer-votre-session-spark">
+<h3>Terminer votre session Spark<a class="headerlink" href="#terminer-votre-session-spark" title="Permalink to this heading">#</a></h3>
+<p>Une fois que vous avez terminé de travailler sur votre session Spark, vous pouvez la fermer :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spark</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="le-machine-learning-avec-spark">
+<h2>7.4.4 Le machine learning avec Spark<a class="headerlink" href="#le-machine-learning-avec-spark" title="Permalink to this heading">#</a></h2>
+<section id="preparation-des-donnees">
+<h3>Préparation des données<a class="headerlink" href="#preparation-des-donnees" title="Permalink to this heading">#</a></h3>
+<p>Nous supposons que nous avons déjà créé notre session Spark. Nous devons
+maintenant récupérer nos données :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on récupère les données telecom</span>
+<span class="n">churn</span><span class="o">=</span><span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;header&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>\
+        <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;inferSchema&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>\
+        <span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;../Data/telecom.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La phase de préparation qui suit est importante. Il s’agit de définir les variables explicatives (x) et la variable cible (y) tout en transformant les variables non adaptées :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on importe une classe qui transforme les colonnes qualitatives en colonnes</span>
+<span class="c1"># sous forme d’entiers (équivalent de LabelEncoder de Scikit-Learn)</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">StringIndexer</span>
+
+<span class="c1"># on va transformer la colonne Churn? et on va la nommer Churn2</span>
+<span class="n">indexer</span> <span class="o">=</span> <span class="n">StringIndexer</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s1">&#39;Churn?&#39;</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s1">&#39;Churn2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">churn</span><span class="p">)</span>
+
+<span class="c1"># on construit ensuite un vecteur rassemblant toutes les colonnes explicatives</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">VectorAssembler</span>
+
+<span class="c1"># on rassemble la liste des colonnes numériques que l’on va utiliser</span>
+<span class="n">numericCols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Day Mins&#39;</span><span class="p">,</span><span class="s1">&#39;Day Calls&#39;</span><span class="p">,</span><span class="s1">&#39;Day Charge&#39;</span><span class="p">,</span><span class="s1">&#39;Eve Mins&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;Eve Calls&#39;</span><span class="p">,</span><span class="s1">&#39;Eve Charge&#39;</span><span class="p">,</span><span class="s1">&#39;Night Mins&#39;</span><span class="p">,</span><span class="s1">&#39;Night lClas&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;Night Charge&#39;</span><span class="p">,</span><span class="s1">&#39;Intl Mins&#39;</span><span class="p">,</span><span class="s1">&#39;Intl Calls&#39;</span><span class="p">]</span>
+
+<span class="c1"># on crée un objet qui rassemble toutes ces colonnes dans une colonne</span>
+<span class="c1"># nommée var_expl</span>
+<span class="n">assembler</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="n">numericCols</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;var_expl&quot;</span><span class="p">)</span>
+
+<span class="c1"># on divise le DataFrame initial (churn) en deux DataFrame représentant</span>
+<span class="c1"># respectivement 70% et 30% des données</span>
+
+<span class="p">(</span><span class="n">trainingData</span><span class="p">,</span> <span class="n">testData</span><span class="p">)</span> <span class="o">=</span> <span class="n">churn</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>À la différence de Scikit-Learn, on va devoir nommer les groupes de variables en
+entrée et en sortie lors de la création de l’objet à partir de la classe du modèle.</p>
+<p>Les données doivent donc avoir le format spécifié dans l’objet. Par ailleurs, on utilise un format spécifique pour les variables explicatives qui sont toutes stockées dans une structure à l’intérieur du DataFrame.</p>
+</section>
+<section id="creation-du-modele-et-du-pipeline">
+<h3>Création du modèle et du pipeline<a class="headerlink" href="#creation-du-modele-et-du-pipeline" title="Permalink to this heading">#</a></h3>
+<p>Nous pouvons créer notre modèle de forêt aléatoire ainsi que le pipeline associé :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="c1"># on crée notre modèle</span>
+<span class="n">model</span><span class="o">=</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;Churn2&quot;</span><span class="p">,</span> <span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;var_expl&quot;</span><span class="p">,</span>
+                             <span class="n">numTrees</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.ml</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="c1"># on construit le pipeline qui est composé des 3 étapes dévelopées auparavant</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="p">[</span><span class="n">indexer</span><span class="p">,</span> <span class="n">assembler</span><span class="p">,</span> <span class="n">model</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ajustement-et-validation-du-modele">
+<h3>Ajustement et validation du modèle<a class="headerlink" href="#ajustement-et-validation-du-modele" title="Permalink to this heading">#</a></h3>
+<p>Nous faisons les calculs sur les données d’apprentissage et testons sur les
+données de validation :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ajustement du modèle</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">trainingData</span><span class="p">)</span>
+<span class="c1"># prévision sur les données de validation</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">testData</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Par défaut, Spark va créer de nouvelles colonnes dans nos données avec les
+prédictions (colonne prediction) et les probabilités de prédiction (colonne
+rawPrediction).</p>
+<p>Nous pouvons calculer des métriques comme l’AUC ou le pourcentage de bien
+classés (accuracy) :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.ml.evaluation</span> <span class="kn">import</span> <span class="n">BinaryClassificationEvaluator</span>
+
+<span class="c1"># cette classe calcule l’AUC de notre modèle</span>
+<span class="n">evaluator</span> <span class="o">=</span> <span class="n">BinaryClassificationEvaluator</span><span class="p">(</span><span class="n">rawPredictionCol</span><span class="o">=</span><span class="s2">&quot;rawPrediction&quot;</span><span class="p">,</span>
+                                          <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;Churn2&quot;</span><span class="p">)</span>
+
+<span class="c1"># on applique les données prédites à notre objet d’évalaution</span>
+<span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+
+<span class="c1"># L’AUC est affichée</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on calcule l’accuracy manuellement</span>
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">predictions</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">predictions</span><span class="o">.</span><span class="n">Churn2</span><span class="o">==</span><span class="n">predictions</span><span class="o">.</span><span class="n">prediction</span><span class="p">)</span>\
+                        <span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">testData</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+<span class="n">accuracy</span>
+<span class="c1"># on obtient l’accuracy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Les métriques utilisées nous permettent de voir que notre modèle ressemble à
+celui de Scikit-Learn en termes de performance (il est moins bon car nous avons
+moins de variables explicatives).</p>
+<p>Nous avons effectué tous les calculs dans notre environnement big data. Le seul
+moment où les données sont revenues vers nous est situé à la fin, pour récupérer le
+résultat.</p>
+<p>Cet exemple illustre bien la simplicité de Spark. L’utilisation de Spark pour des
+tâches plus complexes demande plus de travail mais PySpark et les DataFrames
+rendent ce passage très aisé pour un data scientist à l’aise avec les outils de traitement
+de données de Python.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07_01_Big_data_import.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapitre 7 - Passage au big data (1ère partie)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="CAA_test-checkpoint.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">1. Modelisation des rendements</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-dataframe-de-spark-sql">7.4.3 Le DataFrame de Spark SQL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-votre-session-spark">Lancer votre session Spark</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-des-donnees-json-parquet-csv-hive">Lecture des données (json, parquet, csv, hive)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manipuler-des-dataframes">Manipuler des DataFrames</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afficher-des-statistiques-descriptives">Afficher des statistiques descriptives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terminer-votre-session-spark">Terminer votre session Spark</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-machine-learning-avec-spark">7.4.4 Le machine learning avec Spark</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation-des-donnees">Préparation des données</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creation-du-modele-et-du-pipeline">Création du modèle et du pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajustement-et-validation-du-modele">Ajustement et validation du modèle</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

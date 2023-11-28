@@ -1,0 +1,1823 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapitre 5 - La data visualisation avec Python (1ère partie) &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python documentation/05_01_Data_visualisation_matplotlib_seaborn';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">My sample book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Bienvenue sur le site de TRA BI NENE OTHNIEL
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter2.html">mes recherches et tout ce qui est utiles</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fpython documentation/05_01_Data_visualisation_matplotlib_seaborn.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/python documentation/05_01_Data_visualisation_matplotlib_seaborn.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapitre 5 - La data visualisation avec Python (1ère partie)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construction-de-graphiques-avec-matplotlib">5.1 Construction de graphiques avec matplotlib</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afficher-des-graphiques">5.1.1 Afficher des graphiques</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-parametres-globaux-de-vos-graphiques">5.1.3 Les paramètres globaux de vos graphiques</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#changer-des-parametres-specifiques">Changer des paramètres spécifiques</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exporter-un-graphique">Exporter un graphique</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definir-son-premier-graphique">5.1.4 Définir son premier graphique</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nuage-de-points-avec-plt-scatter">5.1.5 Nuage de points avec plt.scatter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-graphique-en-batons-avec-plt-bar">5.1.6 Le graphique en bâtons avec plt.bar()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-construction-dun-pie-chart">5.1.7 La construction d’un pie chart</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-barres-derreurs-avec-plt-errorbar">5.1.8 Les barres d’erreurs avec plt.errorbar()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-construction-dhistogrammes">5.1.9 La construction d’histogrammes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#personnaliser-vos-graphiques-matplotlib">5.1.10 Personnaliser vos graphiques Matplotlib</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ajouter-plusieurs-graphiques-sur-le-meme-graphique">Ajouter plusieurs graphiques sur le même graphique</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#personnaliser-les-legendes-et-les-colorbar">Personnaliser les légendes et les colorbar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inserer-du-texte-dans-un-graphique">Insérer du texte dans un graphique</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creer-un-graphique-anime">5.1.11 Créer un graphique animé</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seaborn-pour-des-representations-plus-elaborees">5.2 Seaborn pour des représentations plus élaborées</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utilisation-de-seaborn">5.2.1 Utilisation de Seaborn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-box-plot-ou-la-boite-a-moustaches">5.2.2 Le box-plot ou la boîte à moustaches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#violin-plot">5.2.3 Violin plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-distplot-de-seaborn">5.2.4 Les distplot() de Seaborn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-pairplot-de-seaborn-ou-la-matrice-de-graphiques">5.2.5 Les pairplot() de Seaborn ou la matrice de graphiques</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-jointplot">5.2.6 Les jointplot()</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapitre-5-la-data-visualisation-avec-python-1ere-partie">
+<h1>Chapitre 5 - La data visualisation avec Python (1ère partie)<a class="headerlink" href="#chapitre-5-la-data-visualisation-avec-python-1ere-partie" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>De nombreux packages sont disponibles en Python pour représenter des données
+de manière attractive.</p>
+<p>Le plus connu est Matplotlib et sert de base à de nombreux autres packages.</p>
+<section id="construction-de-graphiques-avec-matplotlib">
+<h2>5.1 Construction de graphiques avec matplotlib<a class="headerlink" href="#construction-de-graphiques-avec-matplotlib" title="Permalink to this heading">#</a></h2>
+<section id="afficher-des-graphiques">
+<h3>5.1.1 Afficher des graphiques<a class="headerlink" href="#afficher-des-graphiques" title="Permalink to this heading">#</a></h3>
+<p>Matplotlib est un package complet pour la data visualisation. Il est basé sur la
+construction de graphiques en utilisant des commandes simples.</p>
+<p>On commence par importer le module pyplot du package :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si vous travaillez dans un notebook Jupyter, il vous faudra ajouter une ligne au
+début de votre notebook afin de faire en sorte que le graphique apparaisse dans le
+notebook à la suite de votre code sous la forme d’une image statique :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<p>Le principe du développement de graphiques avec Matplotlib est toujours le
+même : on peuple notre graphique petit à petit et, une fois le graphique terminé, on soumet le code et on affiche le graphique (avec plt.show() dans votre IDE classique ou en soumettant la cellule dans votre notebook).</p>
+<p>Par ailleurs, il existe deux manières de construire des graphiques avec Matplotlib.</p>
+<p>On peut enchaîner les traitements et finalement afficher un graphique :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on crée une figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="c1"># on commence par un sous-graphique</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+<span class="c1"># on enchaine avec un second sous-graphique</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span><span class="s2">&quot;+&quot;</span><span class="p">)</span>
+<span class="c1"># on ajoute un troisième sous-graphique</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="s2">&quot;r.&quot;</span><span class="p">)</span>
+<span class="c1"># on finit avec le dernier sous-graphique</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="s2">&quot;g--&quot;</span><span class="p">)</span>
+<span class="c1"># on sauvegarde notre graphique dans un fichier</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;../data/mes_graphiques.jpg&quot;</span><span class="p">)</span>
+<span class="c1">#plt.show() #si dans un IDE classique</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">16</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="s2">&quot;g--&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="c1"># on sauvegarde notre graphique dans un fichier</span>
+<span class="ne">---&gt; </span><span class="mi">16</span> <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;../data/mes_graphiques.jpg&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\matplotlib\pyplot.py:996,</span> in <span class="ni">savefig</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">993</span> <span class="nd">@_copy_docstring_and_deprecators</span><span class="p">(</span><span class="n">Figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">994</span> <span class="k">def</span> <span class="nf">savefig</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">995</span>     <span class="n">fig</span> <span class="o">=</span> <span class="n">gcf</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">996</span>     <span class="n">res</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">997</span>     <span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw_idle</span><span class="p">()</span>  <span class="c1"># Need this if &#39;transparent=True&#39;, to reset colors.</span>
+<span class="g g-Whitespace">    </span><span class="mi">998</span>     <span class="k">return</span> <span class="n">res</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\matplotlib\figure.py:3328,</span> in <span class="ni">Figure.savefig</span><span class="nt">(self, fname, transparent, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3324</span>     <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3325</span>         <span class="n">stack</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">3326</span>             <span class="n">ax</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">_cm_set</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">))</span>
+<span class="ne">-&gt; </span><span class="mi">3328</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">print_figure</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\matplotlib\backend_bases.py:2362,</span> in <span class="ni">FigureCanvasBase.print_figure</span><span class="nt">(self, filename, dpi, facecolor, edgecolor, orientation, format, bbox_inches, pad_inches, bbox_extra_artists, backend, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2358</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2359</span>     <span class="c1"># _get_renderer may change the figure dpi (as vector formats</span>
+<span class="g g-Whitespace">   </span><span class="mi">2360</span>     <span class="c1"># force the figure dpi to 72), so we need to set it again here.</span>
+<span class="g g-Whitespace">   </span><span class="mi">2361</span>     <span class="k">with</span> <span class="n">cbook</span><span class="o">.</span><span class="n">_setattr_cm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">2362</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">print_method</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2363</span>             <span class="n">filename</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2364</span>             <span class="n">facecolor</span><span class="o">=</span><span class="n">facecolor</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2365</span>             <span class="n">edgecolor</span><span class="o">=</span><span class="n">edgecolor</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2366</span>             <span class="n">orientation</span><span class="o">=</span><span class="n">orientation</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2367</span>             <span class="n">bbox_inches_restore</span><span class="o">=</span><span class="n">_bbox_inches_restore</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2368</span>             <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2369</span> <span class="k">finally</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2370</span>     <span class="k">if</span> <span class="n">bbox_inches</span> <span class="ow">and</span> <span class="n">restore_bbox</span><span class="p">:</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\matplotlib\backend_bases.py:2228,</span> in <span class="ni">FigureCanvasBase._switch_canvas_and_return_print_method.&lt;locals&gt;.&lt;lambda&gt;</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2224</span>     <span class="n">optional_kws</span> <span class="o">=</span> <span class="p">{</span>  <span class="c1"># Passed by print_figure for other renderers.</span>
+<span class="g g-Whitespace">   </span><span class="mi">2225</span>         <span class="s2">&quot;dpi&quot;</span><span class="p">,</span> <span class="s2">&quot;facecolor&quot;</span><span class="p">,</span> <span class="s2">&quot;edgecolor&quot;</span><span class="p">,</span> <span class="s2">&quot;orientation&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2226</span>         <span class="s2">&quot;bbox_inches_restore&quot;</span><span class="p">}</span>
+<span class="g g-Whitespace">   </span><span class="mi">2227</span>     <span class="n">skip</span> <span class="o">=</span> <span class="n">optional_kws</span> <span class="o">-</span> <span class="p">{</span><span class="o">*</span><span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">meth</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="p">}</span>
+<span class="ne">-&gt; </span><span class="mi">2228</span>     <span class="n">print_method</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">meth</span><span class="p">)(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">meth</span><span class="p">(</span>
+<span class="nn">   2229         *args, **{k: v for k, v</span> in <span class="ni">kwargs.items</span><span class="nt">() if k not in skip}))</span>
+<span class="g g-Whitespace">   </span><span class="mi">2230</span> <span class="k">else</span><span class="p">:</span>  <span class="c1"># Let third-parties do as they see fit.</span>
+<span class="g g-Whitespace">   </span><span class="mi">2231</span>     <span class="n">print_method</span> <span class="o">=</span> <span class="n">meth</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\matplotlib\backends\backend_agg.py:526,</span> in <span class="ni">FigureCanvasAgg.print_jpg</span><span class="nt">(self, filename_or_obj, pil_kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">521</span> <span class="k">def</span> <span class="nf">print_jpg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename_or_obj</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">pil_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">522</span>     <span class="c1"># savefig() has already applied savefig.facecolor; we now set it to</span>
+<span class="g g-Whitespace">    </span><span class="mi">523</span>     <span class="c1"># white to make imsave() blend semi-transparent figures against an</span>
+<span class="g g-Whitespace">    </span><span class="mi">524</span>     <span class="c1"># assumed white background.</span>
+<span class="g g-Whitespace">    </span><span class="mi">525</span>     <span class="k">with</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rc_context</span><span class="p">({</span><span class="s2">&quot;savefig.facecolor&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">}):</span>
+<span class="ne">--&gt; </span><span class="mi">526</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_print_pil</span><span class="p">(</span><span class="n">filename_or_obj</span><span class="p">,</span> <span class="s2">&quot;jpeg&quot;</span><span class="p">,</span> <span class="n">pil_kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\matplotlib\backends\backend_agg.py:458,</span> in <span class="ni">FigureCanvasAgg._print_pil</span><span class="nt">(self, filename_or_obj, fmt, pil_kwargs, metadata)</span>
+<span class="g g-Whitespace">    </span><span class="mi">453</span> <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">454</span><span class="sd"> Draw the canvas, then save it using `.image.imsave` (to which</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span><span class="sd"> *pil_kwargs* and *metadata* are forwarded).</span>
+<span class="g g-Whitespace">    </span><span class="mi">456</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">457</span> <span class="n">FigureCanvasAgg</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">458</span> <span class="n">mpl</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">imsave</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">459</span>     <span class="n">filename_or_obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer_rgba</span><span class="p">(),</span> <span class="nb">format</span><span class="o">=</span><span class="n">fmt</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;upper&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">460</span>     <span class="n">dpi</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">dpi</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">pil_kwargs</span><span class="o">=</span><span class="n">pil_kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\matplotlib\image.py:1687,</span> in <span class="ni">imsave</span><span class="nt">(fname, arr, vmin, vmax, cmap, format, origin, dpi, metadata, pil_kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1685</span> <span class="n">pil_kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;format&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1686</span> <span class="n">pil_kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;dpi&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">dpi</span><span class="p">,</span> <span class="n">dpi</span><span class="p">))</span>
+<span class="ne">-&gt; </span><span class="mi">1687</span> <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="o">**</span><span class="n">pil_kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\lib\site-packages\PIL\Image.py:2410,</span> in <span class="ni">Image.save</span><span class="nt">(self, fp, format, **params)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2408</span>         <span class="n">fp</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r+b&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2409</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2410</span>         <span class="n">fp</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;w+b&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2412</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2413</span>     <span class="n">save_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../data/mes_graphiques.jpg&#39;
+</pre></div>
+</div>
+<img alt="../_images/2ef479dc017a1b17022942636527e7a98dc02dbcea94efce680c60db0a123c85.png" src="../_images/2ef479dc017a1b17022942636527e7a98dc02dbcea94efce680c60db0a123c85.png" />
+</div>
+</div>
+<p>On voit ici que nous créons un graphique avec figure() et modifions les
+sous-graphiques.</p>
+<p>On peut utiliser des objets et travailler dessus :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on crée une figure avec 4 sous-graphiques</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># on construit les 4 graphiques</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span><span class="s2">&quot;+&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="s2">&quot;r.&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="s2">&quot;g--&quot;</span><span class="p">)</span>
+<span class="c1"># on sauvegarde l&#39;image dans un fichier</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;../data/mes_graphiques2.jpg&quot;</span><span class="p">)</span>
+<span class="c1">#plt.show() #si dans un IDE classique</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0e3079c7d8e57fbd6d77a109c1a6c9f272587d1196cad869a9ebe29855592e75.png" src="../_images/0e3079c7d8e57fbd6d77a109c1a6c9f272587d1196cad869a9ebe29855592e75.png" />
+</div>
+</div>
+<p>Nous aurons tendance à privilégier la première approche qui est bien adaptée aux
+notebooks mais nous serons amenés à utiliser parfois la seconde notamment dans
+le cadre de graphiques plus interactifs.</p>
+</section>
+<section id="les-parametres-globaux-de-vos-graphiques">
+<h3>5.1.3 Les paramètres globaux de vos graphiques<a class="headerlink" href="#les-parametres-globaux-de-vos-graphiques" title="Permalink to this heading">#</a></h3>
+<p>On peut choisir un style pour son graphique, on utilise :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">available</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Solarize_Light2&#39;, &#39;_classic_test_patch&#39;, &#39;bmh&#39;, &#39;classic&#39;, &#39;dark_background&#39;, &#39;fast&#39;, &#39;fivethirtyeight&#39;, &#39;ggplot&#39;, &#39;grayscale&#39;, &#39;seaborn&#39;, &#39;seaborn-bright&#39;, &#39;seaborn-colorblind&#39;, &#39;seaborn-dark&#39;, &#39;seaborn-dark-palette&#39;, &#39;seaborn-darkgrid&#39;, &#39;seaborn-deep&#39;, &#39;seaborn-muted&#39;, &#39;seaborn-notebook&#39;, &#39;seaborn-paper&#39;, &#39;seaborn-pastel&#39;, &#39;seaborn-poster&#39;, &#39;seaborn-talk&#39;, &#39;seaborn-ticks&#39;, &#39;seaborn-white&#39;, &#39;seaborn-whitegrid&#39;, &#39;tableau-colorblind10&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Voici les paramètres de ce style :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">library</span><span class="p">[</span><span class="s1">&#39;ggplot&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RcParams({&#39;axes.axisbelow&#39;: True,
+          &#39;axes.edgecolor&#39;: &#39;white&#39;,
+          &#39;axes.facecolor&#39;: &#39;#E5E5E5&#39;,
+          &#39;axes.grid&#39;: True,
+          &#39;axes.labelcolor&#39;: &#39;#555555&#39;,
+          &#39;axes.labelsize&#39;: &#39;large&#39;,
+          &#39;axes.linewidth&#39;: 1.0,
+          &#39;axes.prop_cycle&#39;: cycler(&#39;color&#39;, [&#39;#E24A33&#39;, &#39;#348ABD&#39;, &#39;#988ED5&#39;, &#39;#777777&#39;, &#39;#FBC15E&#39;, &#39;#8EBA42&#39;, &#39;#FFB5B8&#39;]),
+          &#39;axes.titlesize&#39;: &#39;x-large&#39;,
+          &#39;figure.edgecolor&#39;: &#39;0.50&#39;,
+          &#39;figure.facecolor&#39;: &#39;white&#39;,
+          &#39;font.size&#39;: 10.0,
+          &#39;grid.color&#39;: &#39;white&#39;,
+          &#39;grid.linestyle&#39;: &#39;-&#39;,
+          &#39;patch.antialiased&#39;: True,
+          &#39;patch.edgecolor&#39;: &#39;#EEEEEE&#39;,
+          &#39;patch.facecolor&#39;: &#39;#348ABD&#39;,
+          &#39;patch.linewidth&#39;: 0.5,
+          &#39;xtick.color&#39;: &#39;#555555&#39;,
+          &#39;xtick.direction&#39;: &#39;out&#39;,
+          &#39;ytick.color&#39;: &#39;#555555&#39;,
+          &#39;ytick.direction&#39;: &#39;out&#39;})
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pour utiliser le style ggplot, on utilise :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1bf4f92a400&gt;]
+</pre></div>
+</div>
+<img alt="../_images/f2b7bbe232e7691331c95445818a4555450215e32d5b036f5c243dd689a5b7a3.png" src="../_images/f2b7bbe232e7691331c95445818a4555450215e32d5b036f5c243dd689a5b7a3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on peut aussi utiliser :</span>
+<span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span> <span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a1dd46bc4317282f726f77dc1d53fcfbd4c7805b103be31e609da6d1a588f1ef.png" src="../_images/a1dd46bc4317282f726f77dc1d53fcfbd4c7805b103be31e609da6d1a588f1ef.png" />
+</div>
+</div>
+<section id="changer-des-parametres-specifiques">
+<h4>Changer des paramètres spécifiques<a class="headerlink" href="#changer-des-parametres-specifiques" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;lines.linewidth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;lines.color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on peut aussi voir les paramètres par défaut</span>
+<span class="c1">#print(plt.rcParamsDefault)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># si on désire revenir aux paramètres par défaut, on utilise :</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcdefaults</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exporter-un-graphique">
+<h4>Exporter un graphique<a class="headerlink" href="#exporter-un-graphique" title="Permalink to this heading">#</a></h4>
+<p>On peut utiliser :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;../data/ggplot_style.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/cb931704d4735ad7d78207890d3880897b1a85f03dd0f6b798817dca8484677c.png" src="../_images/cb931704d4735ad7d78207890d3880897b1a85f03dd0f6b798817dca8484677c.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="definir-son-premier-graphique">
+<h3>5.1.4 Définir son premier graphique<a class="headerlink" href="#definir-son-premier-graphique" title="Permalink to this heading">#</a></h3>
+<p>Si on désire dessiner un graphique simple, on pourra utiliser la fonction <em>plot()</em> :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1bf4f7b9cd0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/b27792361fbb093366486ec0e16293ca33b727e9e7cfb76eb29aae3426e6626c.png" src="../_images/b27792361fbb093366486ec0e16293ca33b727e9e7cfb76eb29aae3426e6626c.png" />
+</div>
+</div>
+<p>On peut simplement ajouter des graphiques et des caractéristique à notre figure :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on génère un premier graphique (rouge avec une ligne continue entre les points)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="s1">&#39;r-&#39;</span> <span class="p">)</span>
+<span class="c1"># on génère un second graphique (bleu avec une ligne pointillée entre les points)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="s1">&#39;b--&#39;</span> <span class="p">)</span>
+<span class="c1"># on ajoute des infos sur le titre, les noms des axes</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Evolution du prix des actions sur 100 jours&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Temps&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Valeur&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Valeur&#39;)
+</pre></div>
+</div>
+<img alt="../_images/c4ed957b79dd52992e2d6c2bd25182fe67020d0f38d5a6381b0aaf806ec96eff.png" src="../_images/c4ed957b79dd52992e2d6c2bd25182fe67020d0f38d5a6381b0aaf806ec96eff.png" />
+</div>
+</div>
+<p>Voici un exemple sur des données boursières, nous avons voulu représenter les
+données issues des maximums et minimums quotidiens de l’indice CAC 40.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on récupère les données</span>
+<span class="n">cac40</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/CAC40.csv&quot;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cac40</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time</th>
+      <th>CAC 40</th>
+      <th>volume</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1987-12-03 01:00:00</td>
+      <td>1018.78</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1987-12-04 01:00:00</td>
+      <td>989.14</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1987-12-07 01:00:00</td>
+      <td>964.20</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1987-12-08 01:00:00</td>
+      <td>977.19</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1987-12-09 01:00:00</td>
+      <td>969.56</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cac40</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">cac40</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cac40</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;CAC 40&quot;</span><span class="p">,</span> 
+           <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Evolution de l’indice CAC40 depuis 1988&quot;</span><span class="p">,</span>
+           <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:title={&#39;center&#39;:&#39;Evolution de l’indice CAC40 depuis 1988&#39;}, xlabel=&#39;time&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/297bbb6ab8cfc3ad0d18445eef1b6b567cc41d018421442f7eb27a754018b625.png" src="../_images/297bbb6ab8cfc3ad0d18445eef1b6b567cc41d018421442f7eb27a754018b625.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on affiche la courbe des valeurs en bleu</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cac40</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">],</span> <span class="n">cac40</span><span class="p">[</span><span class="s2">&quot;CAC 40&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;CAC 40&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="c1"># on définit le nom des axes</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Valeur&quot;</span><span class="p">)</span>
+<span class="c1"># on définit le titre</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Evolution de l’indice CAC40 depuis 1988&quot;</span><span class="p">)</span>
+<span class="c1"># on affiche la légende</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1bf50b1cee0&gt;
+</pre></div>
+</div>
+<img alt="../_images/d8556cc2166de261644aa93428c66a85ffd30dc684b2c9c9a7a03a541c7f4e34.png" src="../_images/d8556cc2166de261644aa93428c66a85ffd30dc684b2c9c9a7a03a541c7f4e34.png" />
+</div>
+</div>
+</section>
+<section id="nuage-de-points-avec-plt-scatter">
+<h3>5.1.5 Nuage de points avec plt.scatter<a class="headerlink" href="#nuage-de-points-avec-plt-scatter" title="Permalink to this heading">#</a></h3>
+<p>On peut utiliser la fonction <em>plt.scatter()</em> pour dessiner un nuage de points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on génère des données</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">taille</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+<span class="n">couleurs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># s représente la taille des points</span>
+<span class="c1"># c représente les couleurs (on peut avoir une seule couleur)</span>
+<span class="c1"># cmap permet de fournir à Matplotlib une palette de couleurs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="n">taille</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">couleurs</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s2">&quot;Greys&quot;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Y&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Représentation de points aléatoires&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x1bf50be21f0&gt;
+</pre></div>
+</div>
+<img alt="../_images/a6805d87f5e16ea44753dc205805a4490e2a741fada8e59b24fa2236bb51c628.png" src="../_images/a6805d87f5e16ea44753dc205805a4490e2a741fada8e59b24fa2236bb51c628.png" />
+</div>
+</div>
+<p>Sur les données AirBnB, on peut simplement afficher des coordonnées géographiques
+sous forme de nuage de points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on commence par récupérer les données</span>
+<span class="n">listing</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://www.stat4decision.com/listings.csv.gz&quot;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">listing</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;availability_30&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x1bf50f4f760&gt;
+</pre></div>
+</div>
+<img alt="../_images/0ccefb52550a0d3d7a9c214a52b975f06221a50127bf9974c2839f0b24c5cee2.png" src="../_images/0ccefb52550a0d3d7a9c214a52b975f06221a50127bf9974c2839f0b24c5cee2.png" />
+</div>
+</div>
+</section>
+<section id="le-graphique-en-batons-avec-plt-bar">
+<h3>5.1.6 Le graphique en bâtons avec plt.bar()<a class="headerlink" href="#le-graphique-en-batons-avec-plt-bar" title="Permalink to this heading">#</a></h3>
+<p>Voici un premier exemple de graphique en bâtons :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BarContainer object of 5 artists&gt;
+</pre></div>
+</div>
+<img alt="../_images/811a6064f069c7c826d4fe273c7698ef9bf50ef62bf5d5a0445ae464483726f7.png" src="../_images/811a6064f069c7c826d4fe273c7698ef9bf50ef62bf5d5a0445ae464483726f7.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">listing</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;listing_url&#39;, &#39;scrape_id&#39;, &#39;last_scraped&#39;, &#39;name&#39;, &#39;description&#39;,
+       &#39;neighborhood_overview&#39;, &#39;picture_url&#39;, &#39;host_id&#39;, &#39;host_url&#39;,
+       &#39;host_name&#39;, &#39;host_since&#39;, &#39;host_location&#39;, &#39;host_about&#39;,
+       &#39;host_response_time&#39;, &#39;host_response_rate&#39;, &#39;host_acceptance_rate&#39;,
+       &#39;host_is_superhost&#39;, &#39;host_thumbnail_url&#39;, &#39;host_picture_url&#39;,
+       &#39;host_neighbourhood&#39;, &#39;host_listings_count&#39;,
+       &#39;host_total_listings_count&#39;, &#39;host_verifications&#39;,
+       &#39;host_has_profile_pic&#39;, &#39;host_identity_verified&#39;, &#39;neighbourhood&#39;,
+       &#39;neighbourhood_cleansed&#39;, &#39;neighbourhood_group_cleansed&#39;, &#39;latitude&#39;,
+       &#39;longitude&#39;, &#39;property_type&#39;, &#39;room_type&#39;, &#39;accommodates&#39;, &#39;bathrooms&#39;,
+       &#39;bathrooms_text&#39;, &#39;bedrooms&#39;, &#39;beds&#39;, &#39;amenities&#39;, &#39;price&#39;,
+       &#39;minimum_nights&#39;, &#39;maximum_nights&#39;, &#39;minimum_minimum_nights&#39;,
+       &#39;maximum_minimum_nights&#39;, &#39;minimum_maximum_nights&#39;,
+       &#39;maximum_maximum_nights&#39;, &#39;minimum_nights_avg_ntm&#39;,
+       &#39;maximum_nights_avg_ntm&#39;, &#39;calendar_updated&#39;, &#39;has_availability&#39;,
+       &#39;availability_30&#39;, &#39;availability_60&#39;, &#39;availability_90&#39;,
+       &#39;availability_365&#39;, &#39;calendar_last_scraped&#39;, &#39;number_of_reviews&#39;,
+       &#39;number_of_reviews_ltm&#39;, &#39;number_of_reviews_l30d&#39;, &#39;first_review&#39;,
+       &#39;last_review&#39;, &#39;review_scores_rating&#39;, &#39;review_scores_accuracy&#39;,
+       &#39;review_scores_cleanliness&#39;, &#39;review_scores_checkin&#39;,
+       &#39;review_scores_communication&#39;, &#39;review_scores_location&#39;,
+       &#39;review_scores_value&#39;, &#39;license&#39;, &#39;instant_bookable&#39;,
+       &#39;calculated_host_listings_count&#39;,
+       &#39;calculated_host_listings_count_entire_homes&#39;,
+       &#39;calculated_host_listings_count_private_rooms&#39;,
+       &#39;calculated_host_listings_count_shared_rooms&#39;, &#39;reviews_per_month&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">review_means_resa</span><span class="o">=</span><span class="n">listing</span><span class="p">[</span><span class="n">listing</span><span class="p">[</span><span class="s2">&quot;instant_bookable&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;t&quot;</span><span class="p">]</span>\
+                    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;host_is_superhost&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">number_of_reviews</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">review_means_noresa</span><span class="o">=</span><span class="n">listing</span><span class="p">[</span><span class="n">listing</span><span class="p">[</span><span class="s2">&quot;instant_bookable&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;f&quot;</span><span class="p">]</span>\
+                    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;host_is_superhost&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">number_of_reviews</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">review_means_resa</span><span class="p">[:</span><span class="mi">3</span><span class="p">]))</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.35</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">ind</span> <span class="o">-</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">review_means_resa</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="n">width</span><span class="p">,</span>
+                <span class="n">color</span><span class="o">=</span><span class="s1">&#39;SkyBlue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Resa instant&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">ind</span> <span class="o">+</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">review_means_noresa</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="n">width</span><span class="p">,</span>
+<span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;IndianRed&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Pas resa instant&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Nombre moyen de critiques&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Est un superhost&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Nombre moyen de critiques&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">ind</span><span class="p">,</span> <span class="n">review_means_resa</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1bf50c0df40&gt;
+</pre></div>
+</div>
+<img alt="../_images/dda8e8ea9d6a0c4d88a5f35b79524cc8042cc2bfa30e6994345b2598346998d4.png" src="../_images/dda8e8ea9d6a0c4d88a5f35b79524cc8042cc2bfa30e6994345b2598346998d4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">review_means_resa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>host_is_superhost
+f    17.271125
+t    48.827815
+Name: number_of_reviews, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">review_means_resa</span><span class="p">,</span> <span class="n">review_means_noresa</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Nombre moyen de critiques&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Politique d’annulation&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Nombre moyen de critiques&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Nombre moyen de critiques&#39;)
+</pre></div>
+</div>
+<img alt="../_images/83339516b1227111edc4679d93049c7c9b6a8374c12ec61e0c3e265d53e63b5e.png" src="../_images/83339516b1227111edc4679d93049c7c9b6a8374c12ec61e0c3e265d53e63b5e.png" />
+</div>
+</div>
+<p>Ce code est séparé en plusieurs parties :</p>
+<ul class="simple">
+<li><p>Dans une première partie, nous manipulons notre DataFrame pour en extraire les informations qui nous intéressent. Dans notre cas, il s’agit de deux objets Series qui rassemblent les nombres moyens de critiques des appartements en fonction de la possibilité de réserver instantanément le logement et en ajoutant un groupby pour calculer la moyenne en fonction des politiques d’annulation (nous ne prenons que les trois premières, ce qui se traduit par [:3]).</p></li>
+<li><p>Dans une seconde partie, nous définissons les caractéristiques de notre graphique, la largeur des barres et leur position avec une suite d’entiers. On peut alors dessiner les barres en utilisant plt.bar(). Nous les positionnons de chaque côté de la marque numérique définie plus haut.</p></li>
+<li><p>Dans une troisième partie, nous modifions les ticks en utilisant les différentes politiques d’annulation et ajoutons une légende.</p></li>
+</ul>
+</section>
+<section id="la-construction-dun-pie-chart">
+<h3>5.1.7 La construction d’un pie chart<a class="headerlink" href="#la-construction-dun-pie-chart" title="Permalink to this heading">#</a></h3>
+<p>Le pie chart est souvent connu sous le nom de camembert en français. Ce graphique est assez pauvre mais il est fréquemment utilisé.</p>
+<p>Un pie chart est simple à mettre en oeuvre avec Matplotlib, si nous reprenons l’exemple vu juste au-dessus :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on construit les groupes grâce aux données AirBnB</span>
+<span class="n">review_means</span><span class="o">=</span><span class="n">listing</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;host_is_superhost&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">number_of_reviews</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="c1"># on affiche le graphique</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">review_means</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> 
+        <span class="n">labels</span><span class="o">=</span><span class="n">review_means</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> 
+        <span class="n">autopct</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.1f%%</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([&lt;matplotlib.patches.Wedge at 0x1bf4f713bb0&gt;,
+  &lt;matplotlib.patches.Wedge at 0x1bf4f713ac0&gt;],
+ [Text(0.8034138052574705, 0.7513496240244694, &#39;f&#39;),
+  Text(-0.8034138052574704, -0.7513496240244695, &#39;t&#39;)],
+ [Text(0.43822571195862026, 0.4098270676497105, &#39;23.9%&#39;),
+  Text(-0.4382257119586202, -0.40982706764971055, &#39;76.1%&#39;)])
+</pre></div>
+</div>
+<img alt="../_images/b202d500fb0f4092e5d44b2ce0ed7871ac693fa251592e43980f3946ff607642.png" src="../_images/b202d500fb0f4092e5d44b2ce0ed7871ac693fa251592e43980f3946ff607642.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">review_means</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> 
+        <span class="n">labels</span><span class="o">=</span><span class="n">review_means</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span>
+           <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">],</span>
+           <span class="n">explode</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+           <span class="n">autopct</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%1.1f%%</span><span class="s1">&#39;</span><span class="p">,</span>
+           
+           <span class="n">shadow</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1bf4f649fa0&gt;
+</pre></div>
+</div>
+<img alt="../_images/8a84ffde867920641b8fccec002a3af063d8687d83a1e96581704e8b98163e6c.png" src="../_images/8a84ffde867920641b8fccec002a3af063d8687d83a1e96581704e8b98163e6c.png" />
+</div>
+</div>
+</section>
+<section id="les-barres-derreurs-avec-plt-errorbar">
+<h3>5.1.8 Les barres d’erreurs avec plt.errorbar()<a class="headerlink" href="#les-barres-derreurs-avec-plt-errorbar" title="Permalink to this heading">#</a></h3>
+<p>Il arrive souvent que l’on veuille représenter des barres d’erreur liées aux observations.</p>
+<p>Cette fonction nous permet de construire un graphique classique (comme avec <em>plt.plot()</em>) en ajoutant des barres d’erreurs.</p>
+<p>Ces barres d’erreurs peuvent prendre différentes formes et différentes tailles.</p>
+<p>Si nous tentons de représenter les données d’une enquête sur 1 000 personnes
+avec les marges d’erreurs, en utilisant les quantiles de la distribution normale :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># résultats des 4 candidats</span>
+<span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">.33</span><span class="p">,</span><span class="mf">.25</span><span class="p">,</span><span class="mf">.28</span><span class="p">,</span><span class="mf">.14</span><span class="p">])</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="c1"># calul de la marge d’erreur</span>
+<span class="n">marge</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">data</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">data</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span><span class="o">*</span><span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">)</span>
+<span class="c1"># affichage du résultat</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">marge</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.b&#39;</span><span class="p">,</span> <span class="n">ecolor</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span><span class="n">barsabove</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Résultats avec marge d’erreur&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">x</span><span class="p">,[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="s2">&quot;D&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([&lt;matplotlib.axis.XTick at 0x1bf51fa3af0&gt;,
+  &lt;matplotlib.axis.XTick at 0x1bf51fa3ac0&gt;,
+  &lt;matplotlib.axis.XTick at 0x1bf51fa0640&gt;,
+  &lt;matplotlib.axis.XTick at 0x1bf51fcf880&gt;],
+ [Text(1.0, 0, &#39;A&#39;), Text(2.0, 0, &#39;B&#39;), Text(3.0, 0, &#39;C&#39;), Text(4.0, 0, &#39;D&#39;)])
+</pre></div>
+</div>
+<img alt="../_images/5617d4a1c34506a20316d94f4d651764616e469ba4a9df6d3f3c41d4154e61e4.png" src="../_images/5617d4a1c34506a20316d94f4d651764616e469ba4a9df6d3f3c41d4154e61e4.png" />
+</div>
+</div>
+<p>On peut modifier l’aspect des barres d’erreurs en utilisant par exemple <em>plt.style.use()</em> avec un style différent.</p>
+<p>On ajoute aussi les bornes des barres.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-whitegrid&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">marge</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.b&#39;</span><span class="p">,</span><span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Résultats avec marge d’erreur&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">x</span><span class="p">,[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="s2">&quot;D&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([&lt;matplotlib.axis.XTick at 0x1bf52124910&gt;,
+  &lt;matplotlib.axis.XTick at 0x1bf521248e0&gt;,
+  &lt;matplotlib.axis.XTick at 0x1bf52122460&gt;,
+  &lt;matplotlib.axis.XTick at 0x1bf51fe0df0&gt;],
+ [Text(1.0, 0, &#39;A&#39;), Text(2.0, 0, &#39;B&#39;), Text(3.0, 0, &#39;C&#39;), Text(4.0, 0, &#39;D&#39;)])
+</pre></div>
+</div>
+<img alt="../_images/969e561aa524a1e62079ee291299d488024d27aaa3e091b5b1e2f7bb28cc5393.png" src="../_images/969e561aa524a1e62079ee291299d488024d27aaa3e091b5b1e2f7bb28cc5393.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># si on désire revenir aux paramètres par défaut, on utilise :</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcdefaults</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="la-construction-dhistogrammes">
+<h3>5.1.9 La construction d’histogrammes<a class="headerlink" href="#la-construction-dhistogrammes" title="Permalink to this heading">#</a></h3>
+<p>Les histogrammes sont des outils de description des données extrêmement importants afin d’aider à déterminer la distribution sous-jacente à chaque variable quantitative.</p>
+<p>Si nous désirons créer deux histogrammes associés à deux variables ayant les mêmes échelles sur le même graphique, nous utilisons le code suivant :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on génère les données</span>
+<span class="n">data1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">data2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1er histogramme</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;données 1&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="c1"># 2nd histogramme</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;données 2&quot;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Histogrammes&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Fréquences&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1bf51ff5190&gt;
+</pre></div>
+</div>
+<img alt="../_images/15a87291f4abb7e6f87badc8dd9721da1530d05f166382a764b6d116d199607b.png" src="../_images/15a87291f4abb7e6f87badc8dd9721da1530d05f166382a764b6d116d199607b.png" />
+</div>
+</div>
+<p>Dans ce code, on utilise <em>label=</em> pour donner un nom aux données.</p>
+<p>Le <em>alpha=</em> est utilisé afin d’afficher les graphiques en transparence et gère le degré d’opacité des graphiques.</p>
+</section>
+<section id="personnaliser-vos-graphiques-matplotlib">
+<h3>5.1.10 Personnaliser vos graphiques Matplotlib<a class="headerlink" href="#personnaliser-vos-graphiques-matplotlib" title="Permalink to this heading">#</a></h3>
+<section id="ajouter-plusieurs-graphiques-sur-le-meme-graphique">
+<h4>Ajouter plusieurs graphiques sur le même graphique<a class="headerlink" href="#ajouter-plusieurs-graphiques-sur-le-meme-graphique" title="Permalink to this heading">#</a></h4>
+<p>Jusqu’ici, nous avons utilisé des graphiques simples, il peut devenir vite nécessaire de combiner plusieurs graphiques sur la même figure. Pour cela, on va utiliser deux
+approches. Nous travaillons sur les données du CAC 40.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on crée les données</span>
+<span class="n">cac40_2019</span> <span class="o">=</span> <span class="n">cac40</span><span class="p">[(</span><span class="n">cac40</span><span class="o">.</span><span class="n">time</span><span class="o">&lt;</span><span class="s2">&quot;2020-01-01&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">cac40</span><span class="o">.</span><span class="n">time</span><span class="o">&gt;</span><span class="s2">&quot;2019-01-01&quot;</span><span class="p">)]</span>
+<span class="n">cac40_1988</span> <span class="o">=</span> <span class="n">cac40</span><span class="p">[(</span><span class="n">cac40</span><span class="o">.</span><span class="n">time</span><span class="o">&lt;</span><span class="s2">&quot;1989-01-01&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">cac40</span><span class="o">.</span><span class="n">time</span><span class="o">&gt;</span><span class="s2">&quot;1988-01-01&quot;</span><span class="p">)]</span>
+<span class="n">cac40_2000</span> <span class="o">=</span> <span class="n">cac40</span><span class="p">[(</span><span class="n">cac40</span><span class="o">.</span><span class="n">time</span><span class="o">&lt;</span><span class="s2">&quot;2001-01-01&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">cac40</span><span class="o">.</span><span class="n">time</span><span class="o">&gt;</span><span class="s2">&quot;2000-01-01&quot;</span><span class="p">)]</span>
+<span class="c1"># on crée une figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="c1"># on définit le titre de cette figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Evolution de l’indice CAC40 sur 3 années 2019 - 2000 - 1988&quot;</span><span class="p">,</span> 
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="c1"># on se concentre sur le premier sous graphique</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">311</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cac40_2019</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">],</span><span class="n">cac40_2019</span><span class="p">[</span><span class="s2">&quot;CAC 40&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;2019&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Valeur&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="c1"># on se concentre sur le second sous graphique</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">312</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cac40_2000</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">],</span> <span class="n">cac40_2000</span><span class="p">[</span><span class="s2">&quot;CAC 40&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;2000&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Valeur&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="c1"># on se concentre sur le troisième sous graphique</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">313</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cac40_1988</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">],</span> <span class="n">cac40_1988</span><span class="p">[</span><span class="s2">&quot;CAC 40&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;1988&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Valeur&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1bf5223de80&gt;
+</pre></div>
+</div>
+<img alt="../_images/c5228aa9334d349a763998b4a8b4f74580cba5af7b7fadbad92fdf0e568034a5.png" src="../_images/c5228aa9334d349a763998b4a8b4f74580cba5af7b7fadbad92fdf0e568034a5.png" />
+</div>
+</div>
+<p>La fonction subplot permet de définir le graphique sur lequel vous travaillez.</p>
+<p>Ainsi, le code 212 veut dire qu’on travaille sur une figure avec deux graphiques en ligne et un seul en colonne. Le dernier chiffre définit le graphique que l’on modifie.</p>
+<p>Avec la fonction plt.subplots() :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on définit les données à utiliser</span>
+<span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">cac40_1988</span><span class="p">,</span><span class="n">cac40_2000</span><span class="p">,</span> <span class="n">cac40_2019</span><span class="p">]</span>
+<span class="c1"># on construit les sous-graphiques qui partagerons l’axe y</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># on définit le titre de la figure</span>
+<span class="n">f</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Evolution de l’indice CAC40 sur 3 années 2019 - 2000 - 1988&quot;</span><span class="p">,</span> 
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="c1"># pour chaque sous-graphique, on ajoute un plot</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;CAC 40&quot;</span><span class="p">]</span> <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Valeur&quot;</span><span class="p">)</span>
+<span class="c1"># finalement, on ajoute le titre de l’axe des x</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Date&#39;)
+</pre></div>
+</div>
+<img alt="../_images/ea54401f030915e13f327842440186a189525338d71dbc154d94b25407197416.png" src="../_images/ea54401f030915e13f327842440186a189525338d71dbc154d94b25407197416.png" />
+</div>
+</div>
+<p>On voit qu’on a automatisé un peu plus le traitement et qu’on crée des objets pour chaque sous-graphique. La fonction <em>plt.subplots()</em> permet d’obtenir une liste de sous-graphiques que nous avons stockés dans axes.</p>
+</section>
+<section id="personnaliser-les-legendes-et-les-colorbar">
+<h4>Personnaliser les légendes et les colorbar<a class="headerlink" href="#personnaliser-les-legendes-et-les-colorbar" title="Permalink to this heading">#</a></h4>
+<p>Les légendes et les colorbar (légendes pour des dégradés de couleurs représentant une variable quantitative) peuvent être facilement modifiés.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on crée les données</span>
+<span class="n">cac40_2019</span> <span class="o">=</span> <span class="n">cac40</span><span class="p">[(</span><span class="n">cac40</span><span class="o">.</span><span class="n">time</span><span class="o">&lt;</span><span class="s2">&quot;2020-01-01&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">cac40</span><span class="o">.</span><span class="n">time</span><span class="o">&gt;</span><span class="s2">&quot;2019-01-01&quot;</span><span class="p">)]</span>
+<span class="n">cac40_1988</span> <span class="o">=</span> <span class="n">cac40</span><span class="p">[(</span><span class="n">cac40</span><span class="o">.</span><span class="n">time</span><span class="o">&lt;</span><span class="s2">&quot;1989-01-01&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">cac40</span><span class="o">.</span><span class="n">time</span><span class="o">&gt;</span><span class="s2">&quot;1988-01-01&quot;</span><span class="p">)]</span>
+<span class="n">cac40_2000</span> <span class="o">=</span> <span class="n">cac40</span><span class="p">[(</span><span class="n">cac40</span><span class="o">.</span><span class="n">time</span><span class="o">&lt;</span><span class="s2">&quot;2001-01-01&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">cac40</span><span class="o">.</span><span class="n">time</span><span class="o">&gt;</span><span class="s2">&quot;2000-01-01&quot;</span><span class="p">)]</span>
+<span class="c1"># on crée une figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="c1"># on définit le titre de cette figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Evolution de l’indice CAC40 sur 3 années 2019 - 2000 - 1988&quot;</span><span class="p">,</span> 
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="c1"># on se concentre sur le premier sous graphique</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">311</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cac40_2019</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">],</span><span class="n">cac40_2019</span><span class="p">[</span><span class="s2">&quot;CAC 40&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;2019&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Valeur&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.01</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="c1"># on se concentre sur le second sous graphique</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">312</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cac40_2000</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">],</span> <span class="n">cac40_2000</span><span class="p">[</span><span class="s2">&quot;CAC 40&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;2000&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Valeur&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.01</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="c1"># on se concentre sur le troisième sous graphique</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">313</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cac40_1988</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">],</span> <span class="n">cac40_1988</span><span class="p">[</span><span class="s2">&quot;CAC 40&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;1988&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Valeur&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.01</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1bf5246bc40&gt;
+</pre></div>
+</div>
+<img alt="../_images/9fc8e631604b9ef540183d315b4d3787f44edfc8f54329285e9638ff6a88fa34.png" src="../_images/9fc8e631604b9ef540183d315b4d3787f44edfc8f54329285e9638ff6a88fa34.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">taille</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+<span class="n">couleurs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+<span class="c1"># s représente la taille des points</span>
+<span class="c1"># c représente les couleurs (on peut avoir une seule couleur)</span>
+<span class="c1"># cmap permet de fournir à Matplotlib une palette de couleurs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="n">taille</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">couleurs</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s2">&quot;Greys&quot;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Représentation de points aléatoires&quot;</span><span class="p">)</span>
+<span class="c1"># on affiche la colorbar horizontalementet on lui ajoute une description</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s2">&quot;Niveaux&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f7a5a7abc93ca2c10b954ece49064bec70fa614cae1194bbabdd70075bb07712.png" src="../_images/f7a5a7abc93ca2c10b954ece49064bec70fa614cae1194bbabdd70075bb07712.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">taille</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+<span class="n">couleurs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+
+<span class="c1"># s représente la taille des points</span>
+<span class="c1"># c représente les couleurs (on peut avoir une seule couleur)</span>
+<span class="c1"># cmap permet de fournir à Matplotlib une palette de couleurs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="n">taille</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">couleurs</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s2">&quot;Greys&quot;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Représentation de points aléatoires&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s2">&quot;Niveaux&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9a3f9d74c9dd17bb0416306d3303452b207f9c042708e863e750ef32ee75d364.png" src="../_images/9a3f9d74c9dd17bb0416306d3303452b207f9c042708e863e750ef32ee75d364.png" />
+</div>
+</div>
+</section>
+<section id="inserer-du-texte-dans-un-graphique">
+<h4>Insérer du texte dans un graphique<a class="headerlink" href="#inserer-du-texte-dans-un-graphique" title="Permalink to this heading">#</a></h4>
+<p>Il existe deux fonctions principales pour ajouter du texte dans un graphique : <em>plt.text()</em> et <em>plt.annotate()</em>. La première permet d’ajouter un texte à une position spécifique et la seconde permet d’ajouter une annotation.</p>
+<p>Si nous essayons d’ajouter des valeurs sur un graphique, on utilisera <em>plt.text()</em> :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moyenne</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">sigma</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">+</span><span class="n">moyenne</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Histogramme issu d’une loi normale&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mf">.15</span><span class="p">,</span> <span class="s1">&#39;$\mu= </span><span class="si">%.2f</span><span class="s1">,\ \sigma= </span><span class="si">%.2f</span><span class="s1">$&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">moyenne</span><span class="p">,</span> <span class="n">sigma</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.16</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-10.0, 10.0, 0.0, 0.16)
+</pre></div>
+</div>
+<img alt="../_images/ae0f47e554bf640759e5d6473e763d24b018621ba7c6065e13521399a8e4e352.png" src="../_images/ae0f47e554bf640759e5d6473e763d24b018621ba7c6065e13521399a8e4e352.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moyenne</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">sigma</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">+</span><span class="n">moyenne</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Histogramme issu d’une loi normale&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mf">.15</span><span class="p">,</span> <span class="s1">&#39;$\mu= </span><span class="si">%.2f</span><span class="s1">,\ \sigma= </span><span class="si">%.2f</span><span class="s1">$&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">moyenne</span><span class="p">,</span> <span class="n">sigma</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.16</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-10.0, 10.0, 0.0, 0.16)
+</pre></div>
+</div>
+<img alt="../_images/8f3831ebc37b33b00943d371777e369c7e7a9078f56017b1a9a5e71265659c0a.png" src="../_images/8f3831ebc37b33b00943d371777e369c7e7a9078f56017b1a9a5e71265659c0a.png" />
+</div>
+</div>
+<p>On peut aussi ajouter des annotations sur un graphique :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="k">as</span> <span class="nn">mdates</span>
+<span class="c1"># on extrait la valeur maximale sur l’année</span>
+<span class="n">maximum_annee</span> <span class="o">=</span> <span class="n">cac40</span><span class="p">[</span><span class="s2">&quot;CAC 40&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="c1"># on extrait la date du maximum que l’on transforme en nombre</span>
+<span class="n">date_maximum_num</span> <span class="o">=</span> <span class="n">mdates</span><span class="o">.</span><span class="n">date2num</span><span class="p">(</span><span class="n">cac40</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cac40</span><span class="p">[</span><span class="s2">&quot;CAC 40&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">(),</span>
+<span class="s2">&quot;time&quot;</span><span class="p">])</span>
+<span class="c1"># on représente les données</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cac40</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">],</span> <span class="n">cac40</span><span class="p">[</span><span class="s2">&quot;CAC 40&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Cours&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Valeur&quot;</span><span class="p">)</span>
+<span class="c1"># on ajoute l’annotation</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;Maximum : </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">maximum_annee</span><span class="p">),</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="p">(</span><span class="n">date_maximum_num</span><span class="p">,</span> <span class="n">maximum_annee</span><span class="p">),</span>
+<span class="n">xytext</span> <span class="o">=</span> <span class="p">(</span><span class="n">date_maximum_num</span><span class="o">+</span><span class="mi">800</span><span class="p">,</span> <span class="n">maximum_annee</span><span class="p">),</span>
+<span class="n">arrowprops</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(12004.083333333334, 6922.33, &#39;Maximum : 6922.33&#39;)
+</pre></div>
+</div>
+<img alt="../_images/fd28708675a7262f415f8f1d8ca33739412c0d9d89c19d25f1089887a6307ad8.png" src="../_images/fd28708675a7262f415f8f1d8ca33739412c0d9d89c19d25f1089887a6307ad8.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="creer-un-graphique-anime">
+<h3>5.1.11 Créer un graphique animé<a class="headerlink" href="#creer-un-graphique-anime" title="Permalink to this heading">#</a></h3>
+<p>Matplotlib vous permet de générer des graphiques animés, c’est-à-dire des vidéos
+dans lesquelles vous allez pouvoir faire évoluer votre graphique.</p>
+<p>Pour pouvoir utiliser ces fonctionnalités, il faut ajouter de nouveaux outils dans votre environnement Anaconda. On va installer ffmpeg en utilisant conda.</p>
+<p>Ceci va nous permettre de générer des fichiers vidéo.</p>
+<p>Si on désire construire une vidéo permettant de visualiser l’évolution d’un nuage de points dans lequel la taille des points évolue avec le temps.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.animation</span> <span class="kn">import</span> <span class="n">FuncAnimation</span>
+<span class="c1"># définition de la figure</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="c1"># génération des données</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="c1"># définition du graphique</span>
+<span class="n">nuage</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="c1"># fonction d’animation</span>
+<span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">:</span>
+    <span class="n">nuage</span><span class="o">.</span><span class="n">set_sizes</span><span class="p">(</span><span class="n">z</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
+<span class="c1"># construction de l’objet animé</span>
+<span class="n">anim</span> <span class="o">=</span> <span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># sauvegarde du fichier</span>
+<span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;../other/nuage-points.mp4&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Voici l’animation obtenue :</p>
+<p><video controls src="../other/nuage-points.mp4">Nuage de points</video></p>
+<p>Pour créer n’importe quel type de graphique animé, il faut donc utiliser la classe <em>FuncAnimation</em> qui va prendre comme paramètres :</p>
+<ul class="simple">
+<li><p>fig : la figure utilisée.</p></li>
+<li><p>func : une fonction qui sera appelée lors de la génération de chaque image de la vidéo. Le premier argument de cette fonction doit être le numéro de l’image (on utilise i dans notre exemple).</p></li>
+<li><p>init_func : si on désire utiliser une fonction de génération de la première image.</p></li>
+<li><p>interval : délai entre les images en millisecondes.</p></li>
+<li><p>frames : définition de l’itérable à fournir à chaque image (on utilise un entier, cette valeur génère une suite d’entiers débutant à 0).</p></li>
+</ul>
+</section>
+</section>
+<section id="seaborn-pour-des-representations-plus-elaborees">
+<h2>5.2 Seaborn pour des représentations plus élaborées<a class="headerlink" href="#seaborn-pour-des-representations-plus-elaborees" title="Permalink to this heading">#</a></h2>
+<section id="utilisation-de-seaborn">
+<h3>5.2.1 Utilisation de Seaborn<a class="headerlink" href="#utilisation-de-seaborn" title="Permalink to this heading">#</a></h3>
+<p>Seaborn est un autre package intéressant pour la création de graphiques. Il est
+basé sur Matplotlib et en utilise les principes. Son principal intérêt réside dans la création de graphiques plus spécifiques en quelques lignes de code.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="le-box-plot-ou-la-boite-a-moustaches">
+<h3>5.2.2 Le box-plot ou la boîte à moustaches<a class="headerlink" href="#le-box-plot-ou-la-boite-a-moustaches" title="Permalink to this heading">#</a></h3>
+<p>Un box plot (appelé aussi une boîte à moustache) est un graphique utilisé fréquemment pour l’exploration des données. Il permet de visualiser pour une variable ou pour un groupe d’individus le comportement global des individus.</p>
+<p>Nous utiliserons ici des données de la région Île-de-France sur les communes de
+la (données open data Île-de-France, voir le début du chapitre 4 pour une description des données).</p>
+<p>On représente le box-plot du nombre de naissances par commune en fonction du département d’Île-de-France :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on récupère les données</span>
+<span class="n">data_idf</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/base-comparateur-de-territoires.csv&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data_idf</span><span class="p">[</span><span class="s2">&quot;DEP&quot;</span><span class="p">],</span> <span class="n">data_idf</span><span class="p">[</span><span class="s2">&quot;NAIS0914&quot;</span><span class="p">]</span><span class="o">/</span> <span class="n">data_idf</span><span class="p">[</span><span class="s2">&quot;P09_POP&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Box plot du nombre de naissances par habitant par département&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\s4d-asus-14\Anaconda3\envs\pythondatascientist\lib\site-packages\seaborn\_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+  warnings.warn(
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Box plot du nombre de naissances par habitant par département&#39;)
+</pre></div>
+</div>
+<img alt="../_images/7d4fd4c051ed77affc37b59859a42d210002ba0400f67b1272af9c1896f1c4cd.png" src="../_images/7d4fd4c051ed77affc37b59859a42d210002ba0400f67b1272af9c1896f1c4cd.png" />
+</div>
+</div>
+<p>Les box plots de Seaborn offrent d’autres possibilités, notamment d’utiliser le paramètre <em>data =</em> qui va simplifier notre code :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on crée une nouvelle colonne</span>
+<span class="n">data_idf</span><span class="p">[</span><span class="s2">&quot;NAIS_HAB&quot;</span><span class="p">]</span><span class="o">=</span> <span class="n">data_idf</span><span class="p">[</span><span class="s2">&quot;NAIS0914&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">data_idf</span><span class="p">[</span><span class="s2">&quot;P09_POP&quot;</span><span class="p">]</span>
+<span class="c1"># on crée le box plot</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="s2">&quot;DEP&quot;</span><span class="p">,</span><span class="s2">&quot;NAIS_HAB&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data_idf</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+            <span class="n">notch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fliersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Box-plot entaillé par département&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\s4d-asus-14\Anaconda3\envs\pythondatascientist\lib\site-packages\seaborn\_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+  warnings.warn(
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Box-plot entaillé par département&#39;)
+</pre></div>
+</div>
+<img alt="../_images/e2992c2786d9f6eeb3f107b99112f2a013bf984e1525a385f33b498606e4b73c.png" src="../_images/e2992c2786d9f6eeb3f107b99112f2a013bf984e1525a385f33b498606e4b73c.png" />
+</div>
+</div>
+</section>
+<section id="violin-plot">
+<h3>5.2.3 Violin plot<a class="headerlink" href="#violin-plot" title="Permalink to this heading">#</a></h3>
+<p>Les violons ou violin plot sont des graphiques importants en visualisation de
+données, ils permettent de visualiser la répartition des données et la boîte à moustache associée.</p>
+<p>Pour obtenir un graphique en violons, on utilise :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="s2">&quot;DEP&quot;</span><span class="p">,</span><span class="s2">&quot;NAIS_HAB&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data_idf</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Violin-plot par département&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\s4d-asus-14\Anaconda3\envs\pythondatascientist\lib\site-packages\seaborn\_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+  warnings.warn(
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Violin-plot par département&#39;)
+</pre></div>
+</div>
+<img alt="../_images/72d29dd80f19ee98eda53cf5bc53e9e1f8c5968d79247d7aa7bdf6afe9525340.png" src="../_images/72d29dd80f19ee98eda53cf5bc53e9e1f8c5968d79247d7aa7bdf6afe9525340.png" />
+</div>
+</div>
+<p>Si nous prenons maintenant les données AirBnB, on voudrait représenter le niveau
+des évaluations sur un logement en fonction du type de chambre et du type d’hôte
+(super-host ou non) :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on récupère les données</span>
+<span class="n">listing</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/listing_extrait.csv&quot;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on construit notre graphique en séparant notre violin plot en deux parties</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="s2">&quot;room_type&quot;</span><span class="p">,</span><span class="s2">&quot;review_scores_rating&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;host_is_superhost&quot;</span><span class="p">,</span> 
+               <span class="n">split</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">listing</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+           <span class="n">borderaxespad</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Est super-host&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Graphique en violons du score moyen des logements&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\s4d-asus-14\Anaconda3\envs\pythondatascientist\lib\site-packages\seaborn\_decorators.py:36: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+  warnings.warn(
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Graphique en violons du score moyen des logements&#39;)
+</pre></div>
+</div>
+<img alt="../_images/67e2cfba76da3ca3dc303a389ff0709afa853bbd556e4cfd795aba10afdf8221.png" src="../_images/67e2cfba76da3ca3dc303a389ff0709afa853bbd556e4cfd795aba10afdf8221.png" />
+</div>
+</div>
+</section>
+<section id="les-distplot-de-seaborn">
+<h3>5.2.4 Les distplot() de Seaborn<a class="headerlink" href="#les-distplot-de-seaborn" title="Permalink to this heading">#</a></h3>
+<p>Les distplot de Seaborn sont des visualisations des distributions de probabilité des variables quantitatives.</p>
+<p>Ce graphique se rapproche beaucoup des histogrammes mais il ajoute la représentation de la distribution empirique des données.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># on génère des données</span>
+<span class="n">var</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> 
+                    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)],</span>
+                   <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">var2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10000</span><span class="p">),</span> 
+                     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span><span class="o">-</span><span class="mi">5</span><span class="p">],</span>
+                    <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># on affiche les distributions</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">var2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\s4d-asus-14\Anaconda3\envs\pythondatascientist\lib\site-packages\seaborn\distributions.py:2551: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+C:\Users\s4d-asus-14\Anaconda3\envs\pythondatascientist\lib\site-packages\seaborn\distributions.py:2551: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Density&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/580c3695e4f63e3d773d16171ef35cc51792085a1cd8a39a18a9fe0b10425da2.png" src="../_images/580c3695e4f63e3d773d16171ef35cc51792085a1cd8a39a18a9fe0b10425da2.png" />
+</div>
+</div>
+</section>
+<section id="les-pairplot-de-seaborn-ou-la-matrice-de-graphiques">
+<h3>5.2.5 Les pairplot() de Seaborn ou la matrice de graphiques<a class="headerlink" href="#les-pairplot-de-seaborn-ou-la-matrice-de-graphiques" title="Permalink to this heading">#</a></h3>
+<p>Le pairplot de Seaborn est un outil très efficace pour représenter les variables
+quantitatives d’un DataFrame (à condition de ne pas trop en avoir).</p>
+<p>Un pairplot va construire une figure avec à l’intérieur une matrice de graphiques.</p>
+<p>Les éléments sur la diagonale sont des distplot et les éléments hors de la diagonale sont des nuages de points qui croisent les variables deux à deux.</p>
+<p>Si nous essayons de représenter ce graphique par département sur les données
+de la région Ile-de-France :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_idf</span><span class="p">[</span><span class="s1">&#39;DEP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_idf</span><span class="p">[</span><span class="s1">&#39;DEP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data_idf</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;DEP&#39;</span><span class="p">,</span>
+<span class="nb">vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;P14_POP&#39;</span><span class="p">,</span> <span class="s1">&#39;SUPERF&#39;</span><span class="p">,</span><span class="s1">&#39;NAIS0914&#39;</span><span class="p">,</span> <span class="s1">&#39;DECE0914&#39;</span><span class="p">],</span>
+<span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">plot_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;s&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">},</span>
+<span class="n">markers</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="s1">&#39;v&#39;</span><span class="p">,</span><span class="s1">&#39;^&#39;</span><span class="p">,</span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span><span class="s2">&quot;*&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x1bf643a2c40&gt;
+</pre></div>
+</div>
+<img alt="../_images/e7bdc0363c433641f8b76b2025cb28ecb05094979086f2edd03eca3cee6f1d13.png" src="../_images/e7bdc0363c433641f8b76b2025cb28ecb05094979086f2edd03eca3cee6f1d13.png" />
+</div>
+</div>
+<p>L’argument <em>plot_kws</em> est un argument qui permet de définir des propriétés plus spécifiques du graphique.</p>
+<p>Il attend un dictionnaire de propriétés-valeurs. Ici on définit la taille des points dans les nuages de points.</p>
+</section>
+<section id="les-jointplot">
+<h3>5.2.6 Les jointplot()<a class="headerlink" href="#les-jointplot" title="Permalink to this heading">#</a></h3>
+<p>Le jointplot est un graphique qui permet de représenter le croisement entre deux
+variables quantitatives. Il affiche simultanément un nuage de points et des histogrammes pour chaque variable.</p>
+<p>Si nous travaillons sur le nombre de décès et de naissances en fonction de la population des communes d’Ile-de-France, nous aurons :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># construction de nouvelles variables</span>
+<span class="n">data_idf</span><span class="p">[</span><span class="s1">&#39;DECE_HAB&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data_idf</span><span class="p">[</span><span class="s1">&#39;DECE0914&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">data_idf</span><span class="p">[</span><span class="s2">&quot;P14_POP&quot;</span><span class="p">]</span>
+<span class="n">data_idf</span><span class="p">[</span><span class="s1">&#39;NAISS_HAB&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data_idf</span><span class="p">[</span><span class="s1">&#39;NAIS0914&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">data_idf</span><span class="p">[</span><span class="s2">&quot;P14_POP&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># représentation du jointplot</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;DECE_HAB&#39;</span><span class="p">,</span> 
+                   <span class="n">y</span><span class="o">=</span><span class="s1">&#39;NAISS_HAB&#39;</span><span class="p">,</span> 
+                   <span class="n">data</span><span class="o">=</span><span class="n">data_idf</span><span class="p">,</span> 
+                   <span class="n">joint_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;s&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/626af903e5566123aec966393780319fb86f30f9bdb880bd1d4d98b6fed4b363.png" src="../_images/626af903e5566123aec966393780319fb86f30f9bdb880bd1d4d98b6fed4b363.png" />
+</div>
+</div>
+<p>Il existe bien d’autres fonctionnalités de Matplotlib et Seaborn, n’hésitez pas à consulter la documentation des ces packages :</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://matplotlib.org/">https://matplotlib.org/</a></p></li>
+<li><p><a class="reference external" href="https://seaborn.pydata.org/">https://seaborn.pydata.org/</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./python documentation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construction-de-graphiques-avec-matplotlib">5.1 Construction de graphiques avec matplotlib</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afficher-des-graphiques">5.1.1 Afficher des graphiques</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-parametres-globaux-de-vos-graphiques">5.1.3 Les paramètres globaux de vos graphiques</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#changer-des-parametres-specifiques">Changer des paramètres spécifiques</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exporter-un-graphique">Exporter un graphique</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definir-son-premier-graphique">5.1.4 Définir son premier graphique</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nuage-de-points-avec-plt-scatter">5.1.5 Nuage de points avec plt.scatter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-graphique-en-batons-avec-plt-bar">5.1.6 Le graphique en bâtons avec plt.bar()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-construction-dun-pie-chart">5.1.7 La construction d’un pie chart</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-barres-derreurs-avec-plt-errorbar">5.1.8 Les barres d’erreurs avec plt.errorbar()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-construction-dhistogrammes">5.1.9 La construction d’histogrammes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#personnaliser-vos-graphiques-matplotlib">5.1.10 Personnaliser vos graphiques Matplotlib</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ajouter-plusieurs-graphiques-sur-le-meme-graphique">Ajouter plusieurs graphiques sur le même graphique</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#personnaliser-les-legendes-et-les-colorbar">Personnaliser les légendes et les colorbar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inserer-du-texte-dans-un-graphique">Insérer du texte dans un graphique</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creer-un-graphique-anime">5.1.11 Créer un graphique animé</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seaborn-pour-des-representations-plus-elaborees">5.2 Seaborn pour des représentations plus élaborées</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utilisation-de-seaborn">5.2.1 Utilisation de Seaborn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-box-plot-ou-la-boite-a-moustaches">5.2.2 Le box-plot ou la boîte à moustaches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#violin-plot">5.2.3 Violin plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-distplot-de-seaborn">5.2.4 Les distplot() de Seaborn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-pairplot-de-seaborn-ou-la-matrice-de-graphiques">5.2.5 Les pairplot() de Seaborn ou la matrice de graphiques</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-jointplot">5.2.6 Les jointplot()</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
